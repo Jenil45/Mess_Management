@@ -1,4 +1,5 @@
 import './App.css';
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 function App() {
   return (
@@ -6,7 +7,7 @@ function App() {
     <div className="App">
       Hello Quad Coders
     </div>
-    <BrowserRouter >
+    <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout/ >} >
             <Route path='' element={<Home/>}> </Route>
