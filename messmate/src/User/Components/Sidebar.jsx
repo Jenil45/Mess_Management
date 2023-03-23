@@ -5,6 +5,7 @@ import LogOut from "../../Svg/LogOut.svg";
 import Payment from "../../Svg/Payment.svg";
 import subscription from "../../Svg/subscription.svg";
 import Profile from "../../Svg/Profile.svg";
+import Infopic from "../../Svg/Information.svg";
 
 function Sidebar() {
   return (
@@ -58,7 +59,7 @@ function Sidebar() {
               to="/user/information"
             >
               <div className="shadow-soft-2xl bg-gradient-to-tl from-blue-500  to-green-400    mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-1.5">
-                {/* <img src={Dashboard} /> */}
+                <img src={Infopic} />
               </div>
               <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
                 Information
