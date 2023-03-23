@@ -1,12 +1,18 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import Sidebar from "./Components/Sidebar";
+import Mainbar from "./Components/Mainbar";
 
 const Admin = () => {
   return (
     <div>
-      Admin page
-      {/* navbar of admin dashboard + mainbar */}
-      <Outlet />
+      <main main className="flex">
+        <div className=" py-6  flex-[2]">
+          <Sidebar />
+        </div>
+        <div className="mx-3 flex-[8]">
+          <Mainbar />
+        </div>
+      </main>
     </div>
   );
 };

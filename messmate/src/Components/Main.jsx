@@ -1,13 +1,13 @@
 import React from "react";
 import Footer from "./Footer";
-import Home from "./Home";
 import Navbar from "./Navbar";
+import { Outlet } from "react-router-dom";
 
 const Main = () => {
   return (
-    <div>
+    <div className="flex flex-col content-between ">
       <Navbar />
-      <Home />
+      <Outlet />
       <Footer />
     </div>
   );
