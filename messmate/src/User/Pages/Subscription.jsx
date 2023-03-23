@@ -19,8 +19,8 @@ const Subscription = () => {
               <button className="py-1 px-4 focus:outline-none">Annually</button>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center	">
-            <div className="p-4 xl:w-1/4 md:w-1/2 w-full">
+          <div className="flex flex-wrap justify-between	">
+            <div className="p-4 xl:w-1/4 md:w-1/2 min-w-[33%] min-h-[50vh]">
               <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
                 <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
                   START
@@ -95,7 +95,7 @@ const Subscription = () => {
                 </p>
               </div>
             </div>
-            <div className="p-4 xl:w-1/4 md:w-1/2 w-full">
+            <div className="p-4 xl:w-1/4 md:w-1/2 min-w-[33%] min-h-[50vh]">
               <div className="h-full p-6 rounded-lg border-2 border-red-500 flex flex-col relative overflow-hidden">
                 <span className="bg-red-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
                   POPULAR
@@ -192,7 +192,7 @@ const Subscription = () => {
                 </p>
               </div>
             </div>
-            <div className="p-4 xl:w-1/4 md:w-1/2 w-full">
+            <div className="p-4 xl:w-1/4 md:w-1/2 min-w-[33%] min-h-[50vh]">
               <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
                 <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
                   BUSINESS

@@ -14,6 +14,7 @@ import Home from './Components/Home';
 import Contact from './Components/Contact';
 import Alluser from './Admin/Pages/Alluser';
 import Info from './User/Pages/Info';
+import Aboutus from './Components/Aboutus';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path='/' element={<Main />} >
               <Route path='' element={<Home />} ></Route>
               <Route path='/contact' element={<Contact />} ></Route>
+              <Route path='/about' element={<Aboutus />} ></Route>
             </Route>
             <Route path='/admin' element={<Admin />} >
               <Route path='' element={<Dailyentry />}> </Route>

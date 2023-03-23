@@ -27,8 +27,8 @@ const Navbar = () => {
           <Link to="/contact" className="mr-5 hover:text-gray-900">
             Contact Us
           </Link>
-          <Link to="" className="mr-5 hover:text-gray-900">
-            Second Link
+          <Link to="/about" className="mr-5 hover:text-gray-900">
+            About us
           </Link>
           <Link to="" className="mr-5 hover:text-gray-900">
             Third Link

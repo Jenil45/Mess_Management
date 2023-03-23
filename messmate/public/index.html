@@ -34,7 +34,25 @@
       rel="stylesheet"
       href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css"
     />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
 
+    <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#datatable-search").DataTable();
+        $("#all-user-datatable").DataTable();
+      });
+    </script>
     <!-- < src="../path/to/datatables.min.js"></script> -->
   </head>
 
@@ -42,23 +60,4 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
-  <script
-    src="https://code.jquery.com/jquery-3.6.3.js"
-    integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"
-  ></script>
-
-  <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
-
-  <script>
-    $(document).ready(function () {
-      $("#datatable-search").DataTable();
-      $("#all-user-datatable").DataTable();
-    });
-  </script>
 </html>
