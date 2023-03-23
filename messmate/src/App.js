@@ -13,6 +13,7 @@ import Main from './Components/Main';
 import Home from './Components/Home';
 import Contact from './Components/Contact';
 import Alluser from './Admin/Pages/Alluser';
+import Info from './User/Pages/Info';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path='editprofile' element={<EditProfile />}> </Route>
               <Route path='subscription' element={<Subscription />}> </Route>
               <Route path='payment' element={<Payment />}> </Route>
+              <Route path='information' element={<Info />}> </Route>
             </Route>
           </Routes>
         </BrowserRouter>

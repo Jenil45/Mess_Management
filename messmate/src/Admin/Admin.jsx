@@ -6,7 +6,7 @@ const Admin = () => {
   return (
     <div>
       <main main className="flex">
-        <div className=" py-6  flex-[2]">
+        <div className="border-r-2  border-black flex-[1.2]">
           <Sidebar />
         </div>
         <div className="mx-3 flex-[8]">
