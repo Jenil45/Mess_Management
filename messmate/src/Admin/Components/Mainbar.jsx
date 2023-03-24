@@ -4,8 +4,7 @@ import { Outlet } from "react-router-dom";
 function Mainbar() {
   return (
     <div>
-      <header className="text-gray-600 body-font">
-        {/* <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between"> */}
+      {/* <header className="text-gray-600 body-font">
         <section class="text-gray-600 body-font">
           <div class="container px-5 py-6 mx-auto">
             <div class="flex flex-wrap -m-4 text-center ">
@@ -50,13 +49,13 @@ function Mainbar() {
           <a className="mr-5 hover:text-gray-900" href="/">
             Fourth Link
           </a>
-        </nav> */}
-        {/* <button className="group rounded-2xl h-10 w-40 bg-green-500 font-bold text-lg text-white relative overflow-hidden">
+        </nav>
+         <button className="group rounded-2xl h-10 w-40 bg-green-500 font-bold text-lg text-white relative overflow-hidden">
             Log out
             <div className="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl"></div>
-          </button> */}
-        {/* </div> */}
-      </header>
+          </button>
+         </div>
+      </header> */}
       <Outlet />
     </div>
   );
