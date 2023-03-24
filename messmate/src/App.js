@@ -10,7 +10,7 @@ import EditProfile from './User/Pages/EditProfile';
 import Subscription from './User/Pages/Subscription';
 import PersistentLogin from './Auth/PersistentLogin'
 import RequireAuth from './Auth/RequireAuth'
-import Payment from './User/Pages/Payment';
+import Attendent from './User/Pages/Attendent';
 import Main from './Components/Main';
 import Home from './Components/Home';
 import Contact from './Components/Contact';
@@ -40,10 +40,11 @@ function App() {
           </Route>
           <Route element={<RequireAuth accessRole={0} />}>
             <Route path='/user' element={<User />} >
-                <Route path='' element={<UserMenu />}> </Route>
-                <Route path='editprofile' element={<EditProfile />}> </Route>
-                <Route path='subscription' element={<Subscription />}> </Route>
-                <Route path='payment' element={<Payment />}> </Route>
+              <Route path='' element={<UserMenu />}> </Route>
+              <Route path='editprofile' element={<EditProfile />}> </Route>
+              <Route path='subscription' element={<Subscription />}> </Route>
+              <Route path='attendent' element={<Attendent/>}> </Route>
+              <Route path='information' element={<Info />}> </Route>
             </Route>
           </Route>
         </Route>

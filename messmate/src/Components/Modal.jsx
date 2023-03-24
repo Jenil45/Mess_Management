@@ -2,12 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../Api/axios.js";
 import useAuth from "../Auth/useAuth";
+import closeBtnpic from "../Svg/close.svg";
+import Alert from "./Alert";
 
 const Email_Checker = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 function Modal({ setLoginmodal }) {
   const { setAuth } = useAuth();
-
+  const [alert, setalert] = useState({
+    mode: true,
+    message:
+      "Lorem ipsum dolor  laudantium aliquid? Soluta, distinctio delectus!",
+    type: "bg-lime-100",
+  });
   // navigate and set or exist path take
   const location = useLocation();
   const navigate = useNavigate();
@@ -93,15 +100,16 @@ function Modal({ setLoginmodal }) {
         onClick={() => setLoginmodal(false)}
       />
 
-      <div className="flex fixed left-[35%] min-w-[30%]   transform overflow-hidden  p-9  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
+      <div className="flex fixed left-[35%] min-w-[30%] max-w-[31%]   transform overflow-hidden  p-9  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
         <div className="flex">
-          <h2 className="grow h-14 text-gray-900 text-3xl text-center font-medium title-font mb-5">
+          <h2 className="grow h-14 text-gray-900 text-3xl text-center font-medium title-font mb-2">
             Add user
           </h2>
           <div class="flex-none ">
             <img
-              src=""
-              alt="Photo Coming ..."
+              src={closeBtnpic}
+              alt=""
+              className=" cursor-pointer min-h-[35px] min-w-[35px] mt-1"
               onClick={() => setLoginmodal(false)}
             />
           </div>
@@ -150,5 +158,4 @@ function Modal({ setLoginmodal }) {
     </div>
   );
 }
-
 export default Modal;

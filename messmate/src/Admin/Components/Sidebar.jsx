@@ -5,7 +5,7 @@ function Sidebar() {
   return (
     <div className="h-screen">
       <ul className="flex flex-col pl-0 mb-0 mt-2">
-        <li className="mt-4 w-full">
+        <li className="mt-5 w-full">
           <Link
             className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
             to="/admin"
@@ -19,7 +19,7 @@ function Sidebar() {
           </Link>
         </li>
 
-        <li className="mt-4 w-full">
+        <li className="mt-5 w-full">
           <Link
             className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
             to="/admin"
@@ -32,7 +32,7 @@ function Sidebar() {
             </span>
           </Link>
         </li>
-        <li className="mt-4 w-full">
+        <li className="mt-5 w-full">
           <Link
             className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
             to="/admin/menu"
@@ -46,7 +46,7 @@ function Sidebar() {
           </Link>
         </li>
 
-        <li className="mt-4 w-full">
+        <li className="mt-5 w-full">
           <Link
             className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
             to="/admin/adduser"
@@ -60,13 +60,13 @@ function Sidebar() {
           </Link>
         </li>
 
-        <li className="w-full mt-4">
+        <li className="w-full mt-5">
           <h6 className="pl-6 ml-2 text-lg font-bold leading-tight uppercase  opacity-100">
             Account pages
           </h6>
         </li>
 
-        <li className="mt-4 w-full">
+        <li className="mt-5 w-full">
           <Link
             className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
             to="/admin/alluser"
@@ -80,7 +80,7 @@ function Sidebar() {
           </Link>
         </li>
 
-        <li className="mt-4 w-full">
+        <li className="mt-5 w-full">
           <Link
             className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
             to="/"
