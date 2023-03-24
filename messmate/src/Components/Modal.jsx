@@ -4,9 +4,9 @@ import Alert from "./Alert";
 
 function Modal({ setLoginmodal }) {
   const [alert,setalert] = useState({
-    'mode':false,
+    'mode':true,
     'message' : 'Lorem ipsum dolor  laudantium aliquid? Soluta, distinctio delectus!',
-    'type':'lime-100'
+    'type':'bg-lime-100'
   })
   return (
     <div
@@ -34,7 +34,7 @@ function Modal({ setLoginmodal }) {
             />
           </div>
         </div>
-        {alert.mode ? <Alert alert={alert}/> : ''}
+        {alert.mode ? <Alert alert={alert} setalert={setalert}/> : ''}
 
         <div className="relative mb-4">
           <label htmlFor="email" className="leading-7 text-sm text-gray-600">

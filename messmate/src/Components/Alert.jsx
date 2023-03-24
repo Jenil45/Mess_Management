@@ -1,10 +1,10 @@
 import React from 'react'
 
-function Alert({alert}) {
+function Alert({alert,setalert}) {
     console.log(alert);
   return (
 <div
-  className={` hidden w-full items-center bg-${alert.type} p-3 max-w-[100%] rounded-lg bg-warning-100 mt-2 mb-4 text-base text-warning-800 data-[te-alert-show]:inline-flex`}
+  className={` hidden w-full items-center ${alert.type} p-3 max-w-[100%] rounded-lg bg-warning-100 mt-2 mb-4 text-base text-warning-800 data-[te-alert-show]:inline-flex`}
   role="alert"
   data-te-alert-init
   data-te-alert-show>
@@ -13,7 +13,8 @@ function Alert({alert}) {
     type="button"
     className="ml-auto box-content  rounded-none border-none p-1 text-warning-900 opacity-50 hover:text-warning-900 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
     data-te-alert-dismiss
-    aria-label="Close">
+    aria-label="Close"
+    onClick={() => setalert({'mode':false,'message':'','type':''})}>
     <span
       className="w-[1em]  focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
       <svg
