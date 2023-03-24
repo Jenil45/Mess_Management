@@ -34,7 +34,7 @@ function App() {
             <Route path='/admin' element={<Admin />} >
                 <Route path='' element={<Dailyentry />}> </Route>
                 <Route path='adduser' element={<Adduser/>}> </Route>
-                {/* <Route path='deleteuser' element={<Deleteuser />}> </Route> */}
+                <Route path='alluser' element={<Alluser />}> </Route>
                 <Route path='menu' element={<Menu />}> </Route>
             </Route>
           </Route>

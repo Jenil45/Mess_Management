@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "../../Api/axios";
 
 function Alluser() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getData = async (e) => {
+      // if button enabled with JS hack
+      try {
+        const response = await axios.get("/users/getusers", {
+          withCredentials: true,
+        });
+
+        console.log("Get All User", response.data);
+        setUsers(response.data);
+        //console.log(JSON.stringify(response))
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getData();
+  }, []);
   return (
     <div className="w-full mt-16 max-w-full min-h-screen">
       <div className="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">

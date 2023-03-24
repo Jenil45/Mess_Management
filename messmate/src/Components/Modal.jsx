@@ -10,10 +10,9 @@ const Email_Checker = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 function Modal({ setLoginmodal }) {
   const { setAuth } = useAuth();
   const [alert, setalert] = useState({
-    mode: true,
-    message:
-      "Lorem ipsum dolor  laudantium aliquid? Soluta, distinctio delectus!",
-    type: "bg-lime-100",
+    mode: false,
+    message: "",
+    type: "bg-[red]",
   });
   // navigate and set or exist path take
   const location = useLocation();
@@ -51,8 +50,13 @@ function Modal({ setLoginmodal }) {
     const e2 = validPassword;
     console.log(e1, e2);
     if (!e1 || !e2) {
-      setErrMsg("Invalid Entry");
+      // setErrMsg("Invalid Entry");
       console.log(errMsg);
+      setalert({
+        mode: true,
+        message: "Invalid Entry",
+        type: "bg-[red]",
+      });
       return;
     }
     try {
@@ -68,23 +72,37 @@ function Modal({ setLoginmodal }) {
       console.log("After request", response);
 
       console.log(JSON.stringify(response?.data));
+      const name = response.data.name;
       const newEmail = response.data.email;
+      const mobileno = response.data.mobileno;
       const accessToken = response.data.accessToken;
       const role = response.data.role;
 
       // setAuth on login
-      setAuth({ email: newEmail, role, accessToken });
+      setAuth({ name, email: newEmail, mobileno, role, accessToken });
 
       // navigate to where it comes from
       setLoginmodal(false);
       navigate(role === 0 ? "/user" : "/admin", { replace: true });
     } catch (err) {
       if (!err?.response) {
-        setErrMsg("No Server Response");
+        setalert({
+          mode: true,
+          message: "No server Responce ",
+          type: "bg-[red]",
+        });
       } else if (err.response?.status === 409) {
-        setErrMsg("Missing Email or password");
+        setalert({
+          mode: true,
+          message: "User not available",
+          type: "bg-[red]",
+        });
       } else {
-        setErrMsg("Registration Failed");
+        setalert({
+          mode: true,
+          message: "User Not Found",
+          type: "bg-[red]",
+        });
       }
     }
   };
@@ -114,6 +132,7 @@ function Modal({ setLoginmodal }) {
             />
           </div>
         </div>
+        {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""}
         <form>
           <div className="relative mb-4">
             <label htmlFor="email" className="leading-7 text-sm text-gray-600">
@@ -136,7 +155,7 @@ function Modal({ setLoginmodal }) {
               Password
             </label>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               onChange={(e) => setPassword(e.target.value)}

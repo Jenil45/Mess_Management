@@ -15,14 +15,15 @@ export const getAllUser = asyncHandler(async (req , res) => {
 })
 
 export const getOneUser = asyncHandler(async (req , res) => {
-    const { id } = req.body
+    const { email } = req.body
+    console.log(req.body);
 
     // Confirm data
-    if (!id) {
+    if (!email) {
         return res.status(400).json({ message: 'User ID Required' })
     }
 
-    const user = await User.findById({"_id":id},{password:0,cpassword:0}).lean()
+    const user = await User.findById({"email":email},{password:0,cpassword:0}).lean()
 
     // If no users 
     if (!user) {

@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useLogout from "../../Api/Logout";
 
 function Sidebar() {
+  const logout = useLogout();
   return (
     <div className="h-screen">
       <ul className="flex flex-col pl-0 mb-0 mt-2">
@@ -81,17 +83,17 @@ function Sidebar() {
         </li>
 
         <li className="mt-5 w-full">
-          <Link
+          <button
+            onClick={logout}
             className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-            to="/"
           >
             <div className="shadow-soft-2xl bg-gradient-to-tl from-blue-500  to-green-400    mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-1.5">
               {/* <img src={Profile} /> */}
             </div>
-            <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
+            <button className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
               Log Out
-            </span>
-          </Link>
+            </button>
+          </button>
         </li>
       </ul>
     </div>

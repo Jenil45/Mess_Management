@@ -1,5 +1,5 @@
 import useAuth from "./useAuth"
-import axios from '../Api/axios.js'
+import axios, { axiosPrivate } from '../Api/axios.js'
 
 const useRefresh = () => {
     const {setAuth} = useAuth();
@@ -7,12 +7,12 @@ const useRefresh = () => {
     const refresh = async () => {
 
         // refresh backend side
-        const response = await axios.get("/auth/refresh" , {
+        const response = await axiosPrivate.get("/auth/refresh" , {
             withCredntials:true
         })
-        console.log(response);
+        // console.log(response);
         setAuth(prev => {
-                return {...prev ,"email":response.data.email , "role":response.data.role, "accessToken":response.data.accessToken}
+                return {...prev ,"name":response.data.name,"email":response.data.email ,"mobileno":response.data.mobileno, "role":response.data.role, "accessToken":response.data.accessToken}
             });
     }
     return refresh;
