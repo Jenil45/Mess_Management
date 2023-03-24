@@ -89,10 +89,11 @@ const Adduser = () => {
   return (
     <>
       <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto flex flex-wrap items-center justify-between">
+        <div className="container px-5 py-12 mx-auto flex flex-wrap items-center justify-between">
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0  flex-[5] pr-4">
             <img
               src={SignupPhoto}
+              aria-hidden
               className="min-h-fit"
               alt="Photo coming please wait"
             />
