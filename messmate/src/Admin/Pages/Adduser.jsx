@@ -71,7 +71,7 @@ const Adduser = () => {
       //clear state and controlled inputs
       setName("");
       setEmail("");
-      setMobileNo();
+      setMobileNo("");
       setRole(0);
       setPassword("");
       setCPassword("");

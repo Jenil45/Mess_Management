@@ -3,6 +3,10 @@ import validator from 'validator';
 
 
 const userSchema = new mongoose.Schema({
+    userId: {
+        type: Number,
+        default: 2000,
+      },
     name : {
         type : String,
         required : [true , 'Please enter your name']
@@ -44,6 +48,16 @@ const userSchema = new mongoose.Schema({
 },
 {timestamps : true}
 )
+
+userSchema.pre("save", async function (next) {
+    var docs = this;
+    // console.log(docs);
+    const data = await User.find()
+    // console.log(data.length);
+    docs.userId = docs.userId+data.length;
+    // console.log(docs.planId);
+    next
+  });
 
 
 const User = mongoose.models.newUser || mongoose.model('newUser' , userSchema)

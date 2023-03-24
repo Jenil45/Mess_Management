@@ -6,8 +6,10 @@ import attendent from "../../Svg/Attendent.svg";
 import subscription from "../../Svg/subscription.svg";
 import Profile from "../../Svg/Profile.svg";
 import Infopic from "../../Svg/Information.svg";
+import useLogout from "../../Api/Logout";
 
 function Sidebar() {
+  const logout = useLogout();
   return (
     <>
       <div className="border-x-2	h-screen">
@@ -18,7 +20,7 @@ function Sidebar() {
               to="/user"
             >
               <div className="bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                <img src={Dashboard} alt='Photo coming soon ..'  />
+                <img src={Dashboard} alt="Photo coming soon .." />
               </div>
               <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
                 Dashboard
@@ -87,9 +89,9 @@ function Sidebar() {
           </li>
 
           <li className="mt-5 w-full">
-            <Link
+            <button
+              onClick={logout}
               className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-              to="/"
             >
               <div className="shadow-soft-2xl bg-gradient-to-tl from-blue-500  to-green-400    mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-1.5">
                 <img src={LogOut} />
@@ -97,7 +99,7 @@ function Sidebar() {
               <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
                 Log Out
               </span>
-            </Link>
+            </button>
           </li>
         </ul>
       </div>
