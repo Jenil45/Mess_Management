@@ -1,5 +1,6 @@
 import express from 'express'
-import router from './Routes/route.js'
+import userRoute from './Routes/userRoute.js'
+import authRoute from './Routes/authRoute.js'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 // import cors from 'cors'
@@ -21,12 +22,13 @@ import Connection from './Database/db_connect.js'
 const app = express()
 
 // giving all permissions
-app.use(router)
 app.use(express.json())
 app.use(bodyParser.json({extended : true}))
 app.use(bodyParser.urlencoded({extended : true}))
-// app.use(cors(corsOptions))
 app.use(cookieParser())
+app.use("/users",userRoute)
+app.use("/auth",authRoute)
+// app.use(cors(corsOptions))
 
 
 
