@@ -8,6 +8,8 @@ import User from './User/User';
 import UserMenu from './User/Pages/UserMenu';
 import EditProfile from './User/Pages/EditProfile';
 import Subscription from './User/Pages/Subscription';
+import PersistentLogin from './Auth/PersistentLogin'
+import RequireAuth from './Auth/RequireAuth'
 import Payment from './User/Pages/Payment';
 import Main from './Components/Main';
 import Home from './Components/Home';
@@ -27,19 +29,24 @@ function App() {
               <Route path='/contact' element={<Contact />} ></Route>
               <Route path='/about' element={<Aboutus />} ></Route>
             </Route>
+            <Route element={<PersistentLogin />}>
+          <Route element={<RequireAuth accessRole={1} />}>
             <Route path='/admin' element={<Admin />} >
-              <Route path='' element={<Dailyentry />}> </Route>
-              <Route path='adduser' element={<Adduser />}> </Route>
-              <Route path='alluser' element={<Alluser />}> </Route>
-              <Route path='menu' element={<Menu />}> </Route>
+                <Route path='' element={<Dailyentry />}> </Route>
+                <Route path='adduser' element={<Adduser/>}> </Route>
+                {/* <Route path='deleteuser' element={<Deleteuser />}> </Route> */}
+                <Route path='menu' element={<Menu />}> </Route>
             </Route>
+          </Route>
+          <Route element={<RequireAuth accessRole={0} />}>
             <Route path='/user' element={<User />} >
-              <Route path='' element={<UserMenu />}> </Route>
-              <Route path='editprofile' element={<EditProfile />}> </Route>
-              <Route path='subscription' element={<Subscription />}> </Route>
-              <Route path='payment' element={<Payment />}> </Route>
-              <Route path='information' element={<Info />}> </Route>
+                <Route path='' element={<UserMenu />}> </Route>
+                <Route path='editprofile' element={<EditProfile />}> </Route>
+                <Route path='subscription' element={<Subscription />}> </Route>
+                <Route path='payment' element={<Payment />}> </Route>
             </Route>
+          </Route>
+        </Route>
           </Routes>
         </BrowserRouter>
       </div>
