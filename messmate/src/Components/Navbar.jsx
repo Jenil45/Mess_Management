@@ -40,7 +40,7 @@ const Navbar = () => {
           </Link>
         </nav>
         <button
-          className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+          className="inline-flex items-center bg-green-500 border-0 text-white py-1 px-3 focus:outline-none hover:bg-green-600 rounded text-base   p-2 md:mt-0"
           onClick={() => setLoginmodal(true)}
         >
           LogIn

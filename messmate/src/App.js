@@ -8,7 +8,7 @@ import User from './User/User';
 import UserMenu from './User/Pages/UserMenu';
 import EditProfile from './User/Pages/EditProfile';
 import Subscription from './User/Pages/Subscription';
-import Payment from './User/Pages/Payment';
+import Attendent from './User/Pages/Attendent';
 import Main from './Components/Main';
 import Home from './Components/Home';
 import Contact from './Components/Contact';
@@ -37,7 +37,7 @@ function App() {
               <Route path='' element={<UserMenu />}> </Route>
               <Route path='editprofile' element={<EditProfile />}> </Route>
               <Route path='subscription' element={<Subscription />}> </Route>
-              <Route path='payment' element={<Payment />}> </Route>
+              <Route path='attendent' element={<Attendent/>}> </Route>
               <Route path='information' element={<Info />}> </Route>
             </Route>
           </Routes>

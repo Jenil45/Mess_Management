@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import closeBtnpic from '../Svg/close.svg'
+import Alert from "./Alert";
 
 function Modal({ setLoginmodal }) {
+  const [alert,setalert] = useState({
+    'mode':false,
+    'message' : 'Lorem ipsum dolor  laudantium aliquid? Soluta, distinctio delectus!',
+    'type':'lime-100'
+  })
   return (
     <div
       className="relative z-10"
@@ -13,19 +20,21 @@ function Modal({ setLoginmodal }) {
         onClick={() => setLoginmodal(false)}
       />
 
-      <div className="flex fixed left-[35%] min-w-[30%]   transform overflow-hidden  p-9  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
+      <div className="flex fixed left-[35%] min-w-[30%] max-w-[31%]   transform overflow-hidden  p-9  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
         <div className="flex">
-          <h2 className="grow h-14 text-gray-900 text-3xl text-center font-medium title-font mb-5">
+          <h2 className="grow h-14 text-gray-900 text-3xl text-center font-medium title-font mb-2">
             Add user
           </h2>
           <div class="flex-none ">
             <img
-              src=""
-              alt="Photo Coming ..."
+              src={closeBtnpic}
+              alt=""
+              className=" cursor-pointer min-h-[35px] min-w-[35px] mt-1"
               onClick={() => setLoginmodal(false)}
             />
           </div>
         </div>
+        {alert.mode ? <Alert alert={alert}/> : ''}
 
         <div className="relative mb-4">
           <label htmlFor="email" className="leading-7 text-sm text-gray-600">
