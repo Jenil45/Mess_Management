@@ -5,11 +5,11 @@ import validator from 'validator';
 const feeSchema = new mongoose.Schema({
     userId : {
         type : Number,
-        required : [true , 'Please enter your name']
+        required : [true , 'Please enter user id']
     },
     planId : {
         type : Number,
-        required : [true , 'Please enter an email'],
+        required : [true , 'Please enter plan id'],
     },
     start_date: {
         type: Date,
