@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import validator from 'validator';
+import DailyEntry from './DailyEntry.js';
 
 
 const userSchema = new mongoose.Schema({
@@ -50,13 +51,25 @@ const userSchema = new mongoose.Schema({
 )
 
 userSchema.pre("save", async function (next) {
+
+    console.log("Go to pre section");
     var docs = this;
     // console.log(docs);
     const data = await User.find()
     // console.log(data.length);
     docs.userId = docs.userId+data.length;
+    
+    console.log("Adding : " , docs.userId);
+    // const dailyEntryObject = {"userid":docs.userId , "attendance" : } 
+    // const today_date = new Date("");
+    const today_date = new Date();
+    today_date.setDate(today_date.getDate()-1)
+    const dailyEntryObject = {"userId":docs.userId , "attendance" : [{"date":today_date}]}
+    const success = await new DailyEntry(dailyEntryObject).save();
+    console.log("success daily entry : " , success);
+    // return res.status(400).json({ message: 'Entry added'});
     // console.log(docs.planId);
-    next
+    next()
   });
 
 

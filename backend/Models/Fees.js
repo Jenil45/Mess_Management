@@ -7,6 +7,16 @@ const feeSchema = new mongoose.Schema({
         type : Number,
         required : [true , 'Please enter user id']
     },
+    attendance : [
+        {
+            date : {
+                type : Date
+            }
+        }
+    ],
+
+
+
     planId : {
         type : Number,
         required : [true , 'Please enter plan id'],
@@ -18,6 +28,10 @@ const feeSchema = new mongoose.Schema({
     end_date: {
         type: Date,
         required : true 
+    },
+    reamaining_days:{
+        type:Number,
+        required:true
     },
     fees : { 
         type : String,

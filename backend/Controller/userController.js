@@ -38,6 +38,7 @@ export const createNewUser = asyncHandler(async (req , res) => {
 
     // read data from req body
     const {name , email , mobileno,role , password , cpassword} = req.body
+    console.log(role);
 
     // duplicate entry
     const duplicate = await User.findOne({email}).lean().exec()

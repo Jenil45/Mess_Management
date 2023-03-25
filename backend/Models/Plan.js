@@ -35,7 +35,7 @@ planSchema.pre("save", async function (next) {
     // console.log(data.length);
     docs.planId = docs.planId+data.length;
     // console.log(docs.planId);
-    next
+    next()
   });
 
 // autoIncrement.initialize(mongoose.connection); // 3. initialize autoIncrement 
