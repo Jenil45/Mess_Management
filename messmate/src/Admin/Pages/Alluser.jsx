@@ -46,7 +46,7 @@ function Alluser() {
           scope='row'
           className='flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white'>
           <div className=''>
-            <div className='text-base font-semibold'>{user.name}</div>
+            <div className='text-black font-semibold'>{user.name}</div>
           </div>
         </th>
         <td className='px-6 py-4'>{user.email}</td>
