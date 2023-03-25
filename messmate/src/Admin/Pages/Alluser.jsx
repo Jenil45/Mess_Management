@@ -3,6 +3,7 @@ import axios from "../../Api/axios";
 
 function Alluser() {
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
   const row = 5;
   const totalpages = Math.ceil(users.length / row);
@@ -39,6 +40,13 @@ function Alluser() {
   }, []);
 
   const content = users
+    .filter((item, i) => {
+      return (
+        item.name.toLowerCase().includes(search) ||
+        item.email.toLowerCase().includes(search) ||
+        (item.role === 0 ? "user" : "admin").includes(search)
+      );
+    })
     .slice(startingindex, startingindex + row)
     .map((user) => {
       return (
@@ -88,9 +96,12 @@ function Alluser() {
       );
     });
   // console.log(content)
-  const searchintable = () => {
-    console.log("enter the searching  zone");
-  };
+  // const searchintable = (e) => {
+  //   setSearch(e.target.value);
+  //   setUsers(users.filter((item) =>{
+  //     return item.name=== search;
+  //   }))
+  // };
   const pagesArray = Array(totalpages)
     .fill()
     .map((index, i) => {
@@ -133,7 +144,10 @@ function Alluser() {
             id="table-search-users"
             className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search for users"
-            onChange={() => searchintable}
+            onChange={(e) => {
+              setSearch(e.target.value.toLowerCase());
+            }}
+            value={search}
           />
         </div>
       </div>
