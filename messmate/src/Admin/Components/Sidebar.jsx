@@ -5,7 +5,7 @@ import useLogout from "../../Api/Logout";
 function Sidebar() {
   const logout = useLogout();
   return (
-    <div className="h-screen">
+    <div className="h-screen ">
       <ul className="flex flex-col pl-0 mb-0 mt-2">
         <li className="mt-5 w-full">
           <Link
