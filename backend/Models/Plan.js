@@ -33,7 +33,18 @@ planSchema.pre("save", async function (next) {
     // console.log(docs);
     const data = await Plan.find()
     // console.log(data.length);
-    docs.planId = docs.planId+data.length;
+    if(docs.plan_type==='Daily')
+    {
+        docs.planId = 501;
+    }
+    if(docs.plan_type==='Weekly')
+    {
+        docs.planId = 502;
+    }
+    if(docs.plan_type==='Monthly')
+    {
+        docs.planId = 503;
+    }
     // console.log(docs.planId);
     next()
   });

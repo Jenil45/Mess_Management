@@ -4,6 +4,7 @@ import DailyEntry from "./Models/DailyEntry.js";
 import authRoute from './Routes/authRoute.js'
 import planRoute from './Routes/planRoute.js'
 import menuRoute from './Routes/menuRoutes.js'
+import userplanRoute from './Routes/userPlanRoutes.js';
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import cors from 'cors'
@@ -30,6 +31,7 @@ app.use("/users",userRoute)
 app.use("/auth",authRoute)
 app.use("/plan",planRoute)
 app.use("/menu",menuRoute)
+app.use("/userplan", userplanRoute)
 
 // get requests
 

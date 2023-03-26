@@ -62,13 +62,17 @@ userSchema.pre("save", async function (next) {
     console.log("Adding : " , docs.userId);
     // const dailyEntryObject = {"userid":docs.userId , "attendance" : } 
     // const today_date = new Date("");
-    const today_date = new Date();
-    today_date.setDate(today_date.getDate()-1)
-    const dailyEntryObject = {"userId":docs.userId , "attendance" : [{"date":today_date}]}
-    const success = await new DailyEntry(dailyEntryObject).save();
-    console.log("success daily entry : " , success);
-    // return res.status(400).json({ message: 'Entry added'});
-    // console.log(docs.planId);
+    if(docs.role===0)
+    {
+
+        const today_date = new Date();
+        today_date.setDate(today_date.getDate()-1)
+        const dailyEntryObject = {"userId":docs.userId , "attendance" : [{"date":today_date}]}
+        const success = await new DailyEntry(dailyEntryObject).save();
+        console.log("success daily entry : " , success);
+        // return res.status(400).json({ message: 'Entry added'});
+        // console.log(docs.planId);
+    }
     next()
   });
 
