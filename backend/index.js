@@ -36,7 +36,7 @@ app.use("/menu",menuRoute)
 Connection()
 
 app.get("/" , async (req,res) => {
-    
+
     // const today_date = new Date()
     // const end_date = new Date()
     // // const end_date = new Date(today_date.setDate(today_date.getDate+10))
@@ -74,7 +74,7 @@ app.get("/" , async (req,res) => {
     else if(verifyThing==="lunch")
     {
         updatedObject = {"breakfast": length==0?false:isTodayAdded[0].menu.breakfast, "lunch":true , "dinner":length==0?false:isTodayAdded[0].menu.dinner }
-        
+
     }
     else if(verifyThing==="dinner"){
         updatedObject = {"breakfast": length==0?false:isTodayAdded[0].menu.breakfast, "lunch":length==0?false:isTodayAdded[0].menu.lunch , "dinner":true }
@@ -116,7 +116,7 @@ app.get("/" , async (req,res) => {
 
 
 
-        console.log("Print this"); 
+        console.log("Print this");
         const today_date = new Date();
         console.log(today_date);
         const dailyEntryObject = {"date":today_date , "menu":updatedObject}
@@ -125,7 +125,7 @@ app.get("/" , async (req,res) => {
             $push:{
                 "attendance":dailyEntryObject
             }},
-        )  
+        )
     }
 
 
