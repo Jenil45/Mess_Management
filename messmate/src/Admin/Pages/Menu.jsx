@@ -1,60 +1,72 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import closeBtnpic from "../../Svg/close.svg";
+import MultiSelect from "../Components/MultiSelect";
 
 const Menu = () => {
-  const [list, setList] = useState([]);
-  const [tag, setTag] = useState("");
+  const [isSetMenu, setIsSetMenu] = useState(true);
 
-  const addOption = () => {
-    setList((prev) => [...prev, tag]);
-  };
+  const [menuB, setMenuB] = useState([]);
+  const [menuL, setMenuL] = useState([]);
+  const [menuD, setMenuD] = useState([]);
 
-  const removeOption = (value) => {
-    setList((prev) => {
-      return prev.filter((option) => option !== value);
-    });
+  // const [list1, setList1] = useState([]);
+  // const [list2, setList2] = useState([]);
+  // const [list3, setList3] = useState([]);
+
+  // const [tag1, setTag1] = useState("");
+  // const [tag2, setTag2] = useState("");
+  // const [tag3, setTag3] = useState("");
+
+  // const addOption = (item) => {
+  //   setList1((prev) => [...prev, item]);
+  // };
+
+  // const removeOption = (value) => {
+  //   setList1((prev) => {
+  //     return prev.filter((option) => option !== value);
+  //   });
+  // };
+  const handleSubmit = () => {
+    console.log(menuB);
+    // console.log(menuD);
+    // console.log(menuL);
   };
 
   return (
-    <div className="flex flex-col gap-3 items-center justify-center">
-      Menu
-      <div className="w-[25rem] flex gap-2">
-        <input
-          className="flex-[5] bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-          type="text"
-          onChange={(e) => setTag(e.target.value)}
-          value={tag}
-        />
-
-        <button
-          onClick={addOption}
-          className="group rounded-2xl h-10 flex-[2] bg-green-500 font-bold text-lg text-white relative overflow-hidden"
-        >
-          Add Tag
-          <div className="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl"></div>
-        </button>
+    <div>
+      <div className="flex items-center justify-center w-full py-[5rem] gap-[4rem] ">
+        <div className="flex gap-3 items-center justify-center">
+          <input
+            type="radio"
+            id="html"
+            name="fav_language"
+            value="Menu Add"
+            onChange={() => setIsSetMenu(true)}
+          />
+          <label className="text-[1.3rem]">Menu Add</label>
+        </div>
+        <div className="flex gap-3 items-center justify-center">
+          <input
+            type="radio"
+            id="css"
+            name="fav_language"
+            value="Subscription Add"
+            onChange={() => setIsSetMenu(false)}
+          />
+          <label className="text-[1.3rem]">Subscription Add</label>
+        </div>
       </div>
-      <div>
-        <select
-          multiple
-          name=""
-          id=""
-          className="w-[25rem] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 gap-3"
-        >
-          {list.map((option, index) => {
-            return (
-              <option
-                className="mt-1"
-                selected
-                value={option}
-                onClick={() => removeOption(option)}
-              >
-                {option}
-              </option>
-            );
-          })}
-        </select>
-      </div>
+      <hr />
+      {isSetMenu ? (
+        <div>
+          <MultiSelect thing={"Breakfast"} setMenuB={setMenuB} />
+          {/* <MultiSelect thing={"Lunch"} setMenu={setMenuL} /> */}
+          {/* <MultiSelect thing={"Dinner"} setMenu={setMenuD} /> */}
+          <button onClick={handleSubmit}>Submit</button>
+        </div>
+      ) : (
+        <div>Subscriotion</div>
+      )}
     </div>
   );
 };
