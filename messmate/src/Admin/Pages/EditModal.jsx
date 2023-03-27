@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "../Api/axios.js";
-import useAuth from "../Auth/useAuth";
-import closeBtnpic from "../Svg/close.svg";
-import Alert from "./Alert";
+import axios from "../../Api/axios";
 
 const Email_Checker = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const Mobile_Cheker = /^[6-9]\d{9}$/gi;
 
-function Modal({ setLoginmodal }) {
-  const { setAuth } = useAuth();
-  const [alert, setalert] = useState({
-    mode: false,
-    message: "",
-    type: "bg-[red]",
-  });
-  // navigate and set or exist path take
-  const location = useLocation();
-  const navigate = useNavigate();
+function EditModal(props) {
+  // const { setAuth } = useAuth();
+  const [name, setName] = useState("");
+  const [id, setId] = useState(0);
 
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
 
-  const [password, setPassword] = useState("");
-  const [validPassword, setValidPassword] = useState(true);
+  const [mobileno, setMobileNo] = useState();
+  const [validMobile, setValidMobile] = useState(false);
+
+  const [role, setRole] = useState(0);
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -33,77 +27,65 @@ function Modal({ setLoginmodal }) {
   }, [email]);
 
   useEffect(() => {
-    setValidPassword(true);
-  }, [password]);
+    setValidEmail(Mobile_Cheker.test(mobileno));
+  }, [mobileno]);
 
   useEffect(() => {
     setErrMsg("");
-  }, [email, password]);
+  }, [email]);
+
+  useEffect(() => {
+    const getData = async (userEmail) => {
+      // if button enabled with JS hack
+      console.log("Inside effect", userEmail);
+      try {
+        const response = await axios.get(`/users/getuser/${userEmail}`, {
+          withCredentials: true,
+        });
+
+        // console.log("Get All User", response.data);
+        setName(response.data.name);
+        setEmail(response.data.email);
+        setMobileNo(response.data.mobileno);
+        setId(response.data.userId);
+        setRole(response.data.role);
+        console.log(JSON.stringify(response));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getData(props.userEmail);
+  }, []);
 
   // handling submit
-  const handleLogin = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log(email);
-
+    console.log("inside update");
     // if button enabled with JS hack
     const e1 = Email_Checker.test(email);
-    const e2 = validPassword;
-    console.log(e1, e2);
-    if (!e1 || !e2) {
-      // setErrMsg("Invalid Entry");
-      console.log(errMsg);
-      setalert({
-        mode: true,
-        message: "Invalid Entry",
-        type: "bg-[red]",
-      });
+    if (!e1) {
+      setErrMsg("Invalid Entry");
       return;
     }
     try {
-      console.log("Inside try block");
-      const response = await axios.post(
-        "/auth/login",
-        JSON.stringify({ email, password }),
+      const response = await axios.patch(
+        `/users/update/${id}`,
+        JSON.stringify({ name, email, mobileno, role }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
-      console.log("After request", response);
 
       console.log(JSON.stringify(response?.data));
-      const name = response.data.name;
-      const newEmail = response.data.email;
-      const mobileno = response.data.mobileno;
-      const accessToken = response.data.accessToken;
-      const role = response.data.role;
+      //console.log(JSON.stringify(response))
+      setSuccess(true);
 
-      // setAuth on login
-      setAuth({ name, email: newEmail, mobileno, role, accessToken });
-
-      // navigate to where it comes from
-      setLoginmodal(false);
-      navigate(role === 0 ? "/user" : "/admin", { replace: true });
+      //clear state and controlled inputs
+      props.setEditmodal(false);
     } catch (err) {
-      if (!err?.response) {
-        setalert({
-          mode: true,
-          message: "No server Responce ",
-          type: "bg-[red]",
-        });
-      } else if (err.response?.status === 409) {
-        setalert({
-          mode: true,
-          message: "User not available",
-          type: "bg-[red]",
-        });
-      } else {
-        setalert({
-          mode: true,
-          message: "User Not Found",
-          type: "bg-[red]",
-        });
-      }
+      console.log(err);
     }
   };
   return (
@@ -115,25 +97,57 @@ function Modal({ setLoginmodal }) {
     >
       <div
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-        onClick={() => setLoginmodal(false)}
+        onClick={() => props.setEditmodal(false)}
       />
 
-      <div className="flex fixed left-[35%] min-w-[30%] max-w-[31%]   transform overflow-hidden  p-9  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
+      <div className="flex fixed left-[35%] min-w-[30%] max-w-[31%]   transform overflow-hidden  p-7  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
         <div className="flex">
           <h2 className="grow h-14 text-gray-900 text-3xl text-center font-medium title-font mb-2">
             Add user
           </h2>
           <div class="flex-none ">
             <img
-              src={closeBtnpic}
+              // src={closeBtnpic}
               alt=""
               className=" cursor-pointer min-h-[35px] min-w-[35px] mt-1"
-              onClick={() => setLoginmodal(false)}
+              onClick={() => props.setEditmodal(false)}
             />
           </div>
         </div>
-        {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""}
+        {/* {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""} */}
         <form>
+          <div className="relative mb-4">
+            <label
+              htmlFor="full-name"
+              className="leading-7 text-sm text-gray-600"
+            >
+              User Id
+            </label>
+            <input
+              type="text"
+              id="full-name"
+              name="name"
+              onChange={(e) => e.target.value}
+              value={id}
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            />
+          </div>
+          <div className="relative mb-4">
+            <label
+              htmlFor="full-name"
+              className="leading-7 text-sm text-gray-600"
+            >
+              Full Name
+            </label>
+            <input
+              type="text"
+              id="full-name"
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            />
+          </div>
           <div className="relative mb-4">
             <label htmlFor="email" className="leading-7 text-sm text-gray-600">
               Email
@@ -149,32 +163,47 @@ function Modal({ setLoginmodal }) {
           </div>
           <div className="relative mb-4">
             <label
-              htmlFor="password"
+              htmlFor="contact"
               className="leading-7 text-sm text-gray-600"
             >
-              Password
+              Contact Number
             </label>
             <input
-              type="password"
-              id="password"
-              name="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
+              type="number"
+              id="contact"
+              name="mobileno"
+              onChange={(e) => setMobileNo(e.target.value)}
+              value={mobileno}
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
+          <div className="relative mb-4">
+            <label htmlFor="email" className="leading-7 text-sm text-gray-600">
+              Role
+            </label>
+            <select
+              id="countries_disabled"
+              name="role"
+              onChange={(e) => setRole(e.target.value)}
+              value={role}
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option value={0} defaultChecked>
+                User
+              </option>
+              <option value={1}> Admin </option>
+            </select>
+          </div>
+
           <button
-            onClick={handleLogin}
+            onClick={handleUpdate}
             className="text-white bg-indigo-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
           >
-            Login
+            Update User
           </button>
-          <p className="text-xs text-gray-500 mt-3">
-            Literally you probably haven't heard of them jean shorts.
-          </p>
         </form>
       </div>
     </div>
   );
 }
-export default Modal;
+export default EditModal;

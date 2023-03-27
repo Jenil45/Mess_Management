@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 console.log("Welcome to mongoose");
 import dotenv from 'dotenv'
 
-// dotenv.config({path:'../.env'})
+// dotenv.config({path:'../config.env'})
 
 
 const Connection = async () => {

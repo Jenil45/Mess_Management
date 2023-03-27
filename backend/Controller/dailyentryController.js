@@ -2,76 +2,28 @@ import DailyEntry from "../Models/DailyEntry.js";
 import bcrypt from 'bcrypt'
 import asyncHandler from 'express-async-handler'
 
-// export const getAllUser = asyncHandler(async (req , res) => {
-    
-//     const users = await User.find({},{password:0,cpassword:0}).lean()
+export const getUserEntryDetail = asyncHandler(async (req , res) => {
+    const userId = req.params.userId
 
-//     // If no users 
-//     if (!users?.length) {
-//         return res.status(400).json({ message: 'No users found' })
-//     }
+    if(!userId)
+    {
+        return res.status(400).json({ message: 'User ID Required' })
+    }
 
-//     res.json(users)
-// })
+    const entry = await DailyEntry.findOne({"userId":userId})
+    // console.log(entry.attendance[0].date);
+    const start_end = entry.attendance[0].date.getDate()
+    // console.log(entry.attendance[entry.attendance.length-1].date);
+    const end_date = entry.attendance[entry.attendance.length-1].date.getDate()
+    console.log(start_end , end_date);
 
-// export const getOneUser = asyncHandler(async (req , res) => {
-//     const { email } = req.body
-//     console.log(req.body);
+    res.json(entry);
 
-//     // Confirm data
-//     if (!email) {
-//         return res.status(400).json({ message: 'User ID Required' })
-//     }
-
-//     const user = await User.findById({"email":email},{password:0,cpassword:0}).lean()
-
-//     // If no users 
-//     if (!user) {
-//         return res.status(400).json({ message: 'No users found' })
-//     }
-
-//     res.json(user)
-// })
-
-
-// export const createNewUser = asyncHandler(async (req , res) => {
-
-//     // read data from req body
-//     const {name , email , mobileno,role , password , cpassword} = req.body
-
-//     // duplicate entry
-//     const duplicate = await User.findOne({email}).lean().exec()
-//     if (duplicate) {
-//         return res.status(409).json({ message: 'Duplicate username' })
-//     }
-
-//     // password and confirm password match
-//     const pwdIsCpwd = password!==cpassword;
-//     if(pwdIsCpwd)
-//     {
-//         return res.status(409).json({message : 'Confirm Password doesnt match with password'})
-//     }
-
-//     // hashing a password
-//     const salt = await bcrypt.genSalt()
-//     const hashedPassword = await bcrypt.hash(password , salt)
-
-//     // creating userObject
-//     const userObject = {name , email , mobileno , role , "password":hashedPassword , "cpassword": hashedPassword}
-
-//     // Create and store new user 
-//     const user = await new User(userObject).save()
-
-//     if (user) { //created 
-//         res.status(201).json({ message: `New user ${email} created` })
-//     } else {
-//         res.status(400).json({ message: 'Invalid user data received' })
-//     }
-
-// })
+}) 
 
 export const updateDailyEntry = asyncHandler(async (req, res) => {
-    const {userId , verifyThing } = req.body
+    const {userId , verifyThing , planId } = req.body
+    console.log(userId,verifyThing,planId);
     // Does the user exist to update?
     const user = await DailyEntry.findOne({"userId":userId}).exec()
 
@@ -119,6 +71,7 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
                 "arrayFilters" : [{"elemX.date":isTodayAdded[0].date}]
             }
         )
+        res.json({message:"Daily entery updated for lunch"})
     }
 
     else
@@ -126,13 +79,14 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
         console.log("Print this"); 
         const today_date = new Date();
         console.log(today_date);
-        const dailyEntryObject = {"date":today_date , "menu":updatedObject}
+        const dailyEntryObject = {"date":today_date,"currPlanId":planId , "menu":updatedObject}
 
         const updateEntry = await DailyEntry.updateOne({"userId":userId } , {
             $push:{
                 "attendance":dailyEntryObject
             }},
         )
+        res.json({message:"Daily entery updated"})
     }
 })
 

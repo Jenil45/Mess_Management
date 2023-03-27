@@ -4,6 +4,8 @@ import DailyEntry from "./Models/DailyEntry.js";
 import authRoute from './Routes/authRoute.js'
 import planRoute from './Routes/planRoute.js'
 import menuRoute from './Routes/menuRoutes.js'
+import userplanRoute from './Routes/userPlanRoutes.js';
+import dailyentryRouter from './Routes/dailyentryRoute.js';
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import cors from 'cors'
@@ -30,13 +32,15 @@ app.use("/users",userRoute)
 app.use("/auth",authRoute)
 app.use("/plan",planRoute)
 app.use("/menu",menuRoute)
+app.use("/userplan", userplanRoute)
+app.use("/dailyentry", dailyentryRouter)
 
 // get requests
 
 Connection()
 
 app.get("/" , async (req,res) => {
-    
+
     // const today_date = new Date()
     // const end_date = new Date()
     // // const end_date = new Date(today_date.setDate(today_date.getDate+10))
@@ -74,7 +78,7 @@ app.get("/" , async (req,res) => {
     else if(verifyThing==="lunch")
     {
         updatedObject = {"breakfast": length==0?false:isTodayAdded[0].menu.breakfast, "lunch":true , "dinner":length==0?false:isTodayAdded[0].menu.dinner }
-        
+
     }
     else if(verifyThing==="dinner"){
         updatedObject = {"breakfast": length==0?false:isTodayAdded[0].menu.breakfast, "lunch":length==0?false:isTodayAdded[0].menu.lunch , "dinner":true }
@@ -116,7 +120,7 @@ app.get("/" , async (req,res) => {
 
 
 
-        console.log("Print this"); 
+        console.log("Print this");
         const today_date = new Date();
         console.log(today_date);
         const dailyEntryObject = {"date":today_date , "menu":updatedObject}
@@ -125,7 +129,7 @@ app.get("/" , async (req,res) => {
             $push:{
                 "attendance":dailyEntryObject
             }},
-        )  
+        )
     }
 
 

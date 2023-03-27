@@ -30,7 +30,7 @@ function Sidebar() {
               {/* <img src={Payment} /> */}
             </div>
             <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
-              Daily Menu
+              Daily Attendent
             </span>
           </Link>
         </li>

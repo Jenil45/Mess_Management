@@ -1,9 +1,10 @@
 import { Router } from 'express'
+import {getUserEntryDetail, updateDailyEntry } from '../Controller/dailyentryController.js'
 const dailyentryRouter = Router()
 
-dailyentryRouter.post("/login" , login)
-dailyentryRouter.get("/refresh" , refresh)
-dailyentryRouter.get("/logout" , logout)
+dailyentryRouter.patch("/updateentry" , updateDailyEntry)
+dailyentryRouter.get("/getuserentry/:userId" , getUserEntryDetail)
+// dailyentryRouter.get("/deleteentry" , deleteUserEntry)
 
 
 // router.route('/logout')

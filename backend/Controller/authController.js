@@ -21,6 +21,7 @@ export const login = asyncHandler(async (req, res) => {
     
     if (!matchPasswd) return res.status(401).json({ message: 'Unauthorized' })
     
+    const userId = foundUser.userId
     const role = foundUser.role
     const name = foundUser.name
     const mobileno = foundUser.mobileno
@@ -53,7 +54,7 @@ export const login = asyncHandler(async (req, res) => {
     })
 
     // Send accessToken containing username and roles 
-    res.json({name , email,mobileno, role , accessToken })
+    res.json({userId , name , email,mobileno, role , accessToken })
 })
 
 export const refresh = (req, res) => {
@@ -74,6 +75,7 @@ export const refresh = (req, res) => {
             // console.log(decoded);
 
             // decoding attributes
+            const userId = foundUser.userId
             const role = foundUser.role
             const name = foundUser.name
             const email = foundUser.email
@@ -91,7 +93,7 @@ export const refresh = (req, res) => {
                 { expiresIn: '15m' }
             )
 
-            res.json({name , email,mobileno, role , accessToken })
+            res.json({userId , name , email,mobileno, role , accessToken })
 
         })
     )

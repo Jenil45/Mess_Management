@@ -28,10 +28,11 @@ export const addMenu = asyncHandler(async (req , res) => {
     // read data from req body
     const {menu_day , menu_breakfast , menu_lunch , menu_dinner , special_menu} = req.body
 
-    // duplicate entry
+    // duplicate entry than update menu
     const duplicate = await Menu.findOne({menu_day}).lean().exec()
     if (duplicate) {
-        return res.status(409).json({ message: `Menu already exist for ${menu_day}` })
+        const updatedPlan = await Plan.updateOne({menu_day} , {menu_breakfast,menu_lunch , menu_dinner, special_menu})
+        res.json({ message: `${menu_day} plan updated` })
     }
 
     // creating userObject
