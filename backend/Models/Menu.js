@@ -6,7 +6,7 @@ const menuSchema = new mongoose.Schema({
 
     menuId: {
         type: Number,
-        default: 500,
+        default: 100,
       },
     menu_day:{
         type: String,

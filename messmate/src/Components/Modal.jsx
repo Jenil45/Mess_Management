@@ -72,6 +72,7 @@ function Modal({ setLoginmodal }) {
       console.log("After request", response);
 
       console.log(JSON.stringify(response?.data));
+      const userId = response.data.userId;
       const name = response.data.name;
       const newEmail = response.data.email;
       const mobileno = response.data.mobileno;
@@ -79,7 +80,7 @@ function Modal({ setLoginmodal }) {
       const role = response.data.role;
 
       // setAuth on login
-      setAuth({ name, email: newEmail, mobileno, role, accessToken });
+      setAuth({ userId, name, email: newEmail, mobileno, role, accessToken });
 
       // navigate to where it comes from
       setLoginmodal(false);

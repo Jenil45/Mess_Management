@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import {updateDailyEntry } from '../Controller/dailyentryController.js'
+import {getUserEntryDetail, updateDailyEntry } from '../Controller/dailyentryController.js'
 const dailyentryRouter = Router()
 
 dailyentryRouter.patch("/updateentry" , updateDailyEntry)
-// dailyentryRouter.get("/getentry" , getUserEntry)
+dailyentryRouter.get("/getuserentry/:userId" , getUserEntryDetail)
 // dailyentryRouter.get("/deleteentry" , deleteUserEntry)
 
 
