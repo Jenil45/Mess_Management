@@ -4,22 +4,21 @@ import asyncHandler from 'express-async-handler'
 
 
 export const getMenu = asyncHandler(async (req , res) => {
-    const { menu_day } = req.body
-    console.log(req.body);
-
+    const menu_day = req.params.menu_day
+    console.log(menu_day);
     // Confirm data
     if (!menu_day) {
         return res.status(400).json({ message: 'Menu Day Require' })
     }
 
     const menu = await Menu.find({menu_day}).lean()
-
+    console.log(menu);
     // If no users 
     if (!menu) {
         return res.status(400).json({ message: 'No menu found' })
     }
 
-    res.json(menu)
+    res.json({menu , message:"Your menu on screen"})
 })
 
 

@@ -11,10 +11,32 @@ const Menu = () => {
   const [menuD, setMenuD] = useState([]);
   const [menuS, setMenuS] = useState([]);
 
-  // // fetch data
-  // useEffect(() => {
+  // fetch data
+  useEffect(() => {
+    const getData = async (e) => {
+      // if button enabled with JS hack
+      try {
+        const response = await axios.get(`/menu/getMenu/${day}`, {
+          withCredentials: true,
+        });
 
-  // }, [day])
+        setMenuB(response.data.menu[0].menu_breakfast);
+        setMenuL(response.data.menu[0].menu_lunch);
+        setMenuD(response.data.menu[0].menu_dinner);
+        setMenuS(response.data.menu[0].special_menu);
+        console.log(response.data);
+        // alert(response.data.message);
+      } catch (err) {
+        setMenuB([]);
+        setMenuL([]);
+        setMenuD([]);
+        setMenuS([]);
+        console.log(err);
+      }
+    };
+
+    getData();
+  }, [day]);
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
