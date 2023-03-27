@@ -15,12 +15,7 @@ export const getAllUser = asyncHandler(async (req , res) => {
 })
 
 export const getCurrentPlan = asyncHandler(async (req , res) => {
-    const { userId } = req.body
-    console.log(userId);
-    // Confirm data
-    if (!userId) {
-        return res.status(400).json({ message: 'User ID Required' })
-    }
+
     const today_date = new Date()
     today_date.setDate(today_date.getDate() +3)
 
@@ -30,33 +25,17 @@ export const getCurrentPlan = asyncHandler(async (req , res) => {
                 "start_date":{$lte:today_date},
                 "end_date":{$gte:today_date},
                 // "planID": 
-                "userId":userId
             }
         },
         {
-        //     $count : "Total plan"
-        // }
             $group : {
-                "_id": "$_id",
-                "userId":{"$first":"$userId"} ,
+                "_id": "$userId",
                 "planId":{"$first":"$planId"} ,
-                "totalFee" : {$sum : "$planId"}}
+                "fee_status" : {$first : "$fee_status"}}
         }
     ]
         )
-
-    // db.users.find({
-    //     "$expr": { 
-    //         "$and": [
-    //              { "$eq": [ { "$dayOfMonth": "$dob" }, { "$dayOfMonth": new Date() } ] },
-    //              { "$eq": [ { "$month"     : "$dob" }, { "$month"     : new Date() } ] }
-    //         ]
-    //      }
-    //  });
-
-    // If no users 
     console.log(user);
-
     if (!user) {
         return res.status(400).json({ message: 'No users found' })
     }
