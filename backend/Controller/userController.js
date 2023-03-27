@@ -15,15 +15,14 @@ export const getAllUser = asyncHandler(async (req , res) => {
 })
 
 export const getOneUser = asyncHandler(async (req , res) => {
-    const { email } = req.body
-    console.log(req.body);
-
+    const email  = req.params.email
+    console.log(email);
     // Confirm data
     if (!email) {
         return res.status(400).json({ message: 'User ID Required' })
     }
 
-    const user = await User.findById({"email":email},{password:0,cpassword:0}).lean()
+    const user = await User.findOne({"email":email},{password:0,cpassword:0}).lean()
 
     // If no users 
     if (!user) {
@@ -72,58 +71,52 @@ export const createNewUser = asyncHandler(async (req , res) => {
 })
 
 export const updateUser = asyncHandler(async (req, res) => {
-    const {id , name , email , mobileno,role , password } = req.body
+    const {name , email , mobileno,role } = req.body
+    const uid  = req.params.id
+    console.log(uid);
     // Does the user exist to update?
-    const user = await User.findById({"_id":id}).exec()
-
+    const user = await User.findOne({"userId":uid}).exec()
+    console.log(user);
     if (!user) {
         return res.status(400).json({ message: 'User not found' })
     }
 
     // Check for duplicate 
-    const duplicate = await User.findOne({"_id": id }).lean().exec()
+    // const duplicate = await User.findOne({"email": email , "mobileno" : mobileno}).lean().exec()
+    // console.log(duplicate);
+    // // Allow updates to the original user 
+    // if (duplicate) {
+    //     return res.status(409).json({ message: 'Duplicate email or mobileno' })
+    // }
 
-    // Allow updates to the original user 
-    if (duplicate && duplicate?._id.toString() !== id) {
-        return res.status(409).json({ message: 'Duplicate username' })
+    const updatedObject = {name , email , mobileno , role}
+    console.log(updatedObject);
+    const updatedUser = await User.updateOne({"userId":uid} , updatedObject);
+
+    if(updateUser)
+    {
+        res.json({ message: `${email} updated` })
     }
-
-    user.name = name
-    user.email = email
-    user.mobilemobileno =mobileno
-    user.role = role
-
-    if (password) {
-        // Hash password 
-        const salt = await bcrypt.genSalt()
-        const hashedPassword = await bcrypt.hash(password , salt)
-        user.password = hashedPassword 
-        user.cpassword = hashedPassword 
-    }
-
-    const updatedUser = await user.save()
-
-    res.json({ message: `${updatedUser.email} updated` })
 })
 
 export const deleteUser = asyncHandler(async (req, res) => {
-    const { id } = req.body
-
+    const email  = req.params.email
+    console.log(req.body);
     // Confirm data
-    if (!id) {
+    if (!email) {
         return res.status(400).json({ message: 'User ID Required' })
     }
 
     // Does the user exist to delete?
-    const user = await User.findById(id).exec()
+    const user = await User.findOne({email}).exec()
 
     if (!user) {
         return res.status(400).json({ message: 'User not found' })
     }
 
-    const result = await user.deleteOne()
+    const result = await User.deleteOne({email})
 
-    const reply = `Username ${result.email} with ID ${result._id} deleted`
+    const reply = `Username ${result.email} deleted`
 
-    res.json(reply)
+    res.json({message: reply})
 })

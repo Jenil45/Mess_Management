@@ -71,7 +71,8 @@ import asyncHandler from 'express-async-handler'
 // })
 
 export const updateDailyEntry = asyncHandler(async (req, res) => {
-    const {userId , verifyThing } = req.body
+    const {userId , verifyThing , planId } = req.body
+    console.log(userId,verifyThing,planId);
     // Does the user exist to update?
     const user = await DailyEntry.findOne({"userId":userId}).exec()
 
@@ -119,6 +120,7 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
                 "arrayFilters" : [{"elemX.date":isTodayAdded[0].date}]
             }
         )
+        res.json({message:"Daily entery updated for lunch"})
     }
 
     else
@@ -126,13 +128,14 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
         console.log("Print this"); 
         const today_date = new Date();
         console.log(today_date);
-        const dailyEntryObject = {"date":today_date , "menu":updatedObject}
+        const dailyEntryObject = {"date":today_date,"currPlanId":planId , "menu":updatedObject}
 
         const updateEntry = await DailyEntry.updateOne({"userId":userId } , {
             $push:{
                 "attendance":dailyEntryObject
             }},
         )
+        res.json({message:"Daily entery updated"})
     }
 })
 

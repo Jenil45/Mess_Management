@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../Api/axios";
+import EditModal from "./EditModal";
 
 function Alluser() {
+  const [editModal, setEditModal] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
@@ -37,7 +40,34 @@ function Alluser() {
     };
 
     getData();
-  }, []);
+  }, [editModal]);
+
+  const handleDelete = async (email) => {
+    try {
+      console.log(email);
+      const response = await axios.delete(
+        `users/delete/${email}`,
+        JSON.stringify({ email }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      if (!error?.response) {
+        console.log("No Server Response");
+      } else {
+        console.log("Deletion Failed");
+      }
+    }
+  };
+  const handleEdit = (email) => {
+    console.log("Handle edit ", email);
+    setUserEmail(email);
+    console.log("Handle edit ", userEmail);
+    setEditModal(true);
+  };
 
   const content = users
     .filter((item, i) => {
@@ -51,21 +81,20 @@ function Alluser() {
     .map((user) => {
       return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-          <td className="w-4 p-4"></td>
-          <th
-            scope="row"
-            className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-          >
-            <div className="">
-              <div className="text-black font-semibold">{user.name}</div>
-            </div>
-          </th>
-          <td className="px-6 py-4">{user.email}</td>
-          <td className="px-6 py-4">
-            <div className="flex items-center">{user.mobileno}</div>
+          <td className="w-4 p-4">
+            <div className="flex items-center text-black">{user.userId}</div>
+          </td>
+          <td className="text-black px-6 py-4">
+            <div className="flex items-center text-black">{user.name}</div>
           </td>
           <td className="px-6 py-4">
-            <div className="flex items-center">
+            <div className="flex items-center text-black">{user.email}</div>
+          </td>
+          <td className="px-6 py-4">
+            <div className="flex items-center text-black">{user.mobileno}</div>
+          </td>
+          <td className="px-6 py-4">
+            <div className="flex items-center text-black">
               {user.role === 1 ? (
                 <p className="bg-lime-300 rounded-md p-[2.5px] px-2  text-black text-sm">
                   Admin
@@ -80,14 +109,14 @@ function Alluser() {
             <button
               type="button"
               class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-3 py-[0.5rem] text-center mr-2 mb-2 "
-              onClick={() => console.log("Edit")}
+              onClick={() => handleEdit(user.email)}
             >
               Edit
             </button>
             <button
               type="button"
               class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-3 py-[0.5rem] text-center mr-2 mb-2"
-              onClick={() => console.log("Delete")}
+              onClick={() => handleDelete(user.email)}
             >
               Delete
             </button>
@@ -119,6 +148,12 @@ function Alluser() {
     });
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      {editModal ? (
+        <EditModal setEditmodal={setEditModal} userEmail={userEmail} />
+      ) : (
+        ""
+      )}
+
       <div className="flex items-center justify-end pb-4 bg-white dark:bg-gray-900">
         <label htmlFor="table-search" className="sr-only">
           Search
@@ -158,7 +193,9 @@ function Alluser() {
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-white uppercase bg-dark dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" className="p-4"></th>
+            <th scope="col" className="px-6 py-3">
+              UserId
+            </th>
             <th scope="col" className="px-6 py-3">
               Name
             </th>

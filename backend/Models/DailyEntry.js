@@ -13,6 +13,12 @@ const entrySchema = new mongoose.Schema({
                 type : Date,
                 required : true
             },
+            currPlanId:{
+                type:Number,
+                required:true,
+                enum:[501,502,503],
+                default:501
+            },
             menu : {
                 "breakfast":{
                     type : Boolean,
