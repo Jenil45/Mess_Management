@@ -2,16 +2,21 @@ import UserPlan from "../Models/UserPlan.js";
 import bcrypt from 'bcrypt'
 import asyncHandler from 'express-async-handler'
 
-export const getAllUser = asyncHandler(async (req , res) => {
-    
-    const users = await User.find({},{password:0,cpassword:0}).lean()
+export const getUserCurrentPlan = asyncHandler(async (req , res) => {
+    const userId = req.params.userId
+    // const userId = 2002
+    console.log(userId);
+    const today_date = new Date()
+    today_date.setDate(today_date.getDate()+1)
 
-    // If no users 
-    if (!users?.length) {
+    const user = await UserPlan.find({"userId":userId , "start_date":{$lte:today_date},
+    "end_date":{$gte:today_date}})
+    console.log(user);
+    if (!user) {
         return res.status(400).json({ message: 'No users found' })
     }
 
-    res.json(users)
+    res.json(user[0])
 })
 
 export const getCurrentPlan = asyncHandler(async (req , res) => {
