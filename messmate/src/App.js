@@ -18,6 +18,7 @@ import Alluser from "./Admin/Pages/Alluser";
 import Info from "./User/Pages/Info";
 import Aboutus from "./Components/Aboutus";
 import Unauthorized from "./Components/Unauthorized";
+import Attendance from "./User/Pages/Attendance";
 
 function App() {
   return (
@@ -62,10 +63,9 @@ function App() {
                     {" "}
                   </Route>
                   <Route path="attendent" element={<Attendent />}>
-                    {" "}
                   </Route>
+                  <Route path="attendance" element={<Attendance />} />
                   <Route path="information" element={<Info />}>
-                    {" "}
                   </Route>
                 </Route>
               </Route>
