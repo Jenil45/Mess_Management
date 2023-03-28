@@ -8,10 +8,10 @@ export const getUserCurrentPlan = asyncHandler(async (req , res) => {
     // console.log(userId);
     const today_date = new Date()
     today_date.setDate(today_date.getDate()+1)
-    console.log(today_date);
+    // console.log(today_date);
     const user = await UserPlan.find({"userId":userId , "start_date":{$lte:today_date},
     "end_date":{$gte:today_date}})
-    console.log(user);
+    // console.log(user);
     if (!user) {
         return res.status(400).json(user)
     }

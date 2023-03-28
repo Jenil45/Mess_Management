@@ -8,7 +8,7 @@ function User() {
   const [users, setUsers] = useState({});
   const { auth } = useAuth();
   useEffect(() => {
-    console.log(auth);
+    // console.log(auth);
   }, []);
 
   return (

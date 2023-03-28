@@ -17,6 +17,7 @@ import Contact from './Components/Contact';
 import Alluser from './Admin/Pages/Alluser';
 import Info from './User/Pages/Info';
 import Aboutus from './Components/Aboutus';
+import Attendance from './User/Pages/Attendance';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
               <Route path='subscription' element={<Subscription />}> </Route>
               <Route path='usermenu' element={<UserMenu />}> </Route>
               <Route path='attendent' element={<Attendent/>}> </Route>
+              <Route path='attendance' element={<Attendance/>}> </Route>
               <Route path='information' element={<Info />}> </Route>
             </Route>
           </Route>
