@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../Api/axios";
 import Card from "./Card";
-
+import userMenu from "../../Svg/UserMenu.png";
 const UserMenu = () => {
   const [day, setDay] = useState("Monday");
   const [isMenuAvlbl, setIsMenuAvlbl] = useState(false);
@@ -51,11 +51,11 @@ const UserMenu = () => {
     <div className="flex flex-col min-h-[75vh] justify-between px-4 mt-2">
       <hr />
 
-      <div className="head">
-        <h1 className="text-center m-2 text-xl">Mess Menu</h1>
+      <div className="head flex-[1]">
+        <h1 className="text-center m-2 text-3xl ">🍽 Today's Mess Menu 🍽</h1>
       </div>
 
-      <div className="innerpart mt-4 flex flex-row gap-5 ">
+      <div className="innerpart mt-2 flex-[10] flex  flex-row gap- ">
         <div className="sidepart flex flex-col  flex-[1] ">
           <div className="subscribtion_header">
             <div className="dayselect flex flex-row">
@@ -91,10 +91,16 @@ const UserMenu = () => {
               <Card name={"Dinner"} menu={menuD} time={"7:30 p.m.-9:30 p.m."} />
             </div>
           ) : (
-            <div className="flex gap-[1rem] w-full mt-[2rem] h-[50rem]">
-              <h1 className="text-[4rem]">
+            <div className="flex gap-[0.5rem]  mt-[1rem] ">
+              {/* <h1 className="text-[4rem]">
                 The menu of {day} is not available
-              </h1>
+
+              </h1> */}
+              <img
+                src={userMenu}
+                className="h-[550px] w-screen"
+                alt="UserMenu.png"
+              />
             </div>
           )}
         </div>

@@ -7,6 +7,7 @@ import information from "../../Svg/information.gif";
 import fingerprintScan from "../../Svg/fingerprint-scan.gif";
 import verified from "../../Svg/verified.gif";
 import Rules from "../../Svg/Rules.gif";
+import menu from "../../Svg/menu.gif";
 // import banner from "../../Svg/banner.jpg";
 
 // import attendent from "../../Svg/Attendent.svg";
@@ -19,8 +20,8 @@ function Sidebar() {
   const logout = useLogout();
   return (
     <>
-      <div className="	h-screen">
-        <ul className="flex flex-col pl-0 mb-0 mt-[3rem] gap-[1.4rem] z-2 ">
+      <div className="h-screen">
+        <ul className="flex flex-col pl-0 mb-0 mt-[3rem] gap-[.5rem] z-2 ">
           <li className="  w-full">
             <Link
               className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
@@ -70,14 +71,14 @@ function Sidebar() {
               </span>
             </Link>
           </li>
-          <li className="mt-5 w-full">
+          <li className=" w-full">
             <Link
               className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
               to="/user/usermenu"
             >
-              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+              <div className="shadow-soft-2xl  mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
                 <img
-                  src={information}
+                  src={menu}
                   alt="Logout!"
                   className="h-[50px] w-[100px]"
                 />
