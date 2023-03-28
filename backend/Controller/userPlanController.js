@@ -5,10 +5,10 @@ import asyncHandler from 'express-async-handler'
 export const getUserCurrentPlan = asyncHandler(async (req , res) => {
     const userId = req.params.userId
     // const userId = 2002
-    console.log(userId);
+    // console.log(userId);
     const today_date = new Date()
     today_date.setDate(today_date.getDate()+1)
-
+    console.log(today_date);
     const user = await UserPlan.find({"userId":userId , "start_date":{$lte:today_date},
     "end_date":{$gte:today_date}})
     console.log(user);
@@ -22,7 +22,7 @@ export const getUserCurrentPlan = asyncHandler(async (req , res) => {
 export const getCurrentPlan = asyncHandler(async (req , res) => {
 
     const today_date = new Date()
-    today_date.setDate(today_date.getDate())
+    // today_date.setDate(today_date.getDate())
 
     const user = await UserPlan.aggregate(
         [{

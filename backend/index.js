@@ -17,6 +17,8 @@ dotenv.config()
 
 // connect to a database
 import Connection from './Database/db_connect.js'
+import UserPlan from './Models/UserPlan.js';
+import moment from 'moment/moment.js';
 
 
 // create an express app for request-response
@@ -41,107 +43,72 @@ Connection()
 
 app.get("/" , async (req,res) => {
 
-    // const today_date = new Date()
-    // const end_date = new Date()
-    // // const end_date = new Date(today_date.setDate(today_date.getDate+10))
-    // end_date.setDate(end_date.getDate()+10)
-    // console.log(today_date.getDate());
-    // console.log(end_date.getDate());
-    // console.log((end_date-today_date)/(1000 * 60 * 60 * 24));
+    // const today_date = moment().utcOffset("+05:30").add(1,'day').startOf('day').toDate()
+    // const today_date = moment().utcOffset("+05:30").startOf('day').toDate()
+    const today_date = new Date()
 
-    const {userId , verifyThing } = req.body
-    // Does the user exist to update?
-    const user = await DailyEntry.findOne({"userId":userId}).exec()
+    // var today_date = moment().startOf('day').toDate()
+    // today_date.setDate(today_date.getMinutes()-today_date.getMinutes());
+    // today_date.setDate(today_date.getSeconds()-today_date.getSeconds());
+    // console.log(today_date.getTime());
+    // today_date.setDate(today_date.getTime() -today_date.getTime())
+    // var today_date = today_date.getFullYear()+'-'+(today_date.getMonth()+1)+'-'+today_date.getDate(); 
+    // res.send(date)
+    console.log(today_date);
 
-    if (!user) {
-            return res.status(400).json({ message: 'User not found'});
-    }
+    // /////////////////
 
-
-    console.log(user);
-    const date = new Date()
-
-    const isTodayAdded = user.attendance.filter(item => {
-        console.log(item.date);
-        if( item.date.getDate()===date.getDate() && item.date.getMonth()===date.getMonth() && item.date.getYear()===date.getYear())
-        {
-            return item
-        }
-    });
-    const length = isTodayAdded.length
-    var updatedObject={}
-    console.log(isTodayAdded[0]);
-    if(verifyThing==="breakfast")
-    {
-        updatedObject = {"breakfast":true , "lunch":length==0?false:isTodayAdded[0].menu.lunch , "dinner":length==0?false:isTodayAdded[0].menu.dinner }
-    }
-    else if(verifyThing==="lunch")
-    {
-        updatedObject = {"breakfast": length==0?false:isTodayAdded[0].menu.breakfast, "lunch":true , "dinner":length==0?false:isTodayAdded[0].menu.dinner }
-
-    }
-    else if(verifyThing==="dinner"){
-        updatedObject = {"breakfast": length==0?false:isTodayAdded[0].menu.breakfast, "lunch":length==0?false:isTodayAdded[0].menu.lunch , "dinner":true }
-    }
-    else
-    {
-        // const updatedObject = {"breakfast": isTodayAdded[0].menu.breakfast, "lunch":isTodayAdded[0].menu.lunch , "dinner":true }
-        res.json("No verify thing is access")
-    }
-
-    console.log(updatedObject);
-
-    if(isTodayAdded.length === 1)
-    {
-
-
-
-        const updateEntry = await DailyEntry.updateOne({"userId":userId } , {
-            $set:{
-                "attendance.$[elemX].menu" : updatedObject
-            }},
-            {
-                "arrayFilters" : [{"elemX.date":isTodayAdded[0].date}]
+    const user = await UserPlan.aggregate(
+        [{
+            $match : {
+                "start_date":{$lte:today_date},
+                "end_date":{$gte:today_date},
+                // "planID": 
             }
+        },
+        {
+            $group : {
+                "_id": "$userId",
+                "planId":{"$first":"$planId"} ,
+                "fee_status" : {$first : "$fee_status"},
+                "date":{$first : "$start_date"},
+                "date1":{$first : "$end_date"}
+        }
+        }
+    ]
         )
-        // console.log(updateEntry.modifiedCount===1);
-        // if(updateEntry.modifiedCount===1)
-        // {
-        //     res.send("Data updated of this")
-        // }
-        // else
-        // {
-        //     res.send("Some error occur")
-        // }
+    // console.log((new Date(user.date)).getDate());
+    const date = new Date(user[0].date)
+    console.log(date.getDate());
+    if (!user) {
+        return res.status(400).json({ message: 'No users found' })
     }
 
-    else
-    {
+    res.json(user)
 
 
-
-        console.log("Print this");
-        const today_date = new Date();
-        console.log(today_date);
-        const dailyEntryObject = {"date":today_date , "menu":updatedObject}
-
-        const updateEntry = await DailyEntry.updateOne({"userId":userId } , {
-            $push:{
-                "attendance":dailyEntryObject
-            }},
-        )
-    }
-
-
-
-    res.send("Hello")
 })
 
 app.get("/date" , (req,res) => {
-    const date = new Date();
-    const newDate = new Date();
-    newDate.setDate(newDate.getDate()-1)
-    console.log(newDate);
+
+    const today_date = moment().utcOffset("+05:30").subtract(1,'days').startOf('day').toDate()
+    const end_date1 = moment(today_date).utcOffset("+05:30").add(0,'days').endOf('day').toDate()
+    // const end_date1 = moment(today_date).utcOffset("+05:30").add(1,'days').startOf('day').toDate()
+    const end_date2 = moment(today_date).utcOffset("+05:30").add(6,'days').endOf('day').toDate()
+    const end_date3 = moment(today_date).utcOffset("+05:30").add(29,'days').endOf('day').toDate()
+    const remaining_days1 = Math.round( moment.duration(moment(end_date1).diff(moment(today_date))).asDays());
+    const remaining_days2 = Math.round( moment.duration(moment(end_date2).diff(moment(today_date))).asDays());
+    const remaining_days3 = Math.round( moment.duration(moment(end_date3).diff(moment(today_date))).asDays());
+
+    console.log(today_date);
+    console.log(end_date1);
+    console.log(end_date2);
+    console.log(end_date3);
+    console.log(remaining_days1);
+    console.log(remaining_days2);
+    console.log(remaining_days3);
+
+    res.send("hello")
 })
 
 // listening app on given port

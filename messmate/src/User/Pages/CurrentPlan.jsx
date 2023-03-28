@@ -79,7 +79,7 @@ const CurrentPlan = ({ planDetail, plan_id }) => {
             <div className="flex border-t border-b mb-6 border-gray-200 py-2">
               <span className="text-gray-500">Remaining Days</span>
               <span className="ml-[30%] text-gray-900">
-                {planDetail.reamaining_days}
+                {planDetail.remaining_days}
               </span>
             </div>
             <div className="flex">
