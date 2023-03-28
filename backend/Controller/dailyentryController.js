@@ -15,7 +15,7 @@ export const getUserEntryDetail = asyncHandler(async (req , res) => {
     const start_end = entry.attendance[0].date.getDate()
     // console.log(entry.attendance[entry.attendance.length-1].date);
     const end_date = entry.attendance[entry.attendance.length-1].date.getDate()
-    console.log(start_end , end_date);
+    // console.log(start_end , end_date);
 
     res.json(entry);
 
@@ -23,18 +23,18 @@ export const getUserEntryDetail = asyncHandler(async (req , res) => {
 
 export const updateDailyEntry = asyncHandler(async (req, res) => {
     const {userId , verifyThing , planId } = req.body
-    console.log(userId,verifyThing,planId);
+    // console.log(userId,verifyThing,planId);
     // Does the user exist to update?
     const user = await DailyEntry.findOne({"userId":userId}).exec()
 
     if (!user) {
             return res.status(400).json({ message: 'User not found'});
     }
-    console.log(user);
+    // console.log(user);
     const date = new Date()
 
     const isTodayAdded = user.attendance.filter(item => {
-        console.log(item.date);
+        // console.log(item.date);
         if( item.date.getDate()===date.getDate() && item.date.getMonth()===date.getMonth() && item.date.getYear()===date.getYear())
         {
             return item
@@ -42,7 +42,7 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
     });
     const length = isTodayAdded.length
     var updatedObject={}
-    console.log(isTodayAdded[0]);
+    // console.log(isTodayAdded[0]);
     if(verifyThing==="breakfast")
     {
         updatedObject = {"breakfast":true , "lunch":length==0?false:isTodayAdded[0].menu.lunch , "dinner":length==0?false:isTodayAdded[0].menu.dinner }
@@ -76,9 +76,9 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
 
     else
     {
-        console.log("Print this"); 
+        // console.log("Print this"); 
         const today_date = new Date();
-        console.log(today_date);
+        // console.log(today_date);
         const dailyEntryObject = {"date":today_date,"currPlanId":planId , "menu":updatedObject}
 
         const updateEntry = await DailyEntry.updateOne({"userId":userId } , {

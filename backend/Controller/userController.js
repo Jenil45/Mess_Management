@@ -16,7 +16,7 @@ export const getAllUser = asyncHandler(async (req , res) => {
 
 export const getOneUser = asyncHandler(async (req , res) => {
     const email  = req.params.email
-    console.log(email);
+    // console.log(email);
     // Confirm data
     if (!email) {
         return res.status(400).json({ message: 'User ID Required' })
@@ -37,7 +37,7 @@ export const createNewUser = asyncHandler(async (req , res) => {
 
     // read data from req body
     const {name , email , mobileno,role , password , cpassword} = req.body
-    console.log(role);
+    // console.log(role);
 
     // duplicate entry
     const duplicate = await User.findOne({email}).lean().exec()
@@ -73,10 +73,10 @@ export const createNewUser = asyncHandler(async (req , res) => {
 export const updateUser = asyncHandler(async (req, res) => {
     const {name , email , mobileno,role } = req.body
     const uid  = req.params.id
-    console.log(uid);
+    // console.log(uid);
     // Does the user exist to update?
     const user = await User.findOne({"userId":uid}).exec()
-    console.log(user);
+    // console.log(user);
     if (!user) {
         return res.status(400).json({ message: 'User not found' })
     }
@@ -90,7 +90,7 @@ export const updateUser = asyncHandler(async (req, res) => {
     // }
 
     const updatedObject = {name , email , mobileno , role}
-    console.log(updatedObject);
+    // console.log(updatedObject);
     const updatedUser = await User.updateOne({"userId":uid} , updatedObject);
 
     if(updateUser)
@@ -101,7 +101,7 @@ export const updateUser = asyncHandler(async (req, res) => {
 
 export const deleteUser = asyncHandler(async (req, res) => {
     const email  = req.params.email
-    console.log(req.body);
+    // console.log(req.body);
     // Confirm data
     if (!email) {
         return res.status(400).json({ message: 'User ID Required' })

@@ -38,7 +38,7 @@ const Attendent = () => {
         const currpId =
           response.data.attendance[response.data.attendance.length - 1]
             .currPlanId;
-        console.log(currpId);
+        console.log(response);
 
         const planResponse = await axios.get(
           `/userplan//getusercurrentplan/${userId}`,
@@ -47,31 +47,35 @@ const Attendent = () => {
           }
         );
 
-        const curr_start = new Date(planResponse.data.start_date);
-        const curr_end = new Date(planResponse.data.end_date);
+        const curr_start = dayjs(planResponse.data.start_date).format();
+        const curr_end = dayjs(planResponse.data.end_date).format();
+        console.log("curr start ", curr_start);
+        console.log("curr end ", curr_end);
 
-        console.log(curr_start, curr_end);
-        const start = new Date(response.data.attendance[1].date);
+        // console.log(dayjs(curr_start).get("date"), curr_end);
+        const start = dayjs(response.data.attendance[0].date).format();
         const end =
           response.data.attendance[response.data.attendance.length - 1].date;
+        console.log("start ", start);
+        console.log("end ", end);
 
         setmonthyear({
-          month: start.getMonth() + 1,
-          year: start.getFullYear(),
+          month: dayjs(start).get("month") + 1,
+          year: dayjs(start).get("year"),
         });
         setUserEntry(response.data.attendance);
         setcurrStMonthDate({
-          date: curr_start.getDate(),
-          month: curr_start.getMonth(),
-          year: curr_start.getFullYear(),
+          date: dayjs(curr_start).get("date"),
+          month: dayjs(curr_start).get("month"),
+          year: dayjs(curr_start).get("year"),
         });
         setcurrEnMonthDate({
-          date: curr_end.getDate(),
-          month: curr_end.getMonth(),
-          year: curr_end.getFullYear(),
+          date: dayjs(curr_end).get("date"),
+          month: dayjs(curr_end).get("month"),
+          year: dayjs(curr_end).get("year"),
         });
-        console.log("Get All User", currEnMonthDate.date);
-        console.log("Get All User", currEnMonthDate.month);
+        console.log("Get All User", currEnMonthDate);
+        console.log("Get All User", currEnMonthDate);
       } catch (err) {
         console.log(err);
       }
@@ -190,6 +194,9 @@ const Attendent = () => {
     // console.log(check > from && check < to);
 
     if (check > from && check < to) {
+      bg_big = "bg-yellow-400";
+    }
+    if (check === from && check === true) {
       bg_big = "bg-yellow-400";
     }
 

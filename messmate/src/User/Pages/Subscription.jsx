@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "../../Api/axios";
 import useAuth from "../../Auth/useAuth";
 import CurrentPlan from "./CurrentPlan";
 
 const Subscription = () => {
+  const navigate = useNavigate();
   const [plans, setPlans] = useState([]);
   const [currentPlan, setCurrentPlan] = useState(null);
   const [isCurrentPlan, setIsCurrentPlan] = useState(false);
-
   const { auth } = useAuth();
+  const [plan_Id, setplan_Id] = useState(null);
 
   useEffect(() => {
     const getData = async (e) => {
@@ -53,6 +55,37 @@ const Subscription = () => {
 
     getData();
   }, []);
+
+  const takeSubscription = async (fees, planId) => {
+    // e.preventDefault();
+    const userId = auth.userId;
+    console.log(userId);
+    console.log(fees);
+    console.log(planId);
+
+    try {
+      const response = await axios.post(
+        "/userplan/addUserPlan",
+        JSON.stringify({ userId, planId, fees }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+
+      console.log(JSON.stringify(response?.data));
+      // setplan_Id(planId);
+      // setIsCurrentPlan(true);
+      navigate("/user", { replace: true });
+      alert(response.data.message);
+    } catch (err) {
+      if (!err?.response) {
+        alert("No Server Response");
+      } else {
+        alert("Registration Failed");
+      }
+    }
+  };
 
   return (
     <div>
@@ -102,7 +135,12 @@ const Subscription = () => {
                       <p className="flex items-center text-gray-600 mb-2 h-[8rem]">
                         {plan.plan_desc}
                       </p>
-                      <button className="flex items-center mt-auto text-white bg-red-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-red-600 rounded">
+                      <button
+                        className="flex items-center mt-auto text-white bg-red-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-red-600 rounded"
+                        onClick={() => {
+                          takeSubscription(plan.plan_price, plan.planId);
+                        }}
+                      >
                         Get Subscription
                         <svg
                           fill="none"
@@ -128,7 +166,7 @@ const Subscription = () => {
           </div>
         </section>
       ) : (
-        <CurrentPlan planDetail={currentPlan} plan_id={currentPlan.planId} />
+        <CurrentPlan planDetail={currentPlan} plan_id={plan_Id} />
       )}
     </div>
   );
