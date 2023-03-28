@@ -13,7 +13,7 @@ export const getUserCurrentPlan = asyncHandler(async (req , res) => {
     "end_date":{$gte:today_date}})
     console.log(user);
     if (!user) {
-        return res.status(400).json({ message: 'No users found' })
+        return res.status(400).json(user)
     }
 
     res.json(user[0])
@@ -22,7 +22,7 @@ export const getUserCurrentPlan = asyncHandler(async (req , res) => {
 export const getCurrentPlan = asyncHandler(async (req , res) => {
 
     const today_date = new Date()
-    today_date.setDate(today_date.getDate() +3)
+    today_date.setDate(today_date.getDate())
 
     const user = await UserPlan.aggregate(
         [{

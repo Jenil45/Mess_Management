@@ -43,6 +43,7 @@ function App() {
               <Route path='' element={<UserMenu />}> </Route>
               <Route path='editprofile' element={<EditProfile />}> </Route>
               <Route path='subscription' element={<Subscription />}> </Route>
+              <Route path='usermenu' element={<UserMenu />}> </Route>
               <Route path='attendent' element={<Attendent/>}> </Route>
               <Route path='information' element={<Info />}> </Route>
             </Route>
