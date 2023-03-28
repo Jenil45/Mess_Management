@@ -4,8 +4,8 @@ import asyncHandler from 'express-async-handler'
 
 
 export const getPlan = asyncHandler(async (req , res) => {
-    const { plan_type } = req.body
-    console.log(req.body);
+    const plan_type = req.params.plan_type
+    // console.log(plan_type);
 
     // Confirm data
     if (!plan_type) {
@@ -19,7 +19,19 @@ export const getPlan = asyncHandler(async (req , res) => {
         return res.status(400).json({ message: 'No plan found' })
     }
 
-    res.json(plan)
+    res.json({plan , "message" : "Plan is on screen"})
+})
+
+
+export const getAllPlan = asyncHandler(async (req , res)=> {
+    const plans = await Plan.find().lean()
+
+    // If no users 
+    if (!plans?.length) {
+        return res.status(400).json({ message: 'No plan setted yet' })
+    }
+
+    res.json(plans)
 })
 
 
@@ -31,7 +43,8 @@ export const addPlan = asyncHandler(async (req , res) => {
     // duplicate entry
     const duplicate = await Plan.findOne({plan_type}).lean().exec()
     if (duplicate) {
-        return res.status(409).json({ message: `Plan already exist for ${plan_type}` })
+        const updatedPlan = await Plan.updateOne({plan_type} , {plan_desc,plan_price})
+        res.json({ message: `${plan_type} plan updated` })
     }
 
     // creating userObject

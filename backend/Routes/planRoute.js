@@ -1,6 +1,6 @@
 // importing router from express
 import { Router } from "express";
-import { addPlan, deletePlan, getPlan, updatePlan } from "../Controller/planController.js";
+import { addPlan, deletePlan, getAllPlan, getPlan, updatePlan } from "../Controller/planController.js";
 
 // importing controller functions
 
@@ -8,7 +8,8 @@ import { addPlan, deletePlan, getPlan, updatePlan } from "../Controller/planCont
 const planRoute = Router();
 
 // router queries
-planRoute.get("/getPlan" ,  getPlan)
+planRoute.get("/getPlan/:plan_type" ,  getPlan)
+planRoute.get("/getAllPlan" ,  getAllPlan)
 planRoute.post("/addPlan" , addPlan)
 planRoute.patch("/updatePlan" , updatePlan)
 planRoute.delete("/deletePlan" , deletePlan)

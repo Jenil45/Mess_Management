@@ -8,7 +8,7 @@ import { addMenu, deleteMenu, getMenu, updateMenu } from "../Controller/menuCont
 const menuRoute = Router();
 
 // router queries
-menuRoute.get("/getMenu" ,  getMenu)
+menuRoute.get("/getMenu/:menu_day" ,  getMenu)
 menuRoute.post("/addMenu" , addMenu)
 menuRoute.patch("/updateMenu" , updateMenu)
 menuRoute.delete("/deleteMenu" , deleteMenu)

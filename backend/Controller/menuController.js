@@ -4,22 +4,21 @@ import asyncHandler from 'express-async-handler'
 
 
 export const getMenu = asyncHandler(async (req , res) => {
-    const { menu_day } = req.body
-    console.log(req.body);
-
+    const menu_day = req.params.menu_day
+    console.log(menu_day);
     // Confirm data
     if (!menu_day) {
         return res.status(400).json({ message: 'Menu Day Require' })
     }
 
     const menu = await Menu.find({menu_day}).lean()
-
+    console.log(menu);
     // If no users 
     if (!menu) {
         return res.status(400).json({ message: 'No menu found' })
     }
 
-    res.json(menu)
+    res.json({menu , message:"Your menu on screen"})
 })
 
 
@@ -31,7 +30,7 @@ export const addMenu = asyncHandler(async (req , res) => {
     // duplicate entry than update menu
     const duplicate = await Menu.findOne({menu_day}).lean().exec()
     if (duplicate) {
-        const updatedPlan = await Plan.updateOne({menu_day} , {menu_breakfast,menu_lunch , menu_dinner, special_menu})
+        const updatedPlan = await Menu.updateOne({menu_day} , {menu_breakfast,menu_lunch , menu_dinner, special_menu})
         res.json({ message: `${menu_day} plan updated` })
     }
 
