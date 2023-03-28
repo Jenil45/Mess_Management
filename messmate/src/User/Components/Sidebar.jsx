@@ -1,26 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Dashboard from "../../Svg/Dashboard.svg";
-import LogOut from "../../Svg/LogOut.svg";
-import attendent from "../../Svg/Attendent.svg";
-import subscription from "../../Svg/subscription.svg";
-import Profile from "../../Svg/Profile.svg";
-import Infopic from "../../Svg/Information.svg";
+// import Dashboard from "../../Svg/Dashboard.svg";
+import logOut from "../../Svg/logout.gif";
+import confused from "../../Svg/confused.gif";
+import information from "../../Svg/information.gif";
+import fingerprintScan from "../../Svg/fingerprint-scan.gif";
+import verified from "../../Svg/verified.gif";
+import Rules from "../../Svg/Rules.gif";
+// import banner from "../../Svg/banner.jpg";
+
+// import attendent from "../../Svg/Attendent.svg";
+// import subscription from "../../Svg/subscription.svg";
+// import Profile from "../../Svg/Profile.svg";
+// import Infopic from "../../Svg/Information.svg";
 import useLogout from "../../Api/Logout";
 
 function Sidebar() {
   const logout = useLogout();
   return (
     <>
-      <div className="border-x-2	h-screen">
-        <ul className="flex flex-col pl-0 mb-0">
-          <li className="mt-5 w-full">
+      <div className="	h-screen">
+      {/* <img src={banner} alt="" className="absolute -z-50 h-screen" /> */}
+        <ul className="flex flex-col pl-0 mb-0 mt-[3rem] gap-[1.4rem] z-2 ">
+          <li className="  w-full">
             <Link
               className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
               to="/user"
             >
-              <div className="bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                <img src={Dashboard} alt="Photo coming soon .." />
+              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img src={Rules} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
               <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
                 Dashboard
@@ -28,13 +36,17 @@ function Sidebar() {
             </Link>
           </li>
 
-          <li className="mt-5 w-full">
+          <li className="  w-full">
             <Link
               className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
               to="/user/attendent"
             >
-              <div className="shadow-soft-2xl bg-gradient-to-tl from-blue-500  to-green-400    mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-1.5">
-                <img src={attendent} />
+              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img
+                  src={verified}
+                  alt="Logout!"
+                  className="h-[50px] w-[100px]"
+                />
               </div>
               <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
                 Attendent
@@ -42,26 +54,34 @@ function Sidebar() {
             </Link>
           </li>
 
-          <li className="mt-5 w-full">
+          <li className="  w-full">
             <Link
               className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
               to="/user/subscription"
             >
-              <div className="shadow-soft-2xl bg-gradient-to-tl from-blue-500  to-green-400    mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-1.5">
-                <img src={subscription} />
+              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img
+                  src={confused}
+                  alt="Logout!"
+                  className="h-[50px] w-[100px]"
+                />
               </div>
               <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
                 Subscription
               </span>
             </Link>
           </li>
-          <li className="mt-5 w-full">
+          <li className="  w-full">
             <Link
               className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
               to="/user/information"
             >
-              <div className="shadow-soft-2xl bg-gradient-to-tl from-blue-500  to-green-400    mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-1.5">
-                <img src={Infopic} />
+              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img
+                  src={information}
+                  alt="Logout!"
+                  className="h-[50px] w-[100px]"
+                />
               </div>
               <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
                 Information
@@ -74,13 +94,17 @@ function Sidebar() {
             </h6>
           </li>
 
-          <li className="mt-5 w-full">
+          <li className="  w-full">
             <Link
               className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
               to="/user/editprofile"
             >
-              <div className="shadow-soft-2xl bg-gradient-to-tl from-blue-500  to-green-400    mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-1.5">
-                <img src={Profile} />
+              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img
+                  src={fingerprintScan}
+                  alt="Logout!"
+                  className="h-[50px] w-[100px]"
+                />
               </div>
               <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
                 Profile
@@ -88,13 +112,17 @@ function Sidebar() {
             </Link>
           </li>
 
-          <li className="mt-5 w-full">
+          <li className="  w-full">
             <button
               onClick={logout}
               className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
             >
-              <div className="shadow-soft-2xl bg-gradient-to-tl from-blue-500  to-green-400    mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-1.5">
-                <img src={LogOut} />
+              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img
+                  src={logOut}
+                  alt="Logout!"
+                  className="h-[50px] w-[100px]"
+                />
               </div>
               <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
                 Log Out

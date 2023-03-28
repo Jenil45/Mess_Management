@@ -1,8 +1,10 @@
 import React from "react";
-
+// import commonBackground from "../../Svg/commonBackground.jpg";
+// import Botanist from "../../Svg/Botanist.png";
 const Subscription = () => {
   return (
     <div>
+      {/* <img src={Botanist} alt="" className=" -z-10 fixed opacity-60 h-screen w-screen pr-24"  /> */}
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-10 mx-auto">
           <div className="flex flex-col text-center w-full mb-10">
