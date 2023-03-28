@@ -3,6 +3,7 @@ import axios from "../../Api/axios";
 import MultiSelect from "../Components/MultiSelect";
 
 const Menu = () => {
+  // menu part
   const [isSetMenu, setIsSetMenu] = useState(true);
   const [day, setDay] = useState("");
 
@@ -11,7 +12,12 @@ const Menu = () => {
   const [menuD, setMenuD] = useState([]);
   const [menuS, setMenuS] = useState([]);
 
-  // fetch data
+  // subscription part
+  const [planType, setPlanType] = useState(null);
+  const [price, setPrice] = useState(0);
+  const [desc, setDesc] = useState("");
+
+  // fetch data for menu
   useEffect(() => {
     const getData = async (e) => {
       // if button enabled with JS hack
@@ -37,6 +43,28 @@ const Menu = () => {
 
     getData();
   }, [day]);
+
+  // fetch data for plan
+  useEffect(() => {
+    const getData = async (e) => {
+      // if button enabled with JS hack
+      try {
+        const response = await axios.get(`/plan/getPlan/${planType}`, {
+          withCredentials: true,
+        });
+
+        setDesc(response.data.plan[0].plan_desc);
+        setPrice(response.data.plan[0].plan_price);
+        // alert(response.data.message);
+      } catch (err) {
+        setPrice(0);
+        setDesc("");
+        // alert(err);
+      }
+    };
+
+    getData();
+  }, [planType]);
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
@@ -84,14 +112,42 @@ const Menu = () => {
       }
     }
   };
+  const handlePlanSubmit = async (e) => {
+    // e.preventDefault();
+    // if button enabled with JS hack
+    if (!price || !desc) {
+      console.log("Price and Description must contain some things");
+      return;
+    }
+    try {
+      const response = await axios.post(
+        "/plan/addPlan",
+        JSON.stringify({
+          plan_type: planType,
+          plan_desc: desc,
+          plan_price: price,
+        }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
 
-  // const handleday = (e) => {
-  //   console.log("in the handle day ");
-  //   console.log(e);
-  // };
-  const handleSub = () => {
-    console.log("enter the subscribtion zone");
+      console.log(JSON.stringify(response?.data));
+      alert(response.data.message);
+      //clear state and controlled inputs
+      setDesc("");
+      setPrice("");
+      setPlanType(null);
+    } catch (err) {
+      if (!err?.response) {
+        alert("No Server Response");
+      } else {
+        alert("Plan adding Failed");
+      }
+    }
   };
+
   return (
     <div>
       <div className="flex items-center justify-center w-full p-3 gap-[4rem] ">
@@ -218,7 +274,8 @@ const Menu = () => {
                   <select
                     id="sub"
                     class=" max-w-[15rem] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    onChange={() => handleSub}
+                    value={planType}
+                    onChange={(e) => setPlanType(e.target.value)}
                     required
                   >
                     <option selected disabled>
@@ -248,8 +305,8 @@ const Menu = () => {
                     type="text-area"
                     id="plan_desc"
                     name="plan_desc"
-                    // onChange={(e) => setName(e.target.value)}
-                    // value={name}
+                    onChange={(e) => setDesc(e.target.value)}
+                    value={desc}
                     className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -264,8 +321,8 @@ const Menu = () => {
                     type="number"
                     id="plan_price"
                     name="plan_price"
-                    // onChange={(e) => setName(e.target.value)}
-                    // value={name}
+                    onChange={(e) => setPrice(e.target.value)}
+                    value={price}
                     className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -276,6 +333,7 @@ const Menu = () => {
                 <button
                   type="button"
                   class=" text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                  onClick={handlePlanSubmit}
                 >
                   Submit
                 </button>

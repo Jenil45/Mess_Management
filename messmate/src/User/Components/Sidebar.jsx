@@ -57,6 +57,19 @@ function Sidebar() {
           </li>
           <li className="mt-5 w-full">
             <Link
+              className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+              to="/user/usermenu"
+            >
+              <div className="shadow-soft-2xl bg-gradient-to-tl from-blue-500  to-green-400    mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-1.5">
+                <img src={subscription} />
+              </div>
+              <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
+                User Menu
+              </span>
+            </Link>
+          </li>
+          <li className="mt-5 w-full">
+            <Link
               className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
               to="/user/information"
             >
