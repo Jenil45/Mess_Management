@@ -3,7 +3,7 @@ import axios from "../../Api/axios";
 import Card from "./Card";
 
 const UserMenu = () => {
-  const [day, setDay] = useState(null);
+  const [day, setDay] = useState("Monday");
   const [isMenuAvlbl, setIsMenuAvlbl] = useState(false);
 
   const [menuB, setMenuB] = useState(null);
