@@ -5,9 +5,9 @@ import { Outlet } from "react-router-dom";
 
 const Main = () => {
   return (
-    <div className="flex flex-col content-between ">
+    <div className="flex flex-col content-between justify-between min-h-[100vh] ">
       <Navbar />
-      <Outlet />
+      <Outlet className="mt-"> </Outlet>
       <Footer />
     </div>
   );

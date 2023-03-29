@@ -147,6 +147,7 @@ const QrAttendance = () => {
       </div>
       <div className="flex-[1] ">
         <h3>Qr Code Scan by Web Cam</h3>
+
         <QrReader
           delay={300}
           onError={handleErrorWebCam}
