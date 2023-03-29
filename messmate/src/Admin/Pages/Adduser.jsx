@@ -2,11 +2,18 @@ import React from "react";
 import SignupPhoto from "../../Svg/Signup.png";
 import { useEffect, useRef, useState } from "react";
 import axios from "../../Api/axios";
+import Alert from "../../Components/Alert";
 
 const Email_Checker = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const Mobile_Cheker = /^[6-9]\d{9}$/gi;
 
 const Adduser = () => {
+  const [alert, setalert] = useState({
+    mode: false,
+    message: "",
+    type: "bg-[red]",
+  });
+
   const [name, setName] = useState("");
 
   const [email, setEmail] = useState("");
@@ -67,7 +74,11 @@ const Adduser = () => {
       console.log(JSON.stringify(response?.data));
       //console.log(JSON.stringify(response))
       setSuccess(true);
-
+      setalert({
+        mode: true,
+        message: "User registered successfully",
+        type: "bg-[green]",
+      });
       //clear state and controlled inputs
       setName("");
       setEmail("");
@@ -77,11 +88,23 @@ const Adduser = () => {
       setCPassword("");
     } catch (err) {
       if (!err?.response) {
-        setErrMsg("No Server Response");
+        setalert({
+          mode: true,
+          message: "No Server Response",
+          type: "bg-[red]",
+        });
       } else if (err.response?.status === 409) {
-        setErrMsg("Username Taken");
+        setalert({
+          mode: true,
+          message: "User Name Taken",
+          type: "bg-[red]",
+        });
       } else {
-        setErrMsg("Registration Failed");
+        setalert({
+          mode: true,
+          message: "Registration failed",
+          type: "bg-[red]",
+        });
       }
     }
   };
@@ -89,6 +112,7 @@ const Adduser = () => {
   return (
     <>
       <section className="text-gray-600 body-font">
+        {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""}
         <div className="container mx-auto flex flex-wrap items-center justify-between">
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0  flex-[5] pr-4">
             <img

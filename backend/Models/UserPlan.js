@@ -29,7 +29,7 @@ const userplanSchema = new mongoose.Schema({
         // required:true
     },
     fees : { 
-        type : String,
+        type : Number,
         required : [true , "Please enter an password"],
     },
     fee_status : { 

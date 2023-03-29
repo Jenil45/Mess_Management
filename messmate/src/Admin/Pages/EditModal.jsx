@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../../Api/axios";
+import Alert from "../../Components/Alert";
 
 const Email_Checker = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const Mobile_Cheker = /^[6-9]\d{9}$/gi;
 
 function EditModal(props) {
   // const { setAuth } = useAuth();
+  const [alert, setalert] = useState({
+    mode: false,
+    message: "",
+    type: "bg-[red]",
+  });
+
   const [name, setName] = useState("");
   const [id, setId] = useState(0);
 
@@ -85,7 +92,11 @@ function EditModal(props) {
       //clear state and controlled inputs
       props.setEditmodal(false);
     } catch (err) {
-      console.log(err);
+      setalert({
+        mode: true,
+        message: err.message,
+        type: "bg-[red]",
+      });
     }
   };
   return (
@@ -103,7 +114,7 @@ function EditModal(props) {
       <div className="flex fixed left-[35%] min-w-[30%] max-w-[31%]   transform overflow-hidden  p-7  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
         <div className="flex">
           <h2 className="grow h-14 text-gray-900 text-3xl text-center font-medium title-font mb-2">
-            Add user
+            Edit user
           </h2>
           <div class="flex-none ">
             <img
@@ -114,7 +125,7 @@ function EditModal(props) {
             />
           </div>
         </div>
-        {/* {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""} */}
+        {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""}
         <form>
           <div className="relative mb-4">
             <label

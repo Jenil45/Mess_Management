@@ -15,15 +15,17 @@ const QrAttendance = () => {
     console.log(error);
   };
   const handleScanWebCam = (result) => {
-    if (result) {
-      setScanResultWebCam(JSON.parse(result));
-      setIsCard(true);
-      // const userId = scanResultWebCam.userId;
-      console.log(scanResultWebCam.userId);
-      // console.log(JSON.stringify(scanResultWebCam));
-      try {
-      } catch (error) {}
-    }
+    setTimeout(() => {
+      if (result) {
+        setScanResultWebCam(JSON.parse(result));
+        setIsCard(true);
+        // const userId = scanResultWebCam.userId;
+        console.log(scanResultWebCam.userId);
+        // console.log(JSON.stringify(scanResultWebCam));
+        try {
+        } catch (error) {}
+      }
+    }, 5);
   };
 
   const takeAttendance = async (userId, planId) => {
@@ -145,13 +147,23 @@ const QrAttendance = () => {
           ""
         )}
       </div>
-      <div className="flex-[1] ">
+      <div className="flex-[1] w-[500px]">
         <h3>Qr Code Scan by Web Cam</h3>
 
         <QrReader
           delay={300}
+          style={{ width: "400px", heigth: "400px" }}
           onError={handleErrorWebCam}
           onScan={handleScanWebCam}
+          // onScan={(() => setTimeout(() => handleScanWebCam()), 500)}
+          cameraContainerStyle={{
+            width: 275,
+            borderWidth: 1,
+            borderColor: "white",
+            alignSelf: "center",
+          }}
+          cameraStyle={{ width: "97%", alignSelf: "center" }}
+          // legacyMode
         />
         {/* <h3>Scanned By WebCam Code: {scanResultWebCam}</h3> */}
       </div>

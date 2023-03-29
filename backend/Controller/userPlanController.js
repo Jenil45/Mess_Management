@@ -77,7 +77,7 @@ export const getUserTodayPlan = asyncHandler(async (req , res) => {
 
     const user = await UserPlan.find({"userId":userId , "start_date":{$lte:today_date},
     "end_date":{$gte:today_date}})
-    console.log(user);
+    // console.log(user);
     if (!user) {
         return res.status(400).json({ message: 'No users found' })
     }
