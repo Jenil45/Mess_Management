@@ -213,12 +213,12 @@ function Dashboad() {
               dataKey="count"
               label
             >
-              {data1.map((entry, index) => (
+              {/* {data1.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}
                 />
-              ))}
+              ))} */}
             </Pie>
             <Tooltip />
           </PieChart>
