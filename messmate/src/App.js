@@ -21,6 +21,7 @@ import Unauthorized from "./Components/Unauthorized";
 import Attendance from "./User/Pages/Attendance";
 import ProfileScanner from "./User/Pages/ProfileScanner";
 import QrAttendance from "./Admin/Pages/QrAttendance";
+import Dashboad from "./Admin/Pages/Dashboad";
 
 function App() {
   return (
@@ -36,36 +37,29 @@ function App() {
             <Route element={<PersistentLogin />}>
               <Route element={<RequireAuth accessRole={1} />}>
                 <Route path="/admin" element={<Admin />}>
+                <Route path='' element={<Dashboad />}></Route>
+
                   <Route path="attendance" element={<Dailyentry />}>
-                    {" "}
                   </Route>
                   <Route path="qrattendance" element={<QrAttendance />}>
-                    {" "}
                   </Route>
                   <Route path="adduser" element={<Adduser />}>
-                    {" "}
                   </Route>
                   <Route path="alluser" element={<Alluser />}>
-                    {" "}
                   </Route>
                   <Route path="menu" element={<Menu />}>
-                    {" "}
                   </Route>
                 </Route>
               </Route>
               <Route element={<RequireAuth accessRole={0} />}>
                 <Route path="/user" element={<User />}>
                   <Route path="" element={<ProfileScanner />}>
-                    {" "}
                   </Route>
                   <Route path="editprofile" element={<EditProfile />}>
-                    {" "}
                   </Route>
                   <Route path="subscription" element={<Subscription />}>
-                    {" "}
                   </Route>
                   <Route path="usermenu" element={<UserMenu />}>
-                    {" "}
                   </Route>
                   <Route path="attendent" element={<Attendent />}>
                   </Route>
@@ -76,7 +70,6 @@ function App() {
               </Route>
             </Route>
             <Route path="/unauthorized" element={<Unauthorized />}>
-              {" "}
             </Route>
           </Routes>
         </BrowserRouter>
