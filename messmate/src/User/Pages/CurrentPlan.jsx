@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import axios from "../../Api/axios";
 import useAuth from "../../Auth/useAuth";
@@ -67,19 +68,29 @@ const CurrentPlan = ({ planDetail, plan_id }) => {
             <div className="flex border-t border-gray-200 py-2">
               <span className="text-gray-500">Starting Date</span>
               <span className="ml-auto text-gray-900">
-                {planDetail.start_date}
+                {/* {planDetail.start_date} */}
+                {dayjs(planDetail.start_date).get("date") +
+                  "-" +
+                  (dayjs(planDetail.start_date).get("month") + 1) +
+                  "-" +
+                  dayjs(planDetail.start_date).get("year")}
               </span>
             </div>
             <div className="flex border-t border-gray-200 py-2">
               <span className="text-gray-500">Ending Date</span>
               <span className="ml-auto text-gray-900">
-                {planDetail.end_date}
+                {/* {planDetail.end_date} */}
+                {dayjs(planDetail.end_date).get("date") +
+                  "-" +
+                  (dayjs(planDetail.end_date).get("month") + 1) +
+                  "-" +
+                  dayjs(planDetail.end_date).get("year")}
               </span>
             </div>
             <div className="flex border-t border-b mb-6 border-gray-200 py-2">
               <span className="text-gray-500">Remaining Days</span>
-              <span className="ml-[30%] text-gray-900">
-                {planDetail.remaining_days}
+              <span className="ml-[60%] text-gray-900">
+                {dayjs(planDetail.end_date).diff(dayjs(), "day")}
               </span>
             </div>
             <div className="flex">

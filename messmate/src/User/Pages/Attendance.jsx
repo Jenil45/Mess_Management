@@ -136,7 +136,12 @@ const Attendance = () => {
       .month(start.month)
       .date(start.date)
       .format();
-    var to = dayjs().year(end.year).month(end.month).date(end.date).format();
+    var to = dayjs()
+      .year(end.year)
+      .month(end.month)
+      .date(end.date)
+      .endOf("day")
+      .format();
 
     var check = dayjs()
       .year(item.getFullYear())
@@ -150,7 +155,7 @@ const Attendance = () => {
       bg_big = "bg-gray-500";
     }
 
-    console.log(check >= from && check <= to);
+    // console.log(check >= from && check <= to);
     // console.log("Entry ", entry);
     var breakfast = false;
     var lunch = false;

@@ -19,8 +19,11 @@ function Sidebar() {
             to="/admin"
           >
             <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-            
-              <img src={hauntedHouse} alt="sdfsd" className="h-[50px] w-[100px]" />
+              <img
+                src={hauntedHouse}
+                alt="sdfsd"
+                className="h-[50px] w-[100px]"
+              />
             </div>
             <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
               Home Page
@@ -31,13 +34,26 @@ function Sidebar() {
         <li className=" w-full">
           <Link
             className="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-            to="/admin"
+            to="/admin/attendance"
           >
             <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
               <img src={verified} alt="sdfsd" className="h-[50px] w-[100px]" />
             </div>
             <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
               Daily Attendent
+            </span>
+          </Link>
+        </li>
+        <li className=" w-full">
+          <Link
+            className="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
+            to="/admin/qrattendance"
+          >
+            <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+              <img src={verified} alt="sdfsd" className="h-[50px] w-[100px]" />
+            </div>
+            <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
+              QR Attendent
             </span>
           </Link>
         </li>
@@ -95,7 +111,6 @@ function Sidebar() {
             className="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
           >
             <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-              
               <img src={logOut} alt="Logout!" className="h-[50px] w-[100px]" />
             </div>
             <button className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">

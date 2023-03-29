@@ -1,12 +1,14 @@
 import UserPlan from "../Models/UserPlan.js";
 import bcrypt from 'bcrypt'
 import asyncHandler from 'express-async-handler'
+import moment from "moment";
 
 export const getUserCurrentPlan = asyncHandler(async (req , res) => {
     const userId = req.params.userId
     // const userId = 2002
-    console.log(userId);
-    const today_date = new Date()
+    // console.log(userId);
+    const today_date = moment().utcOffset("+05:30").add(1,'days').startOf('day').toDate()
+    // const today_date = moment().format()
     // today_date.setDate(today_date.getDate()+1)
     // console.log(today_date);
     const user = await UserPlan.find({"userId":userId , "start_date":{$lte:today_date},
@@ -40,6 +42,41 @@ export const getCurrentPlan = asyncHandler(async (req , res) => {
         }
     ]
         )
+
+    
+    console.log(user);
+    if (!user) {
+        return res.status(400).json({ message: 'No users found' })
+    }
+
+    res.json(user)
+})
+
+export const getUserTodayPlan = asyncHandler(async (req , res) => {
+
+    const userId = req.params.userId
+    const today_date = new Date()
+    // today_date.setDate(today_date.getDate())
+
+    // const user = await UserPlan.aggregate(
+    //     [{
+    //         $match : {
+    //             "start_date":{$lte:today_date},
+    //             "end_date":{$gte:today_date},
+    //             "userId": userId 
+    //         }
+    //     },
+    //     {
+    //         $group : {
+    //             "_id": "$userId",
+    //             "planId":{"$first":"$planId"} ,
+    //             "fee_status" : {$first : "$fee_status"}}
+    //     }
+    // ]
+    //     )
+
+    const user = await UserPlan.find({"userId":userId , "start_date":{$lte:today_date},
+    "end_date":{$gte:today_date}})
     console.log(user);
     if (!user) {
         return res.status(400).json({ message: 'No users found' })

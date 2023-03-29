@@ -71,7 +71,7 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
                 "arrayFilters" : [{"elemX.date":isTodayAdded[0].date}]
             }
         )
-        res.json({message:"Daily entery updated for lunch"})
+        res.json({message:`Daily entery updated for ${verifyThing}`})
     }
 
     else
@@ -86,7 +86,7 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
                 "attendance":dailyEntryObject
             }},
         )
-        res.json({message:"Daily entery updated"})
+        res.json({message:`Daily entery updated for ${verifyThing}`})
     }
 })
 

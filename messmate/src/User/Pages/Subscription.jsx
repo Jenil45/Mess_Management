@@ -23,6 +23,7 @@ const Subscription = () => {
             withCredentials: true,
           }
         );
+        console.log(response.data);
         if (response.data) {
           setCurrentPlan(response.data);
           setIsCurrentPlan(true);
