@@ -76,7 +76,7 @@ const UserMenu = () => {
                 <option value="Monday">Monday</option>
                 <option value="Tuesday">Tuesday</option>
                 <option value="Wednesday">WednesDay</option>
-                <option value="Thuesday">ThuesDay</option>
+                <option value="Thursday">ThursDay</option>
                 <option value="Friday">Friday</option>
                 <option value="Saturday">Saturday</option>
                 <option value="Sunday">Sunday</option>

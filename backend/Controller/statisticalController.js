@@ -150,7 +150,9 @@ export const getMonthlyExpenses = asyncHandler(async (req , res) => {
         {
           _id: "$storeType",
           name: {$first : "$storeType"},
-          expense : { $sum : '$sub_total'}
+          expense : { $sum : '$sub_total'},
+          qty : { $sum : '$qty'},
+          remainqty : { $sum : '$remainqty'},
         }
       },
       {
