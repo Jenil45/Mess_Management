@@ -19,9 +19,9 @@ import axios from "../../Api/axios";
 function Dashboad() {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
   const [data, setData] = useState(null);
-  const [data1, setData1] = useState(null);
+  const [data1, setData1] = useState([]);
   const [data2, setData2] = useState(null);
-
+  console.log(data1);
   // const data = [
   //   {
   //     date: '23',
@@ -92,137 +92,184 @@ function Dashboad() {
     getData();
   }, []);
   return (
-    <div className="min-h-[100vh] flex flex-col gap-6">
-      {/* ------------------------------------------- Header ------------------------------------------- */}
-      <div className="header flex-[1] text-center self-center min-w-full mt-3 mb-2 pb-3">
-        <h1 className="mb-3">Dashboard</h1>
-        <hr />
-      </div>
+    // <div className="min-h-[100vh] flex flex-col gap-6">
+    //   {/* ------------------------------------------- Header ------------------------------------------- */}
+    //   <div className="header flex-[1] text-center self-center min-w-full mt-3 mb-2 pb-3">
+    //     <h1 className="mb-3">Dashboard</h1>
+    //     <hr />
+    //   </div>
 
-      {/* ----------------------------------------- First Chart ---------------------------------------- */}
+    //   {/* ----------------------------------------- First Chart ---------------------------------------- */}
 
-      <div className="header flex-[9] flex flex-row">
-        {/* ------------------------------------------ left part ----------------------------------------- */}
-        <div className="left flex-[3] ">
-          <div className=" flex align-items-center flex-col">
-            <div>
-              <h1 className="mb-4">First Chart </h1>
-            </div>
-            <ResponsiveContainer width="70%" aspect={3}>
-              <AreaChart
-                className=""
-                data={data}
-                stroke="black"
-                margin={{ top: 10, right: 30, left: 5, bottom: 20 }}
-              >
-                <defs>
-                  <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#5F0A87" stopOpacity={1} />
-                    <stop offset="95%" stopColor="#A4508B" stopOpacity={0.3} />
-                  </linearGradient>
-                </defs>
-                <XAxis
-                  className=""
-                  dataKey="date"
-                  label={{
-                    value: "Date",
-                    position: "bottom",
-                    offset: 5,
-                    margin: 3,
-                  }}
-                />
-                <YAxis
-                  label={{
-                    value: "Student no.",
-                    angle: -90,
-                    position: "insideLeft",
-                  }}
-                />
-                <CartesianGrid strokeDasharray="5 5" />
-                <Tooltip />
-                <Area
-                  type="monotone"
-                  dataKey="value"
-                  stroke="#5F0A87s"
-                  fillOpacity={1}
-                  fill="url(#colorPv)"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="mt-5 flex align-items-center flex-col border-spacing-1">
-            <div>
-              <h1 className="mb-4">First Chart </h1>
-            </div>
-            <ResponsiveContainer width="70%" aspect={3}>
-              <AreaChart
-                className=""
-                data={data2}
-                stroke="black"
-                margin={{ top: 10, right: 30, left: 5, bottom: 20 }}
-              >
-                <defs>
-                  <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#5F0A87" stopOpacity={1} />
-                    <stop offset="95%" stopColor="#A4508B" stopOpacity={0.3} />
-                  </linearGradient>
-                </defs>
-                <XAxis
-                  className=""
-                  dataKey="date"
-                  label={{
-                    value: "Date",
-                    position: "bottom",
-                    offset: 5,
-                    margin: 3,
-                  }}
-                />
-                <YAxis
-                  label={{
-                    value: "Student no.",
-                    angle: -90,
-                    position: "insideLeft",
-                  }}
-                />
-                <CartesianGrid strokeDasharray="5 5" />
-                <Tooltip />
-                <Area
-                  type="monotone"
-                  dataKey="amount"
-                  stroke="#5F0A87s"
-                  fillOpacity={1}
-                  fill="url(#colorPv)"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
+    //   <div className="header flex-[9] flex flex-row">
+    //     {/* ------------------------------------------ left part ----------------------------------------- */}
+    //     <div className="left flex-[3] ">
+    //       <div className=" flex align-items-center flex-col">
+    //         <div>
+    //           <h1 className="mb-4">First Chart </h1>
+    //         </div>
+    //         <ResponsiveContainer width="70%" aspect={3}>
+    //           <AreaChart
+    //             className=""
+    //             data={data}
+    //             stroke="black"
+    //             margin={{ top: 10, right: 30, left: 5, bottom: 20 }}
+    //           >
+    //             <defs>
+    //               <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+    //                 <stop offset="5%" stopColor="#5F0A87" stopOpacity={1} />
+    //                 <stop offset="95%" stopColor="#A4508B" stopOpacity={0.3} />
+    //               </linearGradient>
+    //             </defs>
+    //             <XAxis
+    //               className=""
+    //               dataKey="date"
+    //               label={{
+    //                 value: "Date",
+    //                 position: "bottom",
+    //                 offset: 5,
+    //                 margin: 3,
+    //               }}
+    //             />
+    //             <YAxis
+    //               label={{
+    //                 value: "Student no.",
+    //                 angle: -90,
+    //                 position: "insideLeft",
+    //               }}
+    //             />
+    //             <CartesianGrid strokeDasharray="5 5" />
+    //             <Tooltip />
+    //             <Area
+    //               type="monotone"
+    //               dataKey="value"
+    //               stroke="#5F0A87s"
+    //               fillOpacity={1}
+    //               fill="url(#colorPv)"
+    //             />
+    //           </AreaChart>
+    //         </ResponsiveContainer>
+    //       </div>
+    //       <div className="mt-5 flex align-items-center flex-col border-spacing-1">
+    //         <div>
+    //           <h1 className="mb-4">First Chart </h1>
+    //         </div>
+    //         <ResponsiveContainer width="70%" aspect={3}>
+    //           <AreaChart
+    //             className=""
+    //             data={data2}
+    //             stroke="black"
+    //             margin={{ top: 10, right: 30, left: 5, bottom: 20 }}
+    //           >
+    //             <defs>
+    //               <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+    //                 <stop offset="5%" stopColor="#5F0A87" stopOpacity={1} />
+    //                 <stop offset="95%" stopColor="#A4508B" stopOpacity={0.3} />
+    //               </linearGradient>
+    //             </defs>
+    //             <XAxis
+    //               className=""
+    //               dataKey="date"
+    //               label={{
+    //                 value: "Date",
+    //                 position: "bottom",
+    //                 offset: 5,
+    //                 margin: 3,
+    //               }}
+    //             />
+    //             <YAxis
+    //               label={{
+    //                 value: "Student no.",
+    //                 angle: -90,
+    //                 position: "insideLeft",
+    //               }}
+    //             />
+    //             <CartesianGrid strokeDasharray="5 5" />
+    //             <Tooltip />
+    //             <Area
+    //               type="monotone"
+    //               dataKey="amount"
+    //               stroke="#5F0A87s"
+    //               fillOpacity={1}
+    //               fill="url(#colorPv)"
+    //             />
+    //           </AreaChart>
+    //         </ResponsiveContainer>
+    //       </div>
+    //     </div>
+
+    //     {/* ----------------------------------------- Right Part ----------------------------------------- */}
+
+    //     <div className="right mt-10 flex-[3]  flex flex-col justify-center bg-red-500 ">
+    //       <ResponsiveContainer>
+    //         <PieChart width={400} height={400}>
+    //           <Pie
+    //             data={data1}
+    //             cx="50%"
+    //             cy="50%"
+    //             labelLine={false}
+    //             // label={renderCustomizedLabel}
+    //             outerRadius={80}
+    //             fill="#8884d8"
+    //             dataKey="count"
+    //           >
+    //             {/* {data.map((entry, index) => (
+    //               <Cell
+    //               key={`cell-${index}`}
+    //               fill={COLORS[index % COLORS.length]}
+    //               />
+    //             ))} */}
+    //           </Pie>
+    //           <Tooltip />
+    //         </PieChart>
+    //       </ResponsiveContainer>
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="mainbar">
+      <div className="m-main">
+        <div className="m-title">
+          <span>DASHBOARD</span>
+          <span>Mess Management</span>
         </div>
-
-        {/* ----------------------------------------- Right Part ----------------------------------------- */}
-
-        <div className="right mt-10 flex-[3]  flex flex-col justify-center bg-red-500 ">
-          <ResponsiveContainer>
-            <PieChart width={400} height={400}>
-              <Pie
-                data={data1}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                // label={renderCustomizedLabel}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="count"
-              >
-                {/* {data.map((entry, index) => (
-                  <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                  />
-                ))} */}
-              </Pie>
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
+        <div className="card-container ">
+          <div className="piecard bg-gray-400 w-[25rem] h-[15rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
+            <div className="p-content ">
+              {/* <Time color="white" /> */}
+              <span>800</span>
+              <span>Total students</span>
+            </div>
+            <div className="">
+              <PieChart width={200} height={200}>
+                <Pie
+                  data={data1}
+                  cx={100}
+                  cy={100}
+                  innerRadius={30}
+                  outerRadius={50}
+                  fill="#8884d8"
+                  paddingAngle={5}
+                  dataKey="count"
+                  label
+                >
+                  {data1.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </div>
+          </div>
+          {/* <Piecard /> */}
+          {/* <Piecard /> */}
+        </div>
+        <div className="line-card">
+          {/* <Linecard /> */}
+          {/* <Linecard /> */}
+          {/* <Piecard /> */}
         </div>
       </div>
     </div>
