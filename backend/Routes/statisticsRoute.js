@@ -1,6 +1,6 @@
 // importing router from express
 import { Router } from "express";
-import { getDayMemebr, getPlanCount, getWeekProfit } from "../Controller/statisticalController.js";
+import { getDayMemebr, getMonthlyExpenses, getPlanCount, getWeekProfit } from "../Controller/statisticalController.js";
 
 // importing controller functions
 
@@ -11,6 +11,7 @@ const statisticsRoute = Router();
 statisticsRoute.get("/getPlanCount" ,  getPlanCount)
 statisticsRoute.get("/getDayMember" ,  getDayMemebr)
 statisticsRoute.get("/getWeekProfit" ,  getWeekProfit)
+statisticsRoute.get("/getMonthlyExpenses" ,  getMonthlyExpenses)
 
 // exporting router application
 export default statisticsRoute;
