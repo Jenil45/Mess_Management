@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../../Api/axios";
 import Alert from "../../Components/Alert";
+import closeBtnpic from "../../Svg/close.svg";
 
 function EditModal(props) {
   // const { setAuth } = useAuth();
@@ -114,7 +115,7 @@ function EditModal(props) {
           </h2>
           <div class="flex-none ">
             <img
-              // src={closeBtnpic}
+              src={closeBtnpic}
               alt=""
               className=" cursor-pointer min-h-[35px] min-w-[35px] mt-1"
               onClick={() => props.setEditmodal(false)}
