@@ -31,6 +31,21 @@ export const getOneUser = asyncHandler(async (req , res) => {
 
     res.json(user)
 })
+export const getUser = asyncHandler(async (req , res) => {
+    const userId = req.params.userId
+    if (!userId) {
+        return res.status(400).json({ message: 'User ID Required' })
+    }
+
+    const user = await User.findOne({"userId":userId},{password:0,cpassword:0}).lean()
+
+    // If no users 
+    if (!user) {
+        return res.status(400).json({ message: 'No users found' })
+    }
+
+    res.json(user)
+})
 
 
 export const createNewUser = asyncHandler(async (req , res) => {
