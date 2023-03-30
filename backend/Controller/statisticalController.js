@@ -21,8 +21,12 @@ export const getPlanCount = asyncHandler(async (req , res) => {
         {
             $group: {
                 _id: "$planId",
+                name: {$first : "$planId"},
                 count: { $count: { } }
              }
+        },
+        {
+          $sort:{"planId":1}
         }
     ]
         )
@@ -145,9 +149,13 @@ export const getMonthlyExpenses = asyncHandler(async (req , res) => {
         $group : 
         {
           _id: "$storeType",
-          Expense : { $sum : '$sub_total'}
+          name: {$first : "$storeType"},
+          expense : { $sum : '$sub_total'}
         }
       },
+      {
+        $sort:{"expense":1}
+      }
 
       ]
       )
