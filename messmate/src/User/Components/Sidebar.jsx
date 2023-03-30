@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import Dashboard from "../../Svg/Dashboard.svg";
 import logOut from "../../Svg/logout.gif";
 import confused from "../../Svg/confused.gif";
 import information from "../../Svg/information.gif";
@@ -8,161 +7,152 @@ import fingerprintScan from "../../Svg/fingerprint-scan.gif";
 import verified from "../../Svg/verified.gif";
 import Rules from "../../Svg/Rules.gif";
 import menu from "../../Svg/menu.gif";
-// import banner from "../../Svg/banner.jpg";
 
-// import attendent from "../../Svg/Attendent.svg";
-// import subscription from "../../Svg/subscription.svg";
-// import Profile from "../../Svg/Profile.svg";
-// import Infopic from "../../Svg/Information.svg";
 import useLogout from "../../Api/Logout";
 
 function Sidebar() {
   const logout = useLogout();
   return (
     <>
-      <div className="h-screen">
-        <ul className="flex flex-col pl-0 mb-0 mt-[3rem] gap-[.5rem] z-2 ">
-          <li className="  w-full">
+      <div className="min-h-[100vh]  my-2 ml-3 rounded-2xl bg-gray-400   ">
+        <ul className="flex flex-col   pl-0 mb-0 mt-2 gap-[.3rem] z-2 ">
+          <li className="w-full mt-4 hidden sm:block">
+            <h6 className=" ml-2  text-center text-lg font-bold text-black leading-tight uppercase  opacity-100">
+              Hello User
+            </h6>
+
+          </li>
+          <hr className="bg-black mt-3 hidden sm:block" />
+
+
+
+
+          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
-              className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
+              className="  flex  flex-row justify-start pl-1 pr-2 hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user"
             >
-              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+              <div className="shadow-soft-2xl  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
                 <img src={Rules} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
-              <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
+              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
                 Dashboard
               </span>
             </Link>
           </li>
-
-          <li className="  w-full">
+          {/* <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
-              className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+              className="  flex  flex-row justify-around px-4  hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/attendent"
             >
-              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img
-                  src={verified}
-                  alt="Logout!"
-                  className="h-[50px] w-[100px]"
-                />
+              <div className="shadow-soft-2xl  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img src={verified} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
-              <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
+              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
                 Attendent
               </span>
             </Link>
-          </li>
-          <li className="  w-full">
+          </li> */}
+
+          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
-              className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+              className="  flex  flex-row  justify-start pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/attendance"
             >
-              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img
-                  src={verified}
-                  alt="Logout!"
-                  className="h-[50px] w-[100px]"
-                />
+              <div className="shadow-soft-2xl  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img src={verified} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
-              <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
+              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
                 Attendance
               </span>
             </Link>
           </li>
 
-          <li className="  w-full">
+
+
+          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
-              className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+              className="  flex  flex-row  justify-start pl-1 pr-2 hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/subscription"
             >
-              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img
-                  src={confused}
-                  alt="Logout!"
-                  className="h-[50px] w-[100px]"
-                />
+              <div className="shadow-soft-2xl  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img src={confused} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
-              <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
-                Subscription
+              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+                Plan
               </span>
             </Link>
           </li>
-          <li className=" w-full">
+
+
+          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
-              className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+              className="  flex  flex-row  justify-start pl-1 pr-2 hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/usermenu"
             >
-              <div className="shadow-soft-2xl  mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img
-                  src={menu}
-                  alt="Logout!"
-                  className="h-[50px] w-[100px]"
-                />
+              <div className="shadow-soft-2xl pl-2  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img src={menu} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
-              <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
+              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
                 User Menu
               </span>
             </Link>
           </li>
-          <li className="  w-full">
+
+
+
+          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
-              className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
+              className="  flex  flex-row  justify-start pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/information"
             >
-              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img
-                  src={information}
-                  alt="Logout!"
-                  className="h-[50px] w-[100px]"
-                />
+              <div className="shadow-soft-2xl ml-1  mr-2  flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img src={information} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
-              <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
+              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
                 Information
               </span>
             </Link>
           </li>
-          <li className="w-full mt-4">
-            <h6 className="pl-6 ml-2 text-lg font-bold leading-tight uppercase  opacity-100">
-              Account pages
+
+            {/* ---------------------------------------- Account part ---------------------------------------- */}
+
+
+          <li className="w-full  mt-8 hidden sm:block">
+            <h6 className=" ml-2  text-center text-lg  text-black font-bold leading-tight uppercase  opacity-100">
+              Account
             </h6>
           </li>
+          <hr className="bg-black mt-3 hidden sm:block" />
 
-          <li className="  w-full">
+          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
-              className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+              className="  flex  flex-row justify-start pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/editprofile"
             >
-              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img
-                  src={fingerprintScan}
-                  alt="Logout!"
-                  className="h-[50px] w-[100px]"
-                />
+              <div className="shadow-soft-2xl ml-2  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img src={fingerprintScan} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
-              <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
-                Profile
-              </span>
+              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+              Profile
+               </span>
             </Link>
           </li>
 
-          <li className="  w-full">
+          <li className="w-[80%]  p-[1.2px] mb-4 mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <button
+              className=" flex ml-3 flex-row justify-start  pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm   items-center whitespace-nowrap rounded-lg   font-semibold "
               onClick={logout}
-              className="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
             >
-              <div className="shadow-soft-2xl    mr-2 flex h-[76px] w-[70px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img
-                  src={logOut}
-                  alt="Logout!"
-                  className="h-[50px] w-[100px]"
-                />
+              <div className=" mr-2  flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+                <img src={logOut} alt="Logout!" className="h-[50px] w-[80px]" />
               </div>
-              <span className="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">
-                Log Out
+              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+              Logout
               </span>
             </button>
           </li>
+
         </ul>
       </div>
     </>

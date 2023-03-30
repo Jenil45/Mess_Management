@@ -179,13 +179,13 @@ function Modal({ setLoginmodal }) {
       aria-modal="true"
     >
       <div
-        className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        className="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity"
         onClick={() => setLoginmodal(false)}
       />
 
-      <div className="flex fixed left-[35%] min-w-[30%] max-w-[31%]   transform overflow-hidden  p-9  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
+      <div className="flex fixed left-[35%] min-w-[30%] max-w-[31%]   transform overflow-hidden  p-10  bg-white rounded-lg   flex-col    md:mt-0 ">
         <div className="flex">
-          <h2 className="grow h-14 text-gray-900 text-3xl text-center font-medium title-font mb-2">
+          <h2 className="grow h-14 text-black text-3xl text-center font-medium title-font mb-2">
             Add user
           </h2>
           <div class="flex-none ">
@@ -198,13 +198,12 @@ function Modal({ setLoginmodal }) {
           </div>
         </div>
         {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""}
-
         {!reset ? (
           <form>
             <div className="relative mb-4">
               <label
                 htmlFor="email"
-                className="leading-7 text-sm text-gray-600"
+                className="leading-7 text-sm text-black"
               >
                 Email
               </label>
@@ -220,7 +219,7 @@ function Modal({ setLoginmodal }) {
             <div className="relative mb-4">
               <label
                 htmlFor="password"
-                className="leading-7 text-sm text-gray-600"
+                className="leading-7 text-sm text-black"
               >
                 Password
               </label>
@@ -233,13 +232,14 @@ function Modal({ setLoginmodal }) {
                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
-
+            <div className="flex justify-center">
             <button
               onClick={handleLogin}
-              className="text-white bg-indigo-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+              className="text-black bg-gradient-to-r from-[#FF6200] to-[#FDB777] border-2 hover:bg-gradient-to-t hover:from-[#FDB777] hover:to-[#FF6200]  border-black font-semibold text-xl  mt-4 py-2 px-8 focus:outline-none rounded "
             >
               Login
             </button>
+            </div>
           </form>
         ) : (
           <form>
@@ -303,7 +303,7 @@ function Modal({ setLoginmodal }) {
         {!reset ? (
           <div>
             <button
-              className=" text-gray-500 mt-3 text-[1rem] text-indigo-600"
+              className=" mt-3 text-[1rem] text-indigo-600"
               onClick={() => setReset(true)}
             >
               Reset Password...
@@ -312,7 +312,7 @@ function Modal({ setLoginmodal }) {
         ) : (
           <div>
             <button
-              className=" text-gray-500 mt-3 text-[1rem] text-indigo-600"
+              className=" mt-3 text-[1rem] text-indigo-600"
               onClick={() => setReset(false)}
             >
               Go Back
@@ -321,6 +321,7 @@ function Modal({ setLoginmodal }) {
         )}
       </div>
     </div>
+
   );
 }
 export default Modal;

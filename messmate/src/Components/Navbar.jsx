@@ -7,47 +7,35 @@ const Navbar = () => {
   const [loginModal, setLoginmodal] = useState(false);
   return (
     <header className="text-gray-900 body-font">
-      <div className="container mx-auto flex flex-wrap p-3 fixed bg-lime-100  flex-col md:flex-row items-center">
+      <div className="container my-2 flex flex-wrap mt-2 max-w-[90%] rounded-2xl  mb-4 min-h-[10vh] bg-gradient-to-r from-[#020024] from-0% via-green-800 via-50%   to-lime-400 to-90%  flex-col md:flex-row items-center">
         <Link
           to="/"
-          className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+          className="flex title-font font-medium items-center text-gray-900  md:mb-0"
         >
-          {/* <svg
-            xmlns="http://www.w3.org/2000/svg"
-            
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg> */}
 
-          <img src={LogOut} alt="Svg" className="h-16" />
-          <span className="ml-3 text-xl">Mess Management</span>
+          <img src={LogOut} alt="Svg" className="h-10" />
+          <span className="ml-3 text-xl text-white hover:no-underline no-underline">Mess Management</span>
         </Link>
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          <Link to="/contact" className="mr-5 hover:text-gray-900">
+          <Link to="/" className="mr-5 text-white text-lg hover:text-gray-900 hover:no-underline">
+            Home
+          </Link>
+          <Link to="/contact" className="mr-5 text-white text-lg hover:text-gray-900 hover:no-underline">
             Contact Us
           </Link>
-          <Link to="/about" className="mr-5 hover:text-gray-900">
+          <Link to="/about" className="mr-5 hover:text-gray-900 text-white text-lg hover:no-underline">
             About us
           </Link>
-          <Link to="" className="mr-5 hover:text-gray-900">
+          <Link to="/menu" className="mr-5 hover:text-gray-900 text-white text-lg hover:no-underline">
             Menu
           </Link>
-          <Link to="" className="mr-5 hover:text-gray-900">
-            Fourth Link
-          </Link>
+
         </nav>
         <button
-          className="inline-flex items-center bg-green-500 border-0 text-white py-1 px-3 focus:outline-none hover:bg-green-600 rounded text-base   p-2 md:mt-0"
+          className="inline-flex items-center bg-black border-0 text-white font-semibold text-lg mr-4 py-1 px-3 focus:outline-none  rounded    p-2 md:mt-0"
           onClick={() => setLoginmodal(true)}
         >
-          LogIn
+          Login
           <svg
             fill="none"
             stroke="currentColor"
