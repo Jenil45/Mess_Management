@@ -65,11 +65,11 @@ const Inventory = () => {
       <hr />
       <div className="flex-[6]">
         {store === "addInventory" ? <AddInventory /> : ""}
-        {store === "A" ? <StoreA /> : ""}
-        {store === "B" ? <AddInventory /> : ""}
-        {store === "C" ? <AddInventory /> : ""}
-        {store === "D" ? <AddInventory /> : ""}
-        {store === "E" ? <AddInventory /> : ""}
+        {store === "A" ? <StoreA store={"StoreA"} /> : ""}
+        {store === "B" ? <StoreA store={"StoreB"} /> : ""}
+        {store === "C" ? <StoreA store={"StoreC"} /> : ""}
+        {store === "D" ? <StoreA store={"StoreD"} /> : ""}
+        {store === "E" ? <StoreA store={"StoreE"} /> : ""}
       </div>
     </div>
   );
