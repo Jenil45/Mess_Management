@@ -21,6 +21,7 @@ dotenv.config()
 import Connection from './Database/db_connect.js'
 import UserPlan from './Models/UserPlan.js';
 import moment from 'moment/moment.js';
+import Inventory from './Models/Inventory.js';
 
 
 // create an express app for request-response
@@ -49,55 +50,26 @@ app.get("/" , async (req,res) => {
 
     const today_date = moment().utcOffset("+05:30").startOf('month').toDate()
     const end_date1 = moment().utcOffset("+05:30").endOf('month').toDate()
-    const users = await DailyEntry.aggregate([
+    const users = await Inventory.aggregate([
         {
-            $match: {
-                "attendance": {
-                  "$elemMatch": {
-                    "date": 
-                          {$gte : today_date ,$lte : end_date1},
-                    "menu.breakfast":true
-                    }
-                  }
-                }
-        },
+            $match:
             {
-                $unwind : {path:'$attendance'}
-            },
-            {
-                $group : {
-                    _id: "$attendance.date",
-                    Users : { $push : '$attendance'}
-                }
-            },
-            {
-                $group : {
-                    _id:"$_id",
-                    count:{$count: {}}
-                }
+              "date" : {$gte : today_date ,$lte : end_date1}
             }
+        },
+
+        {
+          $group : 
+          {
+            _id: "$storeType",
+            Expense : { $sum : '$sub_total'}
+          }
+        },
+
         ]
         )
 
-    function groupBy(objectArray, property) {
-        return objectArray.reduce(function (acc, obj) {
-          var key = obj[property];
-          key = moment(key).startOf('date').get('date')
-        //   console.log(obj);
-          if (!acc[key]) {
-            acc[key] = [];
-          }
-          acc[key].push(obj);
-          return acc;
-        }, {});
-      }
-      
-    var groupedPeople = groupBy(users, '_id');
-    groupedPeople  = Object.entries(groupedPeople).map(entry => {
-        return {"date": entry[0],"value": entry[1].length};
-      });
-      console.log(groupedPeople);
-      res.send(groupedPeople)
+      res.send(users)
 })
 
 app.get("/date" , async (req,res) => {
