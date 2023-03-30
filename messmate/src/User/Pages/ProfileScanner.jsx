@@ -73,7 +73,7 @@ const ProfileScanner = () => {
   });
 
   return (
-    <div className="profilescanner flex items-center justify-center  h-[40rem]">
+    <div className="profilescanner m-auto flex items-center justify-center  h-[40rem]">
       <div className="scanner flex-[1]  h-[30rem] flex items-center justify-center">
         {imageUrl ? (
           <a href={imageUrl} download>
@@ -81,7 +81,6 @@ const ProfileScanner = () => {
           </a>
         ) : null}
       </div>
-      <div className="info flex-[1]"></div>
     </div>
   );
 };

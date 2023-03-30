@@ -10,23 +10,23 @@ const Attendance = () => {
   // variables
 
   // today date
-  const [today, setToday] = useState({
+  const [ today, setToday ] = useState({
     month: 3,
     year: 2023,
   });
 
-  const [start, setStart] = useState({
+  const [ start, setStart ] = useState({
     date: null,
     month: null,
     year: null,
   });
-  const [end, setEnd] = useState({
+  const [ end, setEnd ] = useState({
     date: null,
     month: null,
     year: null,
   });
 
-  const [entry, setEntry] = useState([]);
+  const [ entry, setEntry ] = useState([]);
 
   // set start date and end date of this page
   var start_date_page = dayjs()
@@ -118,7 +118,7 @@ const Attendance = () => {
           month: curr_end.get("month"),
           year: curr_end.get("year"),
         });
-      } catch (error) {}
+      } catch (error) { }
     };
     // console.log("Fetching current plan data");
     getCurrentPlan();
@@ -150,9 +150,9 @@ const Attendance = () => {
       .format();
 
     if (check >= from && check <= to) {
-      bg_big = "bg-purple-400";
+      bg_big = "bg-lime-300";
     } else {
-      bg_big = "bg-gray-500";
+      bg_big = "bg-white";
     }
 
     // console.log(check >= from && check <= to);
@@ -161,7 +161,7 @@ const Attendance = () => {
     var lunch = false;
     var dinner = false;
     for (let index = 0; index < entry.length; index++) {
-      var entrydate = new Date(entry[index].date);
+      var entrydate = new Date(entry[ index ].date);
       entrydate = dayjs()
         .year(entrydate.getFullYear())
         .month(entrydate.getMonth())
@@ -169,13 +169,13 @@ const Attendance = () => {
         .format();
 
       if (entrydate === check) {
-        if (entry[index].menu.breakfast) {
+        if (entry[ index ].menu.breakfast) {
           breakfast = true;
         }
-        if (entry[index].menu.lunch) {
+        if (entry[ index ].menu.lunch) {
           lunch = true;
         }
-        if (entry[index].menu.dinner) {
+        if (entry[ index ].menu.dinner) {
           dinner = true;
         }
         break;
@@ -188,7 +188,7 @@ const Attendance = () => {
           className={`${bg_big} rounded w-[50px] h-[50px] flex flex-col gap-2 items-center justify-center`}
         >
           <p
-            className={`text-base text-gray-600 dark:text-gray-100 "bg-green-500 rounded-circle flex items-center justify-center w-[30px] h-[30px]"
+            className={`text-base text-gray-600   rounded-circle flex items-center justify-center w-[30px] h-[30px]"
             `}
           >
             {item.getDate()}
@@ -218,7 +218,7 @@ const Attendance = () => {
           className={`${bg_big} rounded w-[50px] h-[50px] flex flex-col gap-2 items-center justify-center`}
         >
           <p
-            className={`text-base text-gray-600 dark:text-gray-100 "bg-green-500 rounded-circle flex items-center justify-center w-[30px] h-[30px]"
+            className={`text-lg font-semibold text-black  rounded-circle flex items-center justify-center w-[30px] h-[30px]"
             `}
           >
             {item.getDate()}
@@ -275,113 +275,108 @@ const Attendance = () => {
       });
     }
   };
-
+  const monthname = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octomber', 'December' ]
   return (
     <div className="flex items-center justify-self-stretch py-8 px-4 ">
       <div className=" min-h-[75vh] min-w-[75%] w-full shadow-lg  ">
-        <div className="py-12 px-5 flex flex-col dark:bg-gray-800  rounded-t min-h-[75vh] bg-amber-100">
-          <div className="px-4 flex items-center justify-between flex-[2]">
+        <div className="py-12 px-5 flex flex-col   rounded-t min-h-[75vh] bg-slate-100">
+          <div className="px-8 flex items-center justify-between flex-[2]">
             <span
               tabIndex={0}
-              className="focus:outline-none  text-base font-bold dark:text-gray-100 text-gray-800"
+              className="focus:outline-none  text-base font-bold  text-gray-800"
             >
-              {today.month} - {today.year}
+              {monthname[ today.month ]} - {today.year}
             </span>
             <div className="flex items-center">
-              <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+
+
+              <button className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900"
+                onClick={() => decrement()}
+              >
+                <svg aria-hidden="true" className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+                Prev
+              </button>
+
+              <button className="m-2 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border- border-gray-700 rounded-none hover:bg-gray-900 "
                 onClick={() =>
                   setToday({
                     month: dayjs().month() + 1,
                     year: dayjs().year(),
                   })
-                }
-              >
-                current
-              </button>
-              <button
-                aria-label="calendar backward"
-                className="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100"
-                onClick={() => decrement()}
-              >
+                }> Current</button>
+
+
+              <button className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 "
+                onClick={() => incrementmonth()}>
+                Next
                 <svg
+                  aria-hidden="true"
+                  className="w-5 h-5 ml-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-chevron-left"
-                  width={24}
-                  height={24}
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
                 >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <polyline points="15 6 9 12 15 18" />
-                </svg>
-              </button>
-              <button
-                aria-label="calendar forward"
-                className="focus:text-gray-400 hover:text-gray-400 ml-3 text-gray-800 dark:text-gray-100"
-                onClick={() => incrementmonth()}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler  icon-tabler-chevron-right"
-                  width={24}
-                  height={24}
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <polyline points="9 6 15 12 9 18" />
+                  <path
+                    fillRule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </button>
             </div>
           </div>
 
           <div className="grid items-center grid-cols-7	 justify-between pt-12 overflow-x-auto flex-[8] ">
-            <div className="w-full flex justify-center">
-              <p className="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+            <div className="w-full mb-3 flex justify-center">
+              <p className="text-lg  text-center text-gray-800 font-semibold">
                 Su
               </p>
             </div>
-            <div className="w-full flex justify-center">
-              <p className="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+            <div className="w-full mb-3 flex justify-center">
+              <p className="text-lg  text-center text-gray-800 font-semibold">
                 mo
               </p>
             </div>
-            <div className="w-full flex justify-center">
-              <p className="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+            <div className="w-full mb-3 flex justify-center">
+              <p className="text-lg  text-center text-gray-800 font-semibold">
                 tu
               </p>
             </div>
-            <div className="w-full flex justify-center">
-              <p className="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+            <div className="w-full mb-3 flex justify-center">
+              <p className="text-lg  text-center text-gray-800 font-semibold">
                 wed
               </p>
             </div>
-            <div className="w-full flex justify-center">
-              <p className="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+            <div className="w-full mb-3 flex justify-center">
+              <p className="text-lg  text-center text-gray-800 font-semibold">
                 thu
               </p>
             </div>
-            <div className="w-full flex justify-center">
-              <p className="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+            <div className="w-full mb-3 flex justify-center">
+              <p className="text-lg  text-center text-gray-800 font-semibold">
                 Fri
               </p>
             </div>
-            <div className="w-full flex justify-center">
-              <p className="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+            <div className="w-full mb-3 flex justify-center">
+              <p className="text-lg  text-center text-gray-800 font-semibold">
                 Sat
               </p>
             </div>
 
             {content}
+          </div>
+                <hr className="bg-black mt-3"/>
+          <div className="info  flex flex-col w-full mx-3 mt-4 px-10">
+                <div className="flex flex-row gap-12 m-1">
+                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-green-300 "></div> <span className="text-base text-black font-semibold"> BreakFast</span>
+                  </div>
+                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-[orange] "></div> <span className="text-base text-black font-semibold"> Lunch</span>
+                  </div>
+                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-[red] "></div> <span className="text-base text-black font-semibold"> Dinner</span>
+                  </div>
+                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-lime-300 "></div> <span className="text-base text-black font-semibold"> Current Plane</span>
+                  </div>
+                </div>
           </div>
         </div>
       </div>

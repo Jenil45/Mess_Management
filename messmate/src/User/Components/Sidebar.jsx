@@ -144,7 +144,7 @@ function Sidebar() {
               className=" flex ml-3 flex-row justify-start  pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm   items-center whitespace-nowrap rounded-lg   font-semibold "
               onClick={logout}
             >
-              <div className=" mr-2  flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
+              <div className=" mr-2  flex h-[40px] w-[50px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
                 <img src={logOut} alt="Logout!" className="h-[50px] w-[80px]" />
               </div>
               <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">

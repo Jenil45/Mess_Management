@@ -2,55 +2,44 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import useLogout from "../../Api/Logout";
 import useAuth from "../../Auth/useAuth";
+import hello from "../../Svg/hi.svg"
 
 const Mainbar = () => {
   const { auth } = useAuth();
   const logout = useLogout();
   return (
-    <div>
-      <header className="text-gray-600 body-font">
-        <div className="container mx-auto flex flex-wrap mt-4 mb-4 flex-col md:flex-row items-center justify-between">
+    <div className="bg-slate-200 mt-2 rounded-md  mb-6 ">
+      <div className="text-gray-600 body-font  pt-4">
+        <div className="container mx-auto flex flex-wrap  mb-4 flex-col md:flex-row items-center justify-between">
+
           <span className="flex title-font font-medium items-center text-gray-900  md:mb-0">
+            <img className="h-20" src={hello} alt="coming"></img>
+            <span className="ml-3 text-2xl font-semibold">
+              {auth.name} {auth.userId}
+            </span>
+          </span>
+
+          <button
+            className="inline-flex items-center bg-black border-0 text-white font-semibold text-lg mr-4 py-1 px-3 focus:outline-none  rounded    p-2 md:mt-0"
+            onClick={() => logout}
+          >
+            Log Out
             <svg
-              xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              className="w-10 h-10 text-white p-2 bg-red-500 rounded-full"
+              className="w-4 h-4 ml-1"
               viewBox="0 0 24 24"
             >
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>
-            <span className="ml-3 text-xl">
-              Hello {auth.name} {auth.userId}
-            </span>
-          </span>
-
-          {/* <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a className="mr-5 hover:text-gray-900" href="/">
-              First Link
-            </a>
-            <a className="mr-5 hover:text-gray-900" href="/">
-              Second Link
-            </a>
-            <a className="mr-5 hover:text-gray-900" href="/">
-              Third Link
-            </a>
-            <a className="mr-5 hover:text-gray-900" href="/">
-              Fourth Link
-            </a>
-          </nav> */}
-          <button
-            onClick={logout}
-            className="group rounded-2xl h-10 w-40 bg-green-500 font-bold text-lg text-white relative overflow-hidden"
-          >
-            Log out
-            <div className="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl"></div>
           </button>
+
+
         </div>
-      </header>
+      </div>
       <Outlet />
     </div>
   );
