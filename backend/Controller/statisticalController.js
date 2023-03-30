@@ -2,17 +2,20 @@ import UserPlan from "../Models/UserPlan.js";
 import asyncHandler from 'express-async-handler'
 import moment from "moment";
 import DailyEntry from "../Models/DailyEntry.js";
+import Inventory from "../Models/Inventory.js";
 
 
 export const getPlanCount = asyncHandler(async (req , res) => {
 
-    const today_date = new Date()
+  const today_date = moment().utcOffset("+05:30").startOf('month').toDate()
+  const end_date1 = moment().utcOffset("+05:30").endOf('month').toDate()
+  // console.log(today_date);
+  // console.log(end_date1);
 
     const user = await UserPlan.aggregate(
         [{
             $match : {
-                "start_date":{$lte:today_date},
-                "end_date":{$gte:today_date},
+                "start_date":{$gte:today_date , $lte:end_date1},
             }
         },
         {
@@ -81,15 +84,15 @@ export const getDayMemebr = asyncHandler(async (req , res) => {
     groupedPeople  = Object.entries(groupedPeople).map(entry => {
         return {"date": entry[0],"value": entry[1].length};
       });
-      console.log(groupedPeople);
+      // console.log(groupedPeople);
     res.json(groupedPeople)
 })
 
 export const getWeekProfit = asyncHandler(async (req , res) => {
     const today_date = moment().utcOffset("+05:30").startOf('week').toDate()
     const end_date1 = moment().utcOffset("+05:30").endOf('week').toDate()
-    console.log(today_date);
-    console.log(end_date1);
+    // console.log(today_date);
+    // console.log(end_date1);
 
     const user = await UserPlan.aggregate(
         [{
@@ -110,7 +113,7 @@ export const getWeekProfit = asyncHandler(async (req , res) => {
             return objectArray.reduce(function (acc, obj) {
               var key = obj[property];
               key = (moment(key).startOf('date').get('date')-1)
-              console.log(key);
+              // console.log(key);
             //   console.log(obj);
               if (!acc[key]) {
                 acc[key] = [];
@@ -126,4 +129,28 @@ export const getWeekProfit = asyncHandler(async (req , res) => {
             // console.log(entry[1][0]);
           });
         res.json(groupedPeople)
+})
+export const getMonthlyExpenses = asyncHandler(async (req , res) => {
+  const today_date = moment().utcOffset("+05:30").startOf('month').toDate()
+  const end_date1 = moment().utcOffset("+05:30").endOf('month').toDate()
+  const expenses = await Inventory.aggregate([
+      {
+          $match:
+          {
+            "date" : {$gte : today_date ,$lte : end_date1}
+          }
+      },
+
+      {
+        $group : 
+        {
+          _id: "$storeType",
+          Expense : { $sum : '$sub_total'}
+        }
+      },
+
+      ]
+      )
+
+    res.send(expenses)
 })

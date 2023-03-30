@@ -14,18 +14,14 @@ function Sidebar() {
   const logout = useLogout();
   return (
     <>
-      <div className="min-h-[100vh]  my-2 ml-3 rounded-2xl bg-gray-400   ">
-        <ul className="flex flex-col   pl-0 mb-0 mt-2 gap-[.3rem] z-2 ">
+      <div className="min-h-[100vh]  my-2 ml-3 rounded-2xl bg-gray-400">
+        <ul className="flex flex-col  pl-0 mb-0 mt-2 gap-[.3rem] z-2 ">
           <li className="w-full mt-4 hidden sm:block">
             <h6 className=" ml-2  text-center text-lg font-bold text-black leading-tight uppercase  opacity-100">
               Hello User
             </h6>
-
           </li>
           <hr className="bg-black mt-3 hidden sm:block" />
-
-
-
 
           <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
@@ -60,7 +56,11 @@ function Sidebar() {
               to="/user/attendance"
             >
               <div className="shadow-soft-2xl  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img src={verified} alt="Logout!" className="h-[50px] w-[100px]" />
+                <img
+                  src={verified}
+                  alt="Logout!"
+                  className="h-[50px] w-[100px]"
+                />
               </div>
               <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
                 Attendance
@@ -68,22 +68,23 @@ function Sidebar() {
             </Link>
           </li>
 
-
-
           <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
               className="  flex  flex-row  justify-start pl-1 pr-2 hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/subscription"
             >
               <div className="shadow-soft-2xl  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img src={confused} alt="Logout!" className="h-[50px] w-[100px]" />
+                <img
+                  src={confused}
+                  alt="Logout!"
+                  className="h-[50px] w-[100px]"
+                />
               </div>
               <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
                 Plan
               </span>
             </Link>
           </li>
-
 
           <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
@@ -99,15 +100,17 @@ function Sidebar() {
             </Link>
           </li>
 
-
-
           <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
             <Link
               className="  flex  flex-row  justify-start pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/information"
             >
               <div className="shadow-soft-2xl ml-1  mr-2  flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img src={information} alt="Logout!" className="h-[50px] w-[100px]" />
+                <img
+                  src={information}
+                  alt="Logout!"
+                  className="h-[50px] w-[100px]"
+                />
               </div>
               <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
                 Information
@@ -115,8 +118,7 @@ function Sidebar() {
             </Link>
           </li>
 
-            {/* ---------------------------------------- Account part ---------------------------------------- */}
-
+          {/* ---------------------------------------- Account part ---------------------------------------- */}
 
           <li className="w-full  mt-8 hidden sm:block">
             <h6 className=" ml-2  text-center text-lg  text-black font-bold leading-tight uppercase  opacity-100">
@@ -131,11 +133,15 @@ function Sidebar() {
               to="/user/editprofile"
             >
               <div className="shadow-soft-2xl ml-2  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
-                <img src={fingerprintScan} alt="Logout!" className="h-[50px] w-[100px]" />
+                <img
+                  src={fingerprintScan}
+                  alt="Logout!"
+                  className="h-[50px] w-[100px]"
+                />
               </div>
               <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
-              Profile
-               </span>
+                Profile
+              </span>
             </Link>
           </li>
 
@@ -148,11 +154,10 @@ function Sidebar() {
                 <img src={logOut} alt="Logout!" className="h-[50px] w-[80px]" />
               </div>
               <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
-              Logout
+                Logout
               </span>
             </button>
           </li>
-
         </ul>
       </div>
     </>
