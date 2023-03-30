@@ -13,8 +13,8 @@ function User() {
 
   return (
     <div>
-      <main main className="flex">
-        <div className=" bg-slate-50   flex-[2]">
+      <main main className="flex bg-slate-200">
+        <div className="  flex-[2]">
           <Sidebar />
         </div>
 
