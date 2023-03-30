@@ -103,7 +103,7 @@ function Dashboad() {
 
       <div className="header flex-[9] flex flex-row">
         {/* ------------------------------------------ left part ----------------------------------------- */}
-        <div className="left flex-[6] ">
+        <div className="left flex-[3] ">
           <div className=" flex align-items-center flex-col">
             <div>
               <h1 className="mb-4">First Chart </h1>
@@ -201,27 +201,28 @@ function Dashboad() {
         {/* ----------------------------------------- Right Part ----------------------------------------- */}
 
         <div className="right mt-10 flex-[3]  flex flex-col justify-center bg-red-500 ">
-          <PieChart width={400} height={400}>
-            <Pie
-              data={data1}
-              cx={"25%"}
-              cy={"50%"}
-              innerRadius={50}
-              outerRadius={100}
-              fill="#8884d8"
-              paddingAngle={5}
-              dataKey="count"
-              label
-            >
-              {/* {data1.map((entry, index) => (
-                <Cell
+          <ResponsiveContainer>
+            <PieChart width={400} height={400}>
+              <Pie
+                data={data1}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                // label={renderCustomizedLabel}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="count"
+              >
+                {/* {data.map((entry, index) => (
+                  <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}
-                />
-              ))} */}
-            </Pie>
-            <Tooltip />
-          </PieChart>
+                  />
+                ))} */}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>
