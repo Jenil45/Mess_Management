@@ -3,9 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../../Api/axios";
 import Alert from "../../Components/Alert";
 
-const Email_Checker = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const Mobile_Cheker = /^[6-9]\d{9}$/gi;
-
 function EditModal(props) {
   // const { setAuth } = useAuth();
   const [alert, setalert] = useState({
@@ -14,94 +11,93 @@ function EditModal(props) {
     type: "bg-[red]",
   });
 
-  const [name, setName] = useState("");
-  const [id, setId] = useState(0);
-
-  const [email, setEmail] = useState("");
-  const [validEmail, setValidEmail] = useState(false);
-
-  const [mobileno, setMobileNo] = useState();
-  const [validMobile, setValidMobile] = useState(false);
-
-  const [role, setRole] = useState(0);
-
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  // validation in all fields
-  useEffect(() => {
-    setValidEmail(Email_Checker.test(email));
-  }, [email]);
+  const [name, setName] = useState(null);
+  const [storeType, setStoreType] = useState(null);
+  const [qty, setQty] = useState(0);
+  const [usedqty, setUsedQty] = useState(0);
+  const [single_price, setSingle_Price] = useState(0);
 
   useEffect(() => {
-    setValidEmail(Mobile_Cheker.test(mobileno));
-  }, [mobileno]);
-
-  useEffect(() => {
-    setErrMsg("");
-  }, [email]);
-
-  useEffect(() => {
-    const getData = async (userEmail) => {
+    const getData = async (inventoryId) => {
       // if button enabled with JS hack
-      console.log("Inside effect", userEmail);
+      //   console.log("Inside effect", userEmail);
       try {
-        const response = await axios.get(`/users/getuser/${userEmail}`, {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `/inventory/getinventory/${inventoryId}`,
+          {
+            withCredentials: true,
+          }
+        );
 
         // console.log("Get All User", response.data);
         setName(response.data.name);
-        setEmail(response.data.email);
-        setMobileNo(response.data.mobileno);
-        setId(response.data.userId);
-        setRole(response.data.role);
+        setStoreType(response.data.storeType);
+        setQty(response.data.qty);
+        setUsedQty(response.data.usedqty);
+        setSingle_Price(response.data.single_price);
         console.log(JSON.stringify(response));
       } catch (err) {
         console.log(err);
       }
     };
 
-    getData(props.userEmail);
-  }, []);
+    getData(props.inventoryId);
+  }, [EditModal]);
 
   // handling submit
   const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log("inside update");
     // if button enabled with JS hack
-    const e1 = Email_Checker.test(email);
-    if (!e1) {
-      setErrMsg("Invalid Entry");
+    const e1 = storeType === null;
+    const e2 = name === null;
+    const e3 = qty > 0;
+    const e4 = single_price > 0;
+    console.log(storeType);
+    if (e1 || e2 || !e3 || !e4) {
+      setalert({
+        mode: true,
+        message: "Invallid entry",
+        type: "bg-[red]",
+      });
       return;
     }
     try {
       const response = await axios.patch(
-        `/users/update/${id}`,
-        JSON.stringify({ name, email, mobileno, role }),
+        `/inventory/updateinventory/${props.inventoryId}`,
+        JSON.stringify({ name, storeType, qty, single_price, usedqty }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
 
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response))
-      setSuccess(true);
-
-      //clear state and controlled inputs
-      props.setEditmodal(false);
-    } catch (err) {
+      console.log(response);
       setalert({
         mode: true,
-        message: err.message,
-        type: "bg-[red]",
+        message: "Inventory Updated successfully",
+        type: "bg-[green]",
       });
+      //clear state and controlled inputs
+      //   props.setEditmodal(false);
+    } catch (err) {
+      if (!err?.response) {
+        setalert({
+          mode: true,
+          message: "No Server Response",
+          type: "bg-[red]",
+        });
+      } else {
+        setalert({
+          mode: true,
+          message: "Inventory Not Added failed",
+          type: "bg-[red]",
+        });
+      }
     }
   };
   return (
     <div
-      className="relative z-10"
+      className="relative z-10 mt-[-10rem]"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -139,7 +135,7 @@ function EditModal(props) {
               id="full-name"
               name="name"
               onChange={(e) => e.target.value}
-              value={id}
+              value={props.inventoryId}
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
@@ -148,7 +144,7 @@ function EditModal(props) {
               htmlFor="full-name"
               className="leading-7 text-sm text-gray-600"
             >
-              Full Name
+              Inventory Name
             </label>
             <input
               type="text"
@@ -161,14 +157,38 @@ function EditModal(props) {
           </div>
           <div className="relative mb-4">
             <label htmlFor="email" className="leading-7 text-sm text-gray-600">
-              Email
+              Store Type
+            </label>
+            <select
+              id="countries_disabled"
+              name="role"
+              onChange={(e) => setStoreType(e.target.value)}
+              value={storeType}
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected value={""}>
+                Select Store Type...
+              </option>
+              <option value={"StoreA"}>Store A</option>
+              <option value={"StoreB"}>Store B</option>
+              <option value={"StoreC"}>Store C</option>
+              <option value={"StoreD"}>Store D</option>
+              <option value={"StoreE"}>Store E</option>
+            </select>
+          </div>
+          <div className="relative mb-4">
+            <label
+              htmlFor="contact"
+              className="leading-7 text-sm text-gray-600"
+            >
+              Quantity
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              type="number"
+              id="contact"
+              name="quantity"
+              onChange={(e) => setQty(e.target.value)}
+              value={qty}
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
@@ -177,40 +197,40 @@ function EditModal(props) {
               htmlFor="contact"
               className="leading-7 text-sm text-gray-600"
             >
-              Contact Number
+              Used Quantity
             </label>
             <input
               type="number"
               id="contact"
-              name="mobileno"
-              onChange={(e) => setMobileNo(e.target.value)}
-              value={mobileno}
+              name="quantity"
+              onChange={(e) => setUsedQty(e.target.value)}
+              value={usedqty}
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
+
           <div className="relative mb-4">
-            <label htmlFor="email" className="leading-7 text-sm text-gray-600">
-              Role
-            </label>
-            <select
-              id="countries_disabled"
-              name="role"
-              onChange={(e) => setRole(e.target.value)}
-              value={role}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            <label
+              htmlFor="password"
+              className="leading-7 text-sm text-gray-600"
             >
-              <option value={0} defaultChecked>
-                User
-              </option>
-              <option value={1}> Admin </option>
-            </select>
+              Single Price
+            </label>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              onChange={(e) => setSingle_Price(e.target.value)}
+              value={single_price}
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            />
           </div>
 
           <button
+            className="text-white bg-indigo-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-900 rounded text-lg"
             onClick={handleUpdate}
-            className="text-white bg-indigo-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
           >
-            Update User
+            Update Inventory
           </button>
         </form>
       </div>

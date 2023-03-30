@@ -1,62 +1,47 @@
-import express from 'express'
-import userRoute from './Routes/userRoute.js'
-import DailyEntry from "./Models/DailyEntry.js";
-import authRoute from './Routes/authRoute.js'
-import planRoute from './Routes/planRoute.js'
-import menuRoute from './Routes/menuRoutes.js'
-import userplanRoute from './Routes/userPlanRoutes.js';
-import dailyentryRouter from './Routes/dailyentryRoute.js';
-import statisticsRoute from './Routes/statisticsRoute.js';
-import inventoryRoute from './Routes/inventoryRoutes.js';
-import cookieParser from 'cookie-parser'
-import bodyParser from 'body-parser'
-import cors from 'cors'
-import dotenv from 'dotenv'
-import { corsOptions } from './config/corsOptions.js'
-// import jwt  from 'jsonwebtoken';
-
-dotenv.config()
-
-// connect to a database
-import Connection from './Database/db_connect.js'
-import UserPlan from './Models/UserPlan.js';
-import moment from 'moment/moment.js';
+import UserPlan from "../Models/UserPlan.js";
+import asyncHandler from 'express-async-handler'
+import moment from "moment";
+import DailyEntry from "../Models/DailyEntry.js";
 
 
-// create an express app for request-response
-const app = express()
+export const getPlanCount = asyncHandler(async (req , res) => {
 
-// giving all permissions
-app.use(express.json())
-app.use(bodyParser.json({extended : true}))
-// app.use(bodyParser.urlencoded({extended : true}))
-app.use(cors(corsOptions))
-app.use(cookieParser())
-app.use("/users",userRoute)
-app.use("/auth",authRoute)
-app.use("/plan",planRoute)
-app.use("/menu",menuRoute)
-app.use("/userplan", userplanRoute)
-app.use("/dailyentry", dailyentryRouter)
-app.use("/stats", statisticsRoute)
-app.use("/inventory", inventoryRoute)
+    const today_date = new Date()
 
-// get requests
+    const user = await UserPlan.aggregate(
+        [{
+            $match : {
+                "start_date":{$lte:today_date},
+                "end_date":{$gte:today_date},
+            }
+        },
+        {
+            $group: {
+                _id: "$planId",
+                count: { $count: { } }
+             }
+        }
+    ]
+        )
+    
+    if(!user)
+    {
+        res.json({message:"No user found for today"})
+    }
 
-Connection()
+    res.json(user)
+})
 
-app.get("/" , async (req,res) => {
-
-    const today_date = moment().utcOffset("+05:30").startOf('month').toDate()
-    const end_date1 = moment().utcOffset("+05:30").endOf('month').toDate()
+export const getDayMemebr = asyncHandler(async (req , res) => {
+    const today_date = moment().utcOffset("+05:30").startOf('month').startOf('week').toDate()
+    const end_date1 = moment().utcOffset("+05:30").endOf('month').endOf('week').toDate()
     const users = await DailyEntry.aggregate([
         {
             $match: {
                 "attendance": {
                   "$elemMatch": {
                     "date": 
-                          {$gte : today_date ,$lte : end_date1},
-                    "menu.breakfast":true
+                          {$gte : today_date ,$lte : end_date1}
                     }
                   }
                 }
@@ -97,11 +82,10 @@ app.get("/" , async (req,res) => {
         return {"date": entry[0],"value": entry[1].length};
       });
       console.log(groupedPeople);
-      res.send(groupedPeople)
+    res.json(groupedPeople)
 })
 
-app.get("/date" , async (req,res) => {
-
+export const getWeekProfit = asyncHandler(async (req , res) => {
     const today_date = moment().utcOffset("+05:30").startOf('week').toDate()
     const end_date1 = moment().utcOffset("+05:30").endOf('week').toDate()
     console.log(today_date);
@@ -125,7 +109,8 @@ app.get("/date" , async (req,res) => {
         function groupBy(objectArray, property) {
             return objectArray.reduce(function (acc, obj) {
               var key = obj[property];
-              key = moment(key).startOf('date').get('date')
+              key = (moment(key).startOf('date').get('date')-1)
+              console.log(key);
             //   console.log(obj);
               if (!acc[key]) {
                 acc[key] = [];
@@ -142,6 +127,3 @@ app.get("/date" , async (req,res) => {
           });
         res.json(groupedPeople)
 })
-
-// listening app on given port
-app.listen(process.env.PORT , () => {console.log(`Server is running....`)})

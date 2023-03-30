@@ -4,6 +4,7 @@ import Admin from "./Admin/Admin";
 import Dailyentry from "./Admin/Pages/Dailyentry";
 import Adduser from "./Admin/Pages/Adduser";
 import Menu from "./Admin/Pages/Menu";
+import MenuHome from "./Components/Menu";
 import User from "./User/User";
 import UserMenu from "./User/Pages/UserMenu";
 import EditProfile from "./User/Pages/EditProfile";
@@ -21,6 +22,8 @@ import Unauthorized from "./Components/Unauthorized";
 import Attendance from "./User/Pages/Attendance";
 import ProfileScanner from "./User/Pages/ProfileScanner";
 import QrAttendance from "./Admin/Pages/QrAttendance";
+import Dashboad from "./Admin/Pages/Dashboad";
+import Inventory from "./Admin/Pages/Inventory";
 
 function App() {
   return (
@@ -30,42 +33,38 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />}>
               <Route path="" element={<Home />}></Route>
+              <Route path="/menu" element={<MenuHome />}></Route>
               <Route path="/contact" element={<Contact />}></Route>
               <Route path="/about" element={<Aboutus />}></Route>
             </Route>
             <Route element={<PersistentLogin />}>
               <Route element={<RequireAuth accessRole={1} />}>
                 <Route path="/admin" element={<Admin />}>
+                <Route path='' element={<Dashboad />}></Route>
+
                   <Route path="attendance" element={<Dailyentry />}>
-                    {" "}
                   </Route>
                   <Route path="qrattendance" element={<QrAttendance />}>
-                    {" "}
                   </Route>
                   <Route path="adduser" element={<Adduser />}>
-                    {" "}
+                  </Route>
+                  <Route path="inventory" element={<Inventory />}>
                   </Route>
                   <Route path="alluser" element={<Alluser />}>
-                    {" "}
                   </Route>
                   <Route path="menu" element={<Menu />}>
-                    {" "}
                   </Route>
                 </Route>
               </Route>
               <Route element={<RequireAuth accessRole={0} />}>
                 <Route path="/user" element={<User />}>
                   <Route path="" element={<ProfileScanner />}>
-                    {" "}
                   </Route>
                   <Route path="editprofile" element={<EditProfile />}>
-                    {" "}
                   </Route>
                   <Route path="subscription" element={<Subscription />}>
-                    {" "}
                   </Route>
                   <Route path="usermenu" element={<UserMenu />}>
-                    {" "}
                   </Route>
                   <Route path="attendent" element={<Attendent />}>
                   </Route>
@@ -76,7 +75,6 @@ function App() {
               </Route>
             </Route>
             <Route path="/unauthorized" element={<Unauthorized />}>
-              {" "}
             </Route>
           </Routes>
         </BrowserRouter>

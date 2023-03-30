@@ -14,11 +14,11 @@ function User() {
   return (
     <div>
       <main main className="flex">
-        <div className=" border-r-2 border-black  flex-[1.2]">
+        <div className="  bg-slate-50   flex-[2]">
           <Sidebar />
         </div>
 
-        <div className="mx-3 flex-[8]">
+        <div className="mx-3 flex-[9]">
           <Mainbar />
         </div>
       </main>
