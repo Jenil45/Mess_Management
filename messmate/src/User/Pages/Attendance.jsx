@@ -195,17 +195,17 @@ const Attendance = () => {
           </p>
           <span className="flex gap-1">
             {breakfast ? (
-              <div className="w-1 h-1 bg-green-200 rounded-full"></div>
+              <div className="w-[0.5rem] h-[0.5rem] bg-pink-400 rounded-full border-[1px] border-black"></div>
             ) : (
               ""
             )}
             {lunch ? (
-              <div className="w-1 h-1 bg-[orange] rounded-full"></div>
+              <div className="w-[0.5rem] h-[0.5rem] bg-[aqua] rounded-full border-[1px] border-black"></div>
             ) : (
               ""
             )}
             {dinner ? (
-              <div className="w-1 h-1 bg-[red] rounded-full"></div>
+              <div className="w-[0.5rem] h-[0.5rem] bg-red-800 rounded-full border-[1px] border-black"></div>
             ) : (
               ""
             )}
@@ -225,17 +225,17 @@ const Attendance = () => {
           </p>
           <span className="flex gap-1">
             {breakfast ? (
-              <div className="w-3 h-1 bg-green-400 rounded-full"></div>
+              <div className="w-[0.5rem] h-[0.5rem] border-[1px] border-black bg-pink-400 rounded-full"></div>
             ) : (
               ""
             )}
             {lunch ? (
-              <div className="w-3 h-1 bg-orange-200 rounded-full"></div>
+              <div className="w-[0.5rem] h-[0.5rem] bg-[aqua] rounded-full border-[1px] border-black"></div>
             ) : (
               ""
             )}
             {dinner ? (
-              <div className="w-3 h-1 bg-purple-300 rounded-full"></div>
+              <div className="w-[0.5rem] h-[0.5rem] bg-red-800 rounded-full border-[1px] border-black"></div>
             ) : (
               ""
             )}
@@ -368,11 +368,11 @@ const Attendance = () => {
                 <hr className="bg-black mt-3"/>
           <div className="info  flex flex-col w-full mx-3 mt-4 px-10">
                 <div className="flex flex-row gap-12 m-1">
-                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-green-300 "></div> <span className="text-base text-black font-semibold"> BreakFast</span>
+                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-pink-400 "></div> <span className="text-base text-black font-semibold"> BreakFast</span>
                   </div>
-                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-[orange] "></div> <span className="text-base text-black font-semibold"> Lunch</span>
+                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-[aqua] "></div> <span className="text-base text-black font-semibold"> Lunch</span>
                   </div>
-                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-[red] "></div> <span className="text-base text-black font-semibold"> Dinner</span>
+                  <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-red-800 "></div> <span className="text-base text-black font-semibold"> Dinner</span>
                   </div>
                   <div className="flex flex-row gap-2"> <div className="min-h-[25px] min-w-[25px] rounded-xl bg-lime-300 "></div> <span className="text-base text-black font-semibold"> Current Plane</span>
                   </div>

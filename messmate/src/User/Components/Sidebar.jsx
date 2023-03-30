@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logOut from "../../Svg/logout.gif";
 import confused from "../../Svg/confused.gif";
 import information from "../../Svg/information.gif";
@@ -12,9 +12,19 @@ import useLogout from "../../Api/Logout";
 
 function Sidebar() {
   const logout = useLogout();
+  const Location = useLocation();
+  const activecolor = "bg-white shadow-xl ";
+  const active1 = Location.pathname === "/user" ? `${activecolor}` : "";
+  const active2 =Location.pathname === "/user/attendance" ? `${activecolor}` : "";
+  const active3 = Location.pathname === "/user/subscription" ? `${activecolor}` : "";
+  const active4 = Location.pathname === "/user/usermenu" ? `${activecolor}` : "";
+  const active5 =Location.pathname === "/user/information" ? `${activecolor}` : "";
+  const active6 =Location.pathname === "/user/editprofile" ? `${activecolor}` : "";
+
+
   return (
     <>
-      <div className="min-h-[100vh]  my-2 ml-3 rounded-2xl bg-gray-400">
+      <div className="min-h-[100vh]  my-2 ml-3 rounded-2xl bg-gray-200">
         <ul className="flex flex-col  pl-0 mb-0 mt-2 gap-[.3rem] z-2 ">
           <li className="w-full mt-4 hidden sm:block">
             <h6 className=" ml-2  text-center text-lg font-bold text-black leading-tight uppercase  opacity-100">
@@ -23,7 +33,7 @@ function Sidebar() {
           </li>
           <hr className="bg-black mt-3 hidden sm:block" />
 
-          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
+          <li className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] ${active1} rounded-xl `}>
             <Link
               className="  flex  flex-row justify-start pl-1 pr-2 hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user"
@@ -50,7 +60,7 @@ function Sidebar() {
             </Link>
           </li> */}
 
-          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
+          <li className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] ${active2} rounded-xl `}>
             <Link
               className="  flex  flex-row  justify-start pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/attendance"
@@ -68,7 +78,7 @@ function Sidebar() {
             </Link>
           </li>
 
-          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
+          <li className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] ${active3} rounded-xl `}>
             <Link
               className="  flex  flex-row  justify-start pl-1 pr-2 hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/subscription"
@@ -86,7 +96,7 @@ function Sidebar() {
             </Link>
           </li>
 
-          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
+          <li className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] ${active4} rounded-xl `}>
             <Link
               className="  flex  flex-row  justify-start pl-1 pr-2 hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/usermenu"
@@ -100,7 +110,7 @@ function Sidebar() {
             </Link>
           </li>
 
-          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
+          <li className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] ${active5} rounded-xl `}>
             <Link
               className="  flex  flex-row  justify-start pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/information"
@@ -127,7 +137,7 @@ function Sidebar() {
           </li>
           <hr className="bg-black mt-3 hidden sm:block" />
 
-          <li className="w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
+          <li className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] ${active6} rounded-xl `}>
             <Link
               className="  flex  flex-row justify-start pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm  m-auto items-center whitespace-nowrap rounded-lg   font-semibold "
               to="/user/editprofile"
@@ -145,7 +155,7 @@ function Sidebar() {
             </Link>
           </li>
 
-          <li className="w-[80%]  p-[1.2px] mb-4 mt-4 mx-auto py-[0.5rem] bg-yellow-300 rounded-xl ">
+          <li className={`w-[80%]  p-[1.2px] mb-4 mt-4 mx-auto py-[0.5rem]  rounded-xl `}>
             <button
               className=" flex ml-3 flex-row justify-start  pl-1 pr-2  hover:no-underline  outline-none  shadow-soft-xl text-sm   items-center whitespace-nowrap rounded-lg   font-semibold "
               onClick={logout}
