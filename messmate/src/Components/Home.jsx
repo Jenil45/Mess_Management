@@ -3,8 +3,8 @@ import homePng from "../Svg/Green Collage Daily Favorite Food Youtube Banner (3)
 const Home = () => {
   return (
   <>
-  <div className="min-h-screen  ">
-    <img src={homePng} alt="" />
+  <div className="  ">
+    <img className="max-h-[80vh] min-w-[80%] m-auto " src={homePng} alt="" />
   </div>
 
   {/* <h1 className="">Eat Healthy,</h1>

@@ -4,6 +4,7 @@ import Admin from "./Admin/Admin";
 import Dailyentry from "./Admin/Pages/Dailyentry";
 import Adduser from "./Admin/Pages/Adduser";
 import Menu from "./Admin/Pages/Menu";
+import MenuHome from "./Components/Menu";
 import User from "./User/User";
 import UserMenu from "./User/Pages/UserMenu";
 import EditProfile from "./User/Pages/EditProfile";
@@ -31,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />}>
               <Route path="" element={<Home />}></Route>
+              <Route path="/menu" element={<MenuHome />}></Route>
               <Route path="/contact" element={<Contact />}></Route>
               <Route path="/about" element={<Aboutus />}></Route>
             </Route>
