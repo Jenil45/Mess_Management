@@ -11,7 +11,6 @@ import EditProfile from "./User/Pages/EditProfile";
 import Subscription from "./User/Pages/Subscription";
 import PersistentLogin from "./Auth/PersistentLogin";
 import RequireAuth from "./Auth/RequireAuth";
-import Attendent from "./User/Pages/Attendent";
 import Main from "./Components/Main";
 import Home from "./Components/Home";
 import Contact from "./Components/Contact";
@@ -66,8 +65,7 @@ function App() {
                   </Route>
                   <Route path="usermenu" element={<UserMenu />}>
                   </Route>
-                  <Route path="attendent" element={<Attendent />}>
-                  </Route>
+
                   <Route path="attendance" element={<Attendance />} />
                   <Route path="information" element={<Info />}>
                   </Route>

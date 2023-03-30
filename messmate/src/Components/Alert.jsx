@@ -4,7 +4,7 @@ function Alert({ alert, setalert }) {
   console.log(alert);
   return (
     <div
-      className={` hidden w-full items-center bg-orange-100 border-l-4 border-orange-500 text-orange-700 ${alert.type} p-3 max-w-[100%] rounded-lg bg-red-400 text-black text-lg mt-2 mb-4  text-warning-800 data-[te-alert-show]:inline-flex`}
+      className={` hidden w-full items-center bg-orange-100 border-l-4 border-orange-500  ${alert.type} p-3 max-w-[100%] rounded-lg bg-red-400 text-black text-lg mt-2 mb-4  text-warning-800 data-[te-alert-show]:inline-flex`}
       role="alert"
       data-te-alert-init
       data-te-alert-show>

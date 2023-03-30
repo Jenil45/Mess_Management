@@ -51,11 +51,11 @@ const UserMenu = () => {
     <div className="flex flex-col min-h-[75vh] justify-between px-4 mt-2">
       <hr />
 
-      <div className="head flex-[1]">
-        <h1 className="text-center m-2 text-3xl ">🍽 Today's Mess Menu 🍽</h1>
+      <div className="head flex-[1] mb-3 mt-3  font-bold ">
+        <h1 className="text-center m-2 text-5xl ">🍽 Today's Mess Menu 🍽</h1>
       </div>
 
-      <div className="innerpart mt-2 flex-[10] flex  flex-row gap- ">
+      <div className="innerpart mt-5 flex-[10] flex  flex-row gap- ">
         <div className="sidepart flex flex-col  flex-[1] ">
           <div className="subscribtion_header">
             <div className="dayselect flex flex-row">
@@ -68,7 +68,7 @@ const UserMenu = () => {
               <select
                 id="day"
                 name="menu_day"
-                class="bg-gray-50 w-[20rem] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="bg-gray-50 w-[20rem] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
                 value={day}
                 onChange={(e) => setDay(e.target.value)}
               >
@@ -85,17 +85,13 @@ const UserMenu = () => {
           </div>
 
           {isMenuAvlbl ? (
-            <div className="flex gap-[1rem] w-full mt-[2rem]">
+            <div className="flex gap-[1rem] justify-around w-full mt-[2rem] mb-5">
               <Card name={"Breakfast"} menu={menuB} time={"8a.m.-10a.m."} />
               <Card name={"Lunch"} menu={menuL} time={"12 p.m.- 2 p.m."} />
               <Card name={"Dinner"} menu={menuD} time={"7:30 p.m.-9:30 p.m."} />
             </div>
           ) : (
             <div className="flex gap-[0.5rem]  mt-[1rem] ">
-              {/* <h1 className="text-[4rem]">
-                The menu of {day} is not available
-
-              </h1> */}
               <img
                 src={userMenu}
                 className="h-[550px] w-screen"
