@@ -1,6 +1,6 @@
 // importing router from express
 import { Router } from "express";
-import { addUserPlan, getCurrentPlan, getUserCurrentPlan, getUserTodayPlan } from "../Controller/userPlanController.js";
+import { addUserPlan, getCurrentPlan, getTodayStudents, getUserCurrentPlan, getUserTodayPlan, updateUserPlan } from "../Controller/userPlanController.js";
 
 // importing controller functions
 
@@ -9,10 +9,11 @@ const userplanRoute = Router();
 
 // router queries
 userplanRoute.get("/getUserPlan" ,  getCurrentPlan)
+userplanRoute.get("/getTodayStudent" ,  getTodayStudents)
 userplanRoute.get("/getusercurrentplan/:userId" ,  getUserCurrentPlan)
 userplanRoute.get("/getusertodayplan/:userId" ,  getUserTodayPlan)
 userplanRoute.post("/addUserPlan" , addUserPlan)
-// userplanRoute.patch("/updateUserPlan" , updatePlan)
+userplanRoute.patch("/updateUserPlan" , updateUserPlan)
 // userplanRoute.delete("/deleteUserPlan" , deletePlan)
 
 // exporting router application

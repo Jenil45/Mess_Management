@@ -31,6 +31,21 @@ export const getOneUser = asyncHandler(async (req , res) => {
 
     res.json(user)
 })
+export const getUser = asyncHandler(async (req , res) => {
+    const userId = req.params.userId
+    if (!userId) {
+        return res.status(400).json({ message: 'User ID Required' })
+    }
+
+    const user = await User.findOne({"userId":userId},{password:0,cpassword:0}).lean()
+
+    // If no users 
+    if (!user) {
+        return res.status(400).json({ message: 'No users found' })
+    }
+
+    res.json(user)
+})
 
 
 export const createNewUser = asyncHandler(async (req , res) => {
@@ -98,6 +113,37 @@ export const updateUser = asyncHandler(async (req, res) => {
         res.json({ message: `${email} updated` })
     }
 })
+
+export const resetPassword = asyncHandler(async (req , res) => {
+    // read data from req body
+    const {email , oldpassword , newpassword} = req.body
+    // console.log(req.body);
+
+    // find user and match
+    const foundUser = await User.findOne({'email': email }).exec()
+    // console.log(foundUser);
+    if (!foundUser) {
+        return res.status(401).json({ message: 'User not available' })
+    }
+    // console.log("here");
+    const matchPasswd = await bcrypt.compare(oldpassword, foundUser.password)
+    // console.log(matchPasswd);
+    
+    if (!matchPasswd) return res.status(401).json({ message: 'Unauthorized' })
+
+
+    // hashing a password
+    const salt = await bcrypt.genSalt()
+    const hashedPassword = await bcrypt.hash(newpassword , salt)
+    // console.log(hashedPassword);
+    
+    const userObject = {"password":hashedPassword , "cpassword": hashedPassword}
+    const resetPasswd = await User.updateOne({email} , userObject) 
+    // console.log(resetPasswd);
+
+    res.json({message : "Password resetted"})
+})
+
 
 export const deleteUser = asyncHandler(async (req, res) => {
     const email  = req.params.email
