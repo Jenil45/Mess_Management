@@ -2,16 +2,15 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import useLogout from "../../Api/Logout";
 import useAuth from "../../Auth/useAuth";
-import hello from "../../Svg/hi.svg"
+import hello from "../../Svg/hi.svg";
 
 const Mainbar = () => {
   const { auth } = useAuth();
   const logout = useLogout();
   return (
-    <div className="bg-slate-200 mt-2 rounded-md  mb-6 ">
+    <div className=" mt-2 rounded-md  mb-6 ">
       <div className="text-gray-600 body-font  pt-4">
         <div className="container mx-auto flex flex-wrap  mb-4 flex-col md:flex-row items-center justify-between">
-
           <span className="flex title-font font-medium items-center text-gray-900  md:mb-0">
             <img className="h-20" src={hello} alt="coming"></img>
             <span className="ml-3 text-2xl font-semibold">
@@ -36,8 +35,6 @@ const Mainbar = () => {
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>
           </button>
-
-
         </div>
       </div>
       <Outlet />
