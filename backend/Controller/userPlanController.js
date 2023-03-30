@@ -68,6 +68,8 @@ export const getTodayStudents = asyncHandler(async (req , res) => {
                 "userId":{$first:"$userId"} ,
                 "planId":{$first:"$planId"} ,
                 "fee_status" : {$first : "$fee_status"}}
+                // "fee_status" : {$first : "$fee_status"}},
+                // "fee_status" : {$first : "$fee_status"}},
         },
         {
             $sort:{"userId":1}
