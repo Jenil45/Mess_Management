@@ -7,6 +7,7 @@ import menuRoute from './Routes/menuRoutes.js'
 import userplanRoute from './Routes/userPlanRoutes.js';
 import dailyentryRouter from './Routes/dailyentryRoute.js';
 import statisticsRoute from './Routes/statisticsRoute.js';
+import inventoryRoute from './Routes/inventoryRoutes.js';
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import cors from 'cors'
@@ -38,6 +39,7 @@ app.use("/menu",menuRoute)
 app.use("/userplan", userplanRoute)
 app.use("/dailyentry", dailyentryRouter)
 app.use("/stats", statisticsRoute)
+app.use("/inventory", inventoryRoute)
 
 // get requests
 

@@ -22,6 +22,7 @@ import Attendance from "./User/Pages/Attendance";
 import ProfileScanner from "./User/Pages/ProfileScanner";
 import QrAttendance from "./Admin/Pages/QrAttendance";
 import Dashboad from "./Admin/Pages/Dashboad";
+import Inventory from "./Admin/Pages/Inventory";
 
 function App() {
   return (
@@ -44,6 +45,8 @@ function App() {
                   <Route path="qrattendance" element={<QrAttendance />}>
                   </Route>
                   <Route path="adduser" element={<Adduser />}>
+                  </Route>
+                  <Route path="inventory" element={<Inventory />}>
                   </Route>
                   <Route path="alluser" element={<Alluser />}>
                   </Route>
