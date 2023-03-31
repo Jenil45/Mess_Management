@@ -149,7 +149,7 @@ const Attendance = () => {
       .date(item.getDate())
       .format();
 
-    if (check > from && check <= to) {
+    if (check >= from && check <= to) {
       bg_big = "bg-lime-300";
     } else {
       bg_big = "bg-white";
