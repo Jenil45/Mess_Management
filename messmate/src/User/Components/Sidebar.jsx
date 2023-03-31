@@ -91,7 +91,7 @@ function Sidebar() {
                 />
               </div>
               <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
-                Plan
+                 Your Plan
               </span>
             </Link>
           </li>
