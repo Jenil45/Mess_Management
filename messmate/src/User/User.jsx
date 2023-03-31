@@ -12,9 +12,9 @@ function User() {
   }, []);
 
   return (
-    <div>
+    <div >
       <main main className="flex bg-slate-100">
-        <div className="  flex-[2]">
+        <div className="shadow-2xl  flex-[2] ">
           <Sidebar />
         </div>
 
