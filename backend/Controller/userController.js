@@ -78,9 +78,9 @@ export const createNewUser = asyncHandler(async (req , res) => {
     const user = await new User(userObject).save()
 
     if (user) { //created 
-        res.status(201).json({ message: `New user ${email} created` })
+        return res.status(201).json({ message: `New user ${email} created` })
     } else {
-        res.status(400).json({ message: 'Invalid user data received' })
+        return res.status(400).json({ message: 'Invalid user data received' })
     }
 
 })
@@ -110,7 +110,7 @@ export const updateUser = asyncHandler(async (req, res) => {
 
     if(updateUser)
     {
-        res.json({ message: `${email} updated` })
+        return res.json({ message: `${email} updated` })
     }
 })
 

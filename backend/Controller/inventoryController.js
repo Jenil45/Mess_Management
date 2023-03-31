@@ -60,9 +60,9 @@ export const addInventory = asyncHandler(async (req , res) => {
     const inventory = await new Inventory(inventoryObject).save()
 
     if (inventory) { //created 
-        res.status(201).json({ message: `New inventory added in ${storeType}` })
+        return res.status(201).json({ message: `New inventory added in ${storeType}` })
     } else {
-        res.status(400).json({ message: 'Invalid inventory data received' })
+        return res.status(400).json({ message: 'Invalid inventory data received' })
     }
 
 })
@@ -90,9 +90,9 @@ export const updateInventory = asyncHandler(async (req, res) => {
     
 
     if (inventoryUpdate) { //created 
-        res.status(201).json({ message: `Inventory updated` })
+        return res.status(201).json({ message: `Inventory updated` })
     } else {
-        res.status(400).json({ message: 'Invalid inventory data received' })
+        return res.status(400).json({ message: 'Invalid inventory data received' })
     }
 })
 
@@ -114,8 +114,8 @@ export const deleteInventory = asyncHandler(async (req, res) => {
     
 
     if (inventoryDelete) { //created 
-        res.status(201).json({ message: `Inventory deleted` })
+        return res.status(201).json({ message: `Inventory deleted` })
     } else {
-        res.status(400).json({ message: 'Invalid inventory data received' })
+        return res.status(400).json({ message: 'Invalid inventory data received' })
     }
 })

@@ -33,7 +33,7 @@ export const getPlanCount = asyncHandler(async (req , res) => {
     
     if(!user)
     {
-        res.json({message:"No user found for today"})
+        return res.json({message:"No user found for today"})
     }
 
     res.json(user)

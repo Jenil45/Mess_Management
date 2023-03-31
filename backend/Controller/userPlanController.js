@@ -112,9 +112,9 @@ export const addUserPlan = asyncHandler(async (req , res) => {
     const userplan = await new UserPlan(userPlanObject).save()
 
     if (userplan) { //created 
-        res.status(201).json({ message: `New user plan for user ${userId} created of plan ${planId  }` })
+        return res.status(201).json({ message: `New user plan for user ${userId} created of plan ${planId  }` })
     } else {
-        res.status(400).json({ message: 'Invalid user data received' })
+        return res.status(400).json({ message: 'Invalid user data received' })
     }
 
 })

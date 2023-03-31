@@ -44,7 +44,7 @@ export const addPlan = asyncHandler(async (req , res) => {
     const duplicate = await Plan.findOne({plan_type}).lean().exec()
     if (duplicate) {
         const updatedPlan = await Plan.updateOne({plan_type} , {plan_desc,plan_price})
-        res.json({ message: `${plan_type} plan updated` })
+        return res.json({ message: `${plan_type} plan updated` })
     }
 
     // creating userObject
@@ -54,9 +54,9 @@ export const addPlan = asyncHandler(async (req , res) => {
     const plan = await new Plan(planObject).save()
 
     if (plan) { //created 
-        res.status(201).json({ message: `Your ${plan_type} added` })
+        return res.status(201).json({ message: `Your ${plan_type} added` })
     } else {
-        res.status(400).json({ message: 'Invalid plan data received' })
+        return res.status(400).json({ message: 'Invalid plan data received' })
     }
 
 })
