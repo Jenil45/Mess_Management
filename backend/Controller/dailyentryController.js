@@ -23,6 +23,11 @@ export const getUserEntryDetail = asyncHandler(async (req , res) => {
 
 export const updateDailyEntry = asyncHandler(async (req, res) => {
     const {userId , verifyThing , planId } = req.body
+
+    if(!verifyThing)
+    {
+        return res.status(400).json({message:"Select type required"})
+    }
     // console.log(userId,verifyThing,planId);
     // Does the user exist to update?
     const user = await DailyEntry.findOne({"userId":userId}).exec()
@@ -41,6 +46,12 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
         }
     });
     const length = isTodayAdded.length
+    if(((verifyThing==="breakfast")&&isTodayAdded[0].menu.breakfast)||((verifyThing==="lunch")&&isTodayAdded[0].menu.lunch) || ((verifyThing==="dinner")&&isTodayAdded[0].menu.dinner))
+    {
+        // console.log("here is problem");
+        return res.status(400).json({message:`Your ${verifyThing} entry is already added`})
+    }
+
     var updatedObject={}
     // console.log(isTodayAdded[0]);
     if(verifyThing==="breakfast")
