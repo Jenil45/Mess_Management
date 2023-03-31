@@ -51,7 +51,7 @@ const Navbar = () => {
           <div>
             <Link
               to="/user"
-              className="mr-5 hover:text-gray-900 text-white text-lg hover:no-underline"
+              className="mr-5 inline-flex items-center  bg-black text-white font-semibold text-lg hover:no-underline py-1 px-3 focus:outline-none  rounded p-2 md:mt-0"
             >
               Users
             </Link>
@@ -77,7 +77,7 @@ const Navbar = () => {
           <>
             <Link
               to="/admin"
-              className="mr-5 hover:text-gray-900 text-white text-lg hover:no-underline"
+              className="mr-5 inline-flex items-center  bg-black text-white font-semibold text-lg hover:no-underline py-1 px-3 focus:outline-none  rounded p-2 md:mt-0"
             >
               Admin
             </Link>
