@@ -20,7 +20,7 @@ const Mainbar = () => {
 
           <button
             className="inline-flex items-center bg-black border-0 text-white font-semibold text-lg mr-4 py-1 px-3 focus:outline-none  rounded    p-2 md:mt-0"
-            onClick={() => logout}
+            onClick={logout}
           >
             Log Out
             <svg

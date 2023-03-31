@@ -80,26 +80,6 @@ const TodayStudent = () => {
               )}
             </div>
           </td>
-
-          <td className="px-6 py-4">
-            {/* <button>Edit </button> */}
-            {user.fee_status ? (
-              <button
-                type="button"
-                class="text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-3 py-[0.5rem] text-center mr-2 mb-2 "
-                onClick={() => handlePayment(user.userId, user.planId)}
-              >
-                Pay
-              </button>
-            ) : (
-              <button
-                type="button"
-                class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-3 py-[0.5rem] text-center mr-2 mb-2 "
-              >
-                Paid
-              </button>
-            )}
-          </td>
         </tr>
       );
     });
@@ -121,10 +101,8 @@ const TodayStudent = () => {
     });
   return (
     <div>
-      <div className="flex items-center justify-end  pb-4 bg-white dark:bg-gray-900">
-        <label htmlFor="table-search" className="sr-only">
-          Search
-        </label>
+      <div className="flex items-center justify-around  pb-4 bg-white dark:bg-gray-900">
+        <span className="h2">Total Students : {users.length}</span>
         <div className="relative">
           <div className="absolute inset-y-2 right-0 px-1  flex items-center pl-3 pointer-events-none">
             <svg
@@ -166,9 +144,9 @@ const TodayStudent = () => {
             <th scope="col" className="w-[10rem] px-6 py-3">
               Fee Status
             </th>
-            <th scope="col" className="w-[10rem] px-6 py-3">
+            {/* <th scope="col" className="w-[10rem] px-6 py-3">
               Attendance
-            </th>
+            </th> */}
           </tr>
         </thead>
 

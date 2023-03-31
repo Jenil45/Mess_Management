@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AddInventory from "../Inventory/AddInventory";
+import InventoryExpense from "../Inventory/InventoryExpense";
 import StoreA from "../Inventory/StoreA";
 
 const Inventory = () => {
@@ -61,6 +62,15 @@ const Inventory = () => {
         >
           Store E
         </button>
+        <button
+          type="button"
+          class="text-white h-[3rem] w-[6rem] bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-3 py-[0.5rem] text-center mr-2 mb-2 "
+          onClick={() => {
+            setStore("Ex");
+          }}
+        >
+          Expenses
+        </button>
       </div>
       <hr />
       <div className="flex-[6]">
@@ -70,6 +80,7 @@ const Inventory = () => {
         {store === "C" ? <StoreA store={"StoreC"} /> : ""}
         {store === "D" ? <StoreA store={"StoreD"} /> : ""}
         {store === "E" ? <StoreA store={"StoreE"} /> : ""}
+        {store === "Ex" ? <InventoryExpense store={"Expenses"} /> : ""}
       </div>
     </div>
   );

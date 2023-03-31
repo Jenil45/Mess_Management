@@ -72,12 +72,12 @@ const Menu = () => {
     const l1 = menuB.length > 0;
     const l2 = menuL.length > 0;
     const l3 = menuD.length > 0;
-    if (!l1 || !l2 || !l3) {
-      console.log(
-        "Breakfast Lunch and Dinner atleat have one value if not than write None"
-      );
-      return;
-    }
+    // if (!l1 || !l2 || !l3) {
+    // console.log(
+    // "Breakfast Lunch and Dinner atleat have one value if not than write None"
+    // );
+    // return;
+    // }
     try {
       const response = await axios.post(
         "/menu/addMenu",
@@ -182,17 +182,11 @@ const Menu = () => {
           /*                                           Day select                                           */
           /* ---------------------------------------------------------------------------------------------- */}
 
-          <div className="dayselect flex gap-3 mb-3 ">
-            <label
-              for="countries"
-              class="block mb-2 text-sm min-w-fit m-2  font-medium text-gray-900 dark:text-white"
-            >
-              Select an option
-            </label>
+          <div className="dayselect flex gap-3 mt-4 w-[100%] items-center justify-center">
             <select
               id="day"
               name="menu_day"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="bg-gray-50 border p-2 rounded w-[12rem]"
               value={day}
               onChange={(e) => setDay(e.target.value)}
             >
@@ -200,7 +194,7 @@ const Menu = () => {
               <option value="Monday">Monday</option>
               <option value="Tuesday">Tuesday</option>
               <option value="Wednesday">WednesDay</option>
-              <option value="Thuesday">ThuesDay</option>
+              <option value="Thursday">ThursDay</option>
               <option value="Friday">Friday</option>
               <option value="Saturday">Saturday</option>
               <option value="Sunday">Sunday</option>
@@ -211,7 +205,7 @@ const Menu = () => {
           /*                                            menu part                                           */
           /* ---------------------------------------------------------------------------------------------- */}
 
-          <div className="menu grid grid-cols-3 bg-orange-300 min-h-[40vh] p-3">
+          <div className="menu grid grid-cols-3  min-h-[40vh] p-3">
             <MultiSelect thing={"Breakfast"} setMenu={setMenuB} Menu={menuB} />
             <MultiSelect thing={"Lunch"} setMenu={setMenuL} Menu={menuL} />
             <MultiSelect thing={"Dinner"} setMenu={setMenuD} Menu={menuD} />

@@ -21,26 +21,14 @@ import axios from "../../Api/axios";
 
 function Dashboad() {
   const COLORS = ["#005298", "#004e40", "#ff0000"];
+  const color = "#009d7f";
+  const color1 = "#005298";
   const COLORS1 = ["#005298", "#004e40", "#ff0000", "#cc8400", "#964b00"];
   const [data, setData] = useState(null);
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
   const [data3, setData3] = useState([]);
   console.log(data1);
-  // const data = [
-  //   {
-  //     date: '23',
-  //     total_student: 15
-  //   },
-  //   {
-  //     date: '23',
-  //     total_student: 20
-  //   },
-  //   {
-  //     date: '23',
-  //     total_student: 30
-  //   },
-  // ]
 
   useEffect(() => {
     const getData = async (e) => {
@@ -115,69 +103,16 @@ function Dashboad() {
     getData();
   }, []);
   return (
-    // <div className="min-h-[100vh] flex flex-col gap-6">
-    //   {/* ------------------------------------------- Header ------------------------------------------- */}
-    //   <div className="header flex-[1] text-center self-center min-w-full mt-3 mb-2 pb-3">
-    //     <h1 className="mb-3">Dashboard</h1>
-    //     <hr />
-    //   </div>
-
-    //   {/* ----------------------------------------- First Chart ---------------------------------------- */}
-
-    //   <div className="header flex-[9] flex flex-row">
-    //     {/* ------------------------------------------ left part ----------------------------------------- */}
-    //     <div className="left flex-[3] ">
-    //       <div className=" flex align-items-center flex-col">
-    //         <div>
-    //           <h1 className="mb-4">First Chart </h1>
-    //         </div>
-
-    //       </div>
-    //       <div className="mt-5 flex align-items-center flex-col border-spacing-1">
-    //         <div>
-    //           <h1 className="mb-4">First Chart </h1>
-    //         </div>
-
-    //       </div>
-    //     </div>
-
-    //     {/* ----------------------------------------- Right Part ----------------------------------------- */}
-
-    //     <div className="right mt-10 flex-[3]  flex flex-col justify-center bg-red-500 ">
-    //       <ResponsiveContainer>
-    //         <PieChart width={400} height={400}>
-    //           <Pie
-    //             data={data1}
-    //             cx="50%"
-    //             cy="50%"
-    //             labelLine={false}
-    //             // label={renderCustomizedLabel}
-    //             outerRadius={80}
-    //             fill="#8884d8"
-    //             dataKey="count"
-    //           >
-    //             {/* {data.map((entry, index) => (
-    //               <Cell
-    //               key={`cell-${index}`}
-    //               fill={COLORS[index % COLORS.length]}
-    //               />
-    //             ))} */}
-    //           </Pie>
-    //           <Tooltip />
-    //         </PieChart>
-    //       </ResponsiveContainer>
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="mainbar">
+    <div className="mainbar ">
       <div className="m-main">
         <div className="m-title">
-          <span>DASHBOARD</span>
-          <span>Mess Management</span>
+          <span className="text-[2rem] text-[#009d7f] h2 border-b-2 border-black pb-2 text-center">
+            DASHBOARD
+          </span>
         </div>
         <div className="flex items-center gap-[1rem]">
           <div className="card-container ">
-            <div className="piecard bg-gray-300 w-[40rem] h-[20rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
+            <div className="piecard bg-gray-200 w-[37rem] shadow-xl h-[20rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
               <div className="p-content flex flex-col gap-[1rem]">
                 {/* <Time color="white" /> */}
                 <span>Plan Distribution</span>
@@ -222,7 +157,7 @@ function Dashboad() {
             {/* <Piecard /> */}
           </div>
           <div className="card-container ">
-            <div className="piecard bg-gray-300 w-[40rem] h-[20rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
+            <div className="piecard bg-gray-200  shadow-xl w-[37rem] h-[20rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
               <div className="p-content flex flex-col gap-[1rem]">
                 {/* <Time color="white" /> */}
                 <span>Plan Distribution</span>
@@ -279,7 +214,7 @@ function Dashboad() {
 
         <div className="flex items-center gap-[1rem]">
           <div className="card-container ">
-            <div className="piecard bg-gray-300 w-[40rem] h-[20rem] pt-[5rem] px-[1rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
+            <div className="piecard bg-gray-200 shadow-xl w-[37rem] h-[20rem] pt-[5rem] px-[1rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
               <ResponsiveContainer width="100%" height="100%" aspect={3}>
                 <AreaChart
                   className=""
@@ -290,13 +225,23 @@ function Dashboad() {
                   margin={{ top: 10, right: 30, left: 5, bottom: 0 }}
                 >
                   <defs>
-                    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#5F0A87" stopOpacity={1} />
+                    <linearGradient
+                      id={`color${color}`}
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
                       <stop
-                        offset="95%"
-                        stopColor="#A4508B"
-                        stopOpacity={0.3}
-                      />
+                        offset="0%"
+                        stopColor={color}
+                        stopOpacity={4}
+                      ></stop>
+                      <stop
+                        offset="75%"
+                        stopColor={color}
+                        stopOpacity={0.25}
+                      ></stop>
                     </linearGradient>
                   </defs>
                   <XAxis
@@ -323,14 +268,14 @@ function Dashboad() {
                     dataKey="amount"
                     stroke="#5F0A87s"
                     fillOpacity={1}
-                    fill="url(#colorPv)"
+                    fill={`url(#color${color})`}
                   />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
           </div>
           <div className="card-container ">
-            <div className="piecard bg-gray-300 w-[40rem] h-[20rem] pt-[5rem] px-[1rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
+            <div className="piecard bg-gray-200 shadow-xl w-[37rem] h-[20rem] pt-[5rem] px-[1rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
               <ResponsiveContainer width="100%" aspect={3}>
                 <AreaChart
                   className=""
@@ -339,13 +284,23 @@ function Dashboad() {
                   margin={{ top: 30, right: 30, left: 5, bottom: 0 }}
                 >
                   <defs>
-                    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#5F0A87" stopOpacity={1} />
+                    <linearGradient
+                      id={`color${color1}`}
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
                       <stop
-                        offset="95%"
-                        stopColor="#A4508B"
-                        stopOpacity={0.3}
-                      />
+                        offset="0%"
+                        stopColor={color1}
+                        stopOpacity={4}
+                      ></stop>
+                      <stop
+                        offset="75%"
+                        stopColor={color1}
+                        stopOpacity={0.25}
+                      ></stop>
                     </linearGradient>
                   </defs>
                   <XAxis
@@ -366,13 +321,17 @@ function Dashboad() {
                     }}
                   />
                   <CartesianGrid strokeDasharray="5 5" />
+                  {/* <CartesianGrid strokeDasharray="3 3" /> */}
                   <Tooltip />
                   <Area
                     type="monotone"
                     dataKey="value"
                     stroke="#5F0A87s"
                     fillOpacity={1}
-                    fill="url(#colorPv)"
+                    // fill="url(#colorPv)"
+
+                    activeDot={{ r: 8 }}
+                    fill={`url(#color${color1})`}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -382,12 +341,6 @@ function Dashboad() {
           {/* <Piecard /> */}
           {/* <Piecard /> */}
         </div>
-      </div>
-
-      <div className="line-card">
-        {/* <Linecard /> */}
-        {/* <Linecard /> */}
-        {/* <Piecard /> */}
       </div>
     </div>
     // </div>

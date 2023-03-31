@@ -82,19 +82,27 @@ function Alluser() {
       return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
           <td className="w-4 p-4">
-            <div className="flex items-center text-black">{user.userId}</div>
+            <div className="flex items-center justify-center text-black">
+              {user.userId}
+            </div>
           </td>
           <td className="text-black px-6 py-4">
-            <div className="flex items-center text-black">{user.name}</div>
+            <div className="flex items-center justify-center text-black">
+              {user.name}
+            </div>
           </td>
           <td className="px-6 py-4">
-            <div className="flex items-center text-black">{user.email}</div>
+            <div className="flex items-center justify-center  text-black">
+              {user.email}
+            </div>
           </td>
           <td className="px-6 py-4">
-            <div className="flex items-center text-black">{user.mobileno}</div>
+            <div className="flex items-center justify-center text-black">
+              {user.mobileno}
+            </div>
           </td>
           <td className="px-6 py-4">
-            <div className="flex items-center text-black">
+            <div className="flex items-center justify-center text-black">
               {user.role === 1 ? (
                 <p className="bg-lime-300 rounded-md p-[2.5px] px-2  text-black text-sm">
                   Admin
@@ -147,7 +155,7 @@ function Alluser() {
       );
     });
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative w-[99%] overflow-x-auto shadow-xl sm:rounded-lg">
       {editModal ? (
         <EditModal setEditmodal={setEditModal} userEmail={userEmail} />
       ) : (
@@ -193,22 +201,22 @@ function Alluser() {
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-white uppercase bg-dark dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-[10rem] text-center">
               UserId
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-[10rem] text-center">
               Name
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-[10rem] text-center">
               Email id
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-[10rem] text-center">
               Mobile no
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-[10rem] text-center">
               Role
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 w-[10rem] text-center">
               Operation
             </th>
           </tr>

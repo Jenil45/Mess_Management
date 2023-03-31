@@ -27,7 +27,7 @@ function Sidebar() {
   console.log(Location);
   const logout = useLogout();
   return (
-    <div className="min-h-[100vh]  my-2 ml-3 rounded-2xl bg-gray-200">
+    <div className="min-h-[100vh] w-[16rem]  my-2 ml-3 rounded-2xl bg-gray-200">
       <ul className="flex flex-col   pl-0 mb-0 mt-2 gap-[.3rem] z-2">
         <li className=" w-full mt-4 hidden sm:block">
           <h6 className=" ml-2  text-center text-lg font-bold text-black leading-tight uppercase  opacity-100">
