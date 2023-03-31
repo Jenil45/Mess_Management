@@ -17,7 +17,7 @@ const Navbar = () => {
           className="flex title-font font-medium items-center text-gray-900  md:mb-0"
         >
           <img src={LogOut} alt="Svg" className="h-10" />
-          
+
           <span className="ml-3 text-xl text-white hover:no-underline no-underline">
             Mess Management
           </span>
@@ -41,12 +41,7 @@ const Navbar = () => {
           >
             About us
           </Link>
-          <Link
-            to="/menu"
-            className="mr-5 hover:text-gray-900 text-white text-lg hover:no-underline"
-          >
-            Menu
-          </Link>
+
         </nav>
         {auth.role === 0 ? (
           <div>
