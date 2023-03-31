@@ -116,7 +116,7 @@ export const getWeekProfit = asyncHandler(async (req , res) => {
         function groupBy(objectArray, property) {
             return objectArray.reduce(function (acc, obj) {
               var key = obj[property];
-              key = (moment(key).startOf('date').get('date')-1)
+              key = (moment(key).startOf('date').get('date'))
               // console.log(key);
             //   console.log(obj);
               if (!acc[key]) {
