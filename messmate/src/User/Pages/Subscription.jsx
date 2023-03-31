@@ -6,11 +6,11 @@ import CurrentPlan from "./CurrentPlan";
 
 const Subscription = () => {
   const navigate = useNavigate();
-  const [plans, setPlans] = useState([]);
-  const [currentPlan, setCurrentPlan] = useState(null);
-  const [isCurrentPlan, setIsCurrentPlan] = useState(false);
+  const [ plans, setPlans ] = useState([]);
+  const [ currentPlan, setCurrentPlan ] = useState(null);
+  const [ isCurrentPlan, setIsCurrentPlan ] = useState(false);
   const { auth } = useAuth();
-  const [plan_Id, setplan_Id] = useState(null);
+  const [ plan_Id, setplan_Id ] = useState(null);
 
   useEffect(() => {
     const getData = async (e) => {
@@ -36,7 +36,7 @@ const Subscription = () => {
     };
 
     getData();
-  }, [isCurrentPlan]);
+  }, [ isCurrentPlan ]);
 
   useEffect(() => {
     const getData = async (e) => {
@@ -92,15 +92,18 @@ const Subscription = () => {
     <div>
       {!isCurrentPlan ? (
         <section className="text-gray-600 body-font overflow-hidden">
-          <div className="container px-5 py-10 mx-auto">
+          <div className="container px-5 pt-3 pb-10 mx-auto">
             <div className="flex flex-col  text-center w-full mb-10">
-              <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
+              <h1 className="sm:text-5xl text-5xl font-medium title-font  mb-4 text-gray-900">
                 Pricing
               </h1>
-              <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">
-                Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical.
+              <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-black mb-2">
+                Select Your Plan and Enjoy the Food .
               </p>
-              <div className="flex mx-auto border-2 border-red-500 rounded overflow-hidden mt-6">
+              <p className="bg-blue-100 mx-28 border-t border-b border-blue-500  px-4 py-3">
+                <span className="font-semibold text-xl text-black">Note :</span> <span className="text-red-500 text-lg"> If You Select Any Plane that Start Tomorrow</span>
+              </p>
+              {/* <div className="flex mx-auto border-2 border-red-500 rounded overflow-hidden mt-6">
                 {plans.map((plan) => {
                   return plan.plan_type === "Monthly" ? (
                     <button className="py-1 px-4 hover:bg-red-600 hover:text-white border-r-2 border-red-500 focus:outline-none">
@@ -116,20 +119,20 @@ const Subscription = () => {
                     </button>
                   );
                 })}
-              </div>
+              </div> */}
             </div>
             <div className="flex flex-wrap justify-around	">
               {plans.map((plan) => {
                 return (
                   <div className="p-4 xl:w-1/4 md:w-1/2 min-w-[33%] min-h-[50vh]">
-                    <div className="h-full p-6 rounded-lg border-2 border-red-500 flex flex-col relative overflow-hidden">
-                      <span className="bg-red-500 text-white text-center w-[7rem] h-[2rem] px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
+                    <div className="h-full p-6 rounded-lg border-2 border-black bg-slate-200 flex flex-col relative overflow-hidden">
+                      <span className="bg-[#32de84] text-black text-lg text-center w-[8rem] h-[2.5rem] px-3 py-1  tracking-widest  absolute right-0 top-0 rounded-bl">
                         {plan.plan_type}
                       </span>
                       <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
                         PRO
                       </h2>
-                      <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+                      <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-black">
                         <span>&#8377;{plan.plan_price}</span>
                         <span className="text-lg ml-1 font-normal text-gray-500"></span>
                       </h1>
@@ -137,7 +140,7 @@ const Subscription = () => {
                         {plan.plan_desc}
                       </p>
                       <button
-                        className="flex items-center mt-auto text-white bg-red-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-red-600 rounded"
+                        className="flex items-center mt-auto hover:border-black  hover:border-2 text-black bg-gradient-to-r from-[#f953c6] to-[#b91d73] font-semibold  py-2 px-4 w-full focus:outline-none hover:bg-red-600 rounded"
                         onClick={() => {
                           takeSubscription(plan.plan_price, plan.planId);
                         }}
@@ -155,9 +158,8 @@ const Subscription = () => {
                           <path d="M5 12h14M12 5l7 7-7 7"></path>
                         </svg>
                       </button>
-                      <p className="text-xs text-gray-500 mt-[1.4rem]">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Nobis facilis quam aliquid!
+                      <p className="text-base text-center  text-red-400 mt-[1.4rem]">
+                        Please Follow the Rule of Mess
                       </p>
                     </div>
                   </div>
