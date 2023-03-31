@@ -85,11 +85,15 @@ const UserMenu = () => {
           </div>
 
           {isMenuAvlbl ? (
-            <div className="flex gap-[1rem] justify-around w-full mt-[2rem] mb-5">
+            <>
+            <div className="flex gap-[1rem] justify-around w-full mt-[2rem] ">
               <Card name={"Breakfast"} menu={menuB} time={"8a.m.-10a.m."} />
               <Card name={"Lunch"} menu={menuL} time={"12 p.m.- 2 p.m."} />
               <Card name={"Dinner"} menu={menuD} time={"7:30 p.m.-9:30 p.m."} />
             </div>
+            {{menuS} ?  (<div className="w-full mx-2 bg-[#00ffff] py-3 text-black font-semibold text-lg px-20 min-h-[30px]"> Today Menu Special :{menuS}</div> ) : ""}
+            </>
+
           ) : (
             <div className="flex gap-[0.5rem]  mt-[1rem] ">
               <img
