@@ -109,12 +109,10 @@ const UserMenu = () => {
               )}
             </>
           ) : (
-            <div className="flex gap-[0.5rem]  mt-[1rem] ">
-              <img
-                src={userMenu}
-                className="h-[550px] w-screen"
-                alt="UserMenu.png"
-              />
+            <div className="flex  m-auto min-h-[40vh] mt-[1rem] justify-between flex-col items-center ">
+              <span className="text-black text-4xl font-serif">
+                Menu Not Set ...{" "}
+              </span>
             </div>
           )}
         </div>
