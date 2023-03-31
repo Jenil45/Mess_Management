@@ -60,7 +60,7 @@ function Contact() {
                       name="from_name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-gray-200 bg-opacity-50 rounded border-[0.2px] border-black focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base  text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="min-w-[50vw] bg-gray-200 bg-opacity-50 rounded border-[0.2px] border-black focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base  text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                 </div>
@@ -78,7 +78,7 @@ function Contact() {
                       name="from_email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-gray-200 bg-opacity-50 rounded border-[0.2px] border-black focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base  text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="min-w-[50vw] bg-gray-200 bg-opacity-50 rounded border-[0.2px] border-black focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base  text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                 </div>
