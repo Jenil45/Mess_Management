@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../Api/axios";
+import Alert from "../../Components/Alert";
 import MultiSelect from "../Components/MultiSelect";
 
 const Menu = () => {
   // menu part
+  const [alert, setalert] = useState({
+    mode: false,
+    message: "",
+    type: "bg-[red]",
+  });
   const [isSetMenu, setIsSetMenu] = useState(true);
   const [day, setDay] = useState("");
 
@@ -95,7 +101,13 @@ const Menu = () => {
       );
 
       console.log(JSON.stringify(response?.data));
-      alert(response.data.message);
+      const message = response.data.message;
+      console.log(response.data);
+      setalert({
+        mode: true,
+        message: "Menu Updated",
+        type: "bg-green",
+      });
       //clear state and controlled inputs
       setDay("");
       setMenuB([]);
@@ -104,11 +116,26 @@ const Menu = () => {
       setMenuS([]);
     } catch (err) {
       if (!err?.response) {
-        alert("No Server Response");
+        const message = err.response.data.message;
+        setalert({
+          mode: true,
+          message: message,
+          type: "bg-green",
+        });
       } else if (err.response?.status === 409) {
-        alert("Username Taken");
+        const message = err.response.data.message;
+        setalert({
+          mode: true,
+          message: message,
+          type: "bg-green",
+        });
       } else {
-        alert("Registration Failed");
+        const message = err.response.data.message;
+        setalert({
+          mode: true,
+          message: message,
+          type: "bg-green",
+        });
       }
     }
   };
@@ -176,6 +203,8 @@ const Menu = () => {
       <hr />
       {isSetMenu ? (
         <div className="p-3 mt-1 flex flex-col justify-between min-h-[85vh] ">
+          {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""}
+
           <h1 className="text-[2rem] text-center">Add the Menu</h1>
 
           {/* ---------------------------------------------------------------------------------------------- */

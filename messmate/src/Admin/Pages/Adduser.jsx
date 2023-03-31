@@ -74,11 +74,7 @@ const Adduser = () => {
       console.log(JSON.stringify(response?.data));
       //console.log(JSON.stringify(response))
       setSuccess(true);
-      setalert({
-        mode: true,
-        message: "User registered successfully",
-        type: "bg-[green]",
-      });
+
       //clear state and controlled inputs
       setName("");
       setEmail("");
@@ -86,6 +82,11 @@ const Adduser = () => {
       setRole(0);
       setPassword("");
       setCPassword("");
+      setalert({
+        mode: true,
+        message: "User registered successfully",
+        type: "bg-[green]",
+      });
     } catch (err) {
       if (!err?.response) {
         setalert({

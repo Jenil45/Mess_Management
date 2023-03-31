@@ -12,7 +12,7 @@ function Modal({ setLoginmodal }) {
   const [alert, setalert] = useState({
     mode: false,
     message: "",
-    type: "bg-[red]",
+    type: "",
   });
   // navigate and set or exist path take
   const location = useLocation();
@@ -74,6 +74,8 @@ function Modal({ setLoginmodal }) {
       );
 
       // navigate to where it comes from
+      setoldPassword("");
+      setnewPassword("");
       setReset(false);
       console.log(response);
       if (response.data) {
@@ -201,10 +203,7 @@ function Modal({ setLoginmodal }) {
         {!reset ? (
           <form>
             <div className="relative mb-4">
-              <label
-                htmlFor="email"
-                className="leading-7 text-sm text-black"
-              >
+              <label htmlFor="email" className="leading-7 text-sm text-black">
                 Email
               </label>
               <input
@@ -233,12 +232,12 @@ function Modal({ setLoginmodal }) {
               />
             </div>
             <div className="flex justify-center">
-            <button
-              onClick={handleLogin}
-              className="text-black bg-gradient-to-r from-[#FF6200] to-[#FDB777] border-2 hover:bg-gradient-to-t hover:from-[#FDB777] hover:to-[#FF6200]  border-black font-semibold text-xl  mt-4 py-2 px-8 focus:outline-none rounded "
-            >
-              Login
-            </button>
+              <button
+                onClick={handleLogin}
+                className="text-black bg-gradient-to-r from-[#FF6200] to-[#FDB777] border-2 hover:bg-gradient-to-t hover:from-[#FDB777] hover:to-[#FF6200]  border-black font-semibold text-xl  mt-4 py-2 px-8 focus:outline-none rounded "
+              >
+                Login
+              </button>
             </div>
           </form>
         ) : (
@@ -321,7 +320,6 @@ function Modal({ setLoginmodal }) {
         )}
       </div>
     </div>
-
   );
 }
 export default Modal;
