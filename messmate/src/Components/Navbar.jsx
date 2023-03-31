@@ -17,6 +17,7 @@ const Navbar = () => {
           className="flex title-font font-medium items-center text-gray-900  md:mb-0"
         >
           <img src={LogOut} alt="Svg" className="h-10" />
+          
           <span className="ml-3 text-xl text-white hover:no-underline no-underline">
             Mess Management
           </span>
