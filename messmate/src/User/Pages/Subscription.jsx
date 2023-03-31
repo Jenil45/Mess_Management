@@ -125,7 +125,7 @@ const Subscription = () => {
               {plans.map((plan) => {
                 return (
                   <div className="p-4 xl:w-1/4 md:w-1/2 min-w-[33%] min-h-[50vh]">
-                    <div className="h-full p-6 rounded-lg border-2 border-black bg-slate-200 flex flex-col relative overflow-hidden">
+                    <div className="h-full p-6  border-2 rounded-2xl border-black bg-slate-200 flex flex-col relative overflow-hidden">
                       <span className="bg-[#32de84] text-black text-lg text-center w-[8rem] h-[2.5rem] px-3 py-1  tracking-widest  absolute right-0 top-0 rounded-bl">
                         {plan.plan_type}
                       </span>
@@ -142,7 +142,7 @@ const Subscription = () => {
                       <button
                         className="flex items-center mt-auto hover:border-black  hover:border-2 text-black bg-gradient-to-r from-[#f953c6] to-[#b91d73] font-semibold  py-2 px-4 w-full focus:outline-none hover:bg-red-600 rounded"
                         onClick={() => {
-                          takeSubscription(plan.plan_price, plan.planId);
+                          if(window.confirm("Confirm the subcription "))takeSubscription(plan.plan_price, plan.planId);
                         }}
                       >
                         Get Subscription
