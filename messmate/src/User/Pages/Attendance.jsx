@@ -278,8 +278,8 @@ const Attendance = () => {
   const monthname = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octomber', 'December' ]
   return (
     <div className="flex items-center justify-self-stretch py-8 px-4 ">
-      <div className=" min-h-[75vh] min-w-[75%] w-full shadow-lg  ">
-        <div className="py-12 px-5 flex flex-col   rounded-t min-h-[75vh] bg-slate-100">
+      <div className=" min-h-[75vh] min-w-[75%] w-full shadow-2xl border-[1.6px] rounded-2xl border-gray-500  ">
+        <div className="py-12 px-5 flex flex-col   rounded-2xl min-h-[75vh] bg-slate-100">
           <div className="px-8 flex items-center justify-between flex-[2]">
             <span
               tabIndex={0}

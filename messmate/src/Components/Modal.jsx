@@ -154,19 +154,19 @@ function Modal({ setLoginmodal }) {
         setalert({
           mode: true,
           message: "No server Responce ",
-          type: "bg-[red]",
+          type: "bg-orange-400",
         });
       } else if (err.response?.status === 409) {
         setalert({
           mode: true,
           message: "User not available",
-          type: "bg-[red]",
+          type: "bg-orange-400",
         });
       } else {
         setalert({
           mode: true,
           message: "User Not Found",
-          type: "bg-[red]",
+          type: "bg-orange-400",
         });
       }
     }
