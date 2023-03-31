@@ -163,7 +163,7 @@ function Dashboad() {
                 <span>Plan Distribution</span>
 
                 <div className="flex gap-[0.5rem] items-center">
-                  <div className="w-5 h-5 bg-[#ff0000] rounded-full"></div>
+                  <div className="w-5 h-5 bg-[#964b00] rounded-full"></div>
                   <span>Store A</span>
                 </div>
                 <div className="flex gap-[0.5rem] items-center">
@@ -175,11 +175,11 @@ function Dashboad() {
                   <span>Store C</span>
                 </div>
                 <div className="flex gap-[0.5rem] items-center">
-                  <div className="w-5 h-5 bg-[#964b00] rounded-full"></div>
+                  <div className="w-5 h-5 bg-[#cc8400] rounded-full"></div>
                   <span>Store D</span>
                 </div>
                 <div className="flex gap-[0.5rem] items-center">
-                  <div className="w-5 h-5 bg-[#cc8400] rounded-full"></div>
+                  <div className="w-5 h-5 bg-[#ff0000] rounded-full"></div>
                   <span>Store E</span>
                 </div>
               </div>

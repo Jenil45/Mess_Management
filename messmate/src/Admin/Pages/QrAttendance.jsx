@@ -8,6 +8,11 @@ const QrAttendance = () => {
   const [data, setData] = useState([]);
   const [type, setType] = useState(null);
   const [isCard, setIsCard] = useState(false);
+  const [alert, setalert] = useState({
+    mode: false,
+    message: "",
+    type: "bg-[red]",
+  });
 
   const [scanResultWebCam, setScanResultWebCam] = useState("");
 
