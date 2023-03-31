@@ -21,14 +21,19 @@ const ProfileScanner = () => {
           }
         );
 
-        console.log(planResponse);
+        console.log(planResponse.data[0].isavailable[0].dinner);
+        const isTodayBreakfast = planResponse.data[0].isavailable[0].breakfast;
+        const isTodayLunch = planResponse.data[0].isavailable[0].lunch;
+        const isTodayDinner = planResponse.data[0].isavailable[0].dinner;
         var planDataObject;
         if (planResponse.data.length !== 0) {
           planDataObject = {
             planId: planResponse.data[0].planId,
             fee: planResponse.data[0].fees,
             fee_status: planResponse.data[0].fee_status,
-            isToday: true,
+            isTodayBreakfast: isTodayBreakfast,
+            isTodayLunch: isTodayLunch,
+            isTodayDinner: isTodayDinner,
           };
         } else {
           planDataObject = {
@@ -37,6 +42,7 @@ const ProfileScanner = () => {
             fee_status: "",
             isToday: false,
           };
+          console.log(planDataObject);
         }
 
         setPlan(planDataObject);
@@ -56,7 +62,9 @@ const ProfileScanner = () => {
         planId: plan.planId,
         fee: plan.fee,
         fee_status: plan.fee_status,
-        isToday: plan.isToday,
+        isTodayBreakfast: plan.isTodayBreakfast,
+        isTodayLunch: plan.isTodayLunch,
+        isTodayDinner: plan.isTodayDinner,
       });
       //   console.log(auth);
       console.log(dataObject);

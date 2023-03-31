@@ -4,6 +4,7 @@ import axios from "../../Api/axios";
 
 const TodayStudent = () => {
   const [users, setUsers] = useState([]);
+  const [type, setType] = useState("Breakfast");
   const [alert, setAlert] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
@@ -15,7 +16,7 @@ const TodayStudent = () => {
     const getData = async (e) => {
       // if button enabled with JS hack
       try {
-        const response = await axios.get("/userplan/getTodayStudent", {
+        const response = await axios.get(`/userplan/getTodayStudent/${type}`, {
           withCredentials: true,
         });
 
@@ -28,7 +29,7 @@ const TodayStudent = () => {
     };
 
     getData();
-  }, [alert]);
+  }, [type]);
 
   const handlePayment = async (userId, planId) => {
     try {
@@ -101,6 +102,17 @@ const TodayStudent = () => {
     });
   return (
     <div>
+      <select
+        id="day"
+        name="menu_day"
+        class="bg-gray-50 border p-2 rounded w-[16rem]"
+        value={type}
+        onChange={(e) => setType(e.target.value)}
+      >
+        <option value="Breakfast">Breakfast</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Dinner">Dinner</option>
+      </select>
       <div className="flex items-center justify-around  pb-4 bg-white dark:bg-gray-900">
         <span className="h2">Total Students : {users.length}</span>
         <div className="relative">
