@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "../../Api/axios";
 import Alert from "../../Components/Alert";
 import MultiSelect from "../Components/MultiSelect";
+import subscribe from "../../Svg/subscription.png";
 
 const Menu = () => {
   // menu part
@@ -275,8 +276,8 @@ const Menu = () => {
           <div className="innerpart mt-4 flex flex-row gap-5 ">
             <div className="rightpart flex-[1]">
               <img
-                className="bg-gray-300 min-h-[60vh]"
-                src=""
+                className="bg-white max-h-[40vh] m-auto"
+                src={subscribe}
                 alt="Photo is coming "
               ></img>
             </div>
