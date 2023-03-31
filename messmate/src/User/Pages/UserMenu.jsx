@@ -96,23 +96,23 @@ const UserMenu = () => {
 
           {isMenuAvlbl ? (
             <>
-            <div className="flex gap-[1rem] justify-around w-full mt-[2rem] ">
+            {menuS.length > 0 ?
+            (
+              <div className="w-full mx-2 bg-[#b7f3f3] rounded-xl py-3 text-black mt-4 font-semibold text-base px-20 min-h-[30px]">
+              Today Menu Special :     <span className="font-serif italic text-lg "> {menuS.map((items) => {return items})} </span>
+              </div>
+            )
+            :  " "}
+            <div className="flex gap-[1rem] mx-2 justify-around w-full mt-[2rem] ">
               <Card name={"Breakfast"} menu={menuB} time={"8a.m.-10a.m."} />
               <Card name={"Lunch"} menu={menuL} time={"12 p.m.- 2 p.m."} />
               <Card name={"Dinner"} menu={menuD} time={"7:30 p.m.-9:30 p.m."} />
             </div>
-            {menuS.length > 0 ?
-            (<div className="w-full mx-2 bg-[#00ffff] py-3 text-black font-semibold text-lg px-20 min-h-[30px]"> Today Menu Special :{menuS} {console.log(menuS)}</div> )
-            :  ""}
             </>
 
           ) : (
-            <div className="flex gap-[0.5rem]  mt-[1rem] ">
-              <img
-                src={userMenu}
-                className="h-[550px] w-screen"
-                alt="UserMenu.png"
-              />
+            <div className="flex  m-auto min-h-[40vh] mt-[1rem] justify-between flex-col items-center ">
+              <span className="text-black text-4xl font-serif" >Menu Not Set ... </span>
             </div>
           )}
         </div>
