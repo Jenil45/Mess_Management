@@ -37,7 +37,7 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
     }
     // console.log(user);
     const date = new Date()
-
+    console.log(user);
     const isTodayAdded = user.attendance.filter(item => {
         // console.log(item.date);
         if( item.date.getDate()===date.getDate() && item.date.getMonth()===date.getMonth() && item.date.getYear()===date.getYear())
@@ -45,12 +45,10 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
             return item
         }
     });
+
+    // console.log(isTodayAdded);
+    
     const length = isTodayAdded.length
-    if(((verifyThing==="breakfast")&&isTodayAdded[0].menu.breakfast)||((verifyThing==="lunch")&&isTodayAdded[0].menu.lunch) || ((verifyThing==="dinner")&&isTodayAdded[0].menu.dinner))
-    {
-        // console.log("here is problem");
-        return res.status(400).json({message:`Your ${verifyThing} entry is already added`})
-    }
 
     var updatedObject={}
     // console.log(isTodayAdded[0]);
@@ -71,9 +69,16 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
         // const updatedObject = {"breakfast": isTodayAdded[0].menu.breakfast, "lunch":isTodayAdded[0].menu.lunch , "dinner":true }
         return res.json({message :"No verify thing is access"})
     }
+    
     // console.log(updatedObject);
     if(isTodayAdded.length === 1)
     {
+        if(((verifyThing==="breakfast")&&isTodayAdded[0].menu.breakfast)||((verifyThing==="lunch")&&isTodayAdded[0].menu.lunch) || ((verifyThing==="dinner")&&isTodayAdded[0].menu.dinner))
+        {
+            // console.log("here is problem");
+            return res.status(400).json({message:`Your ${verifyThing} entry is already added`})
+        }
+
         const updateEntry = await DailyEntry.updateOne({"userId":userId } , {
             $set:{
                 "attendance.$[elemX].menu" : updatedObject

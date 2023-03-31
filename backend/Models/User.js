@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: Number,
-        enum: [0,1],
+        enum: [0 , 1 , 2 ],
         required : true 
     },
     password : { 
