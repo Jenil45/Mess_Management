@@ -182,6 +182,7 @@ function Alluser() {
               />
             </svg>
           </div>
+          {/* <label>Search</label> */}
           <input
             type="text"
             id="table-search-users"

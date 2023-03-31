@@ -215,7 +215,7 @@ const Menu = () => {
             <select
               id="day"
               name="menu_day"
-              class="bg-gray-50 border p-2 rounded w-[12rem]"
+              class="bg-gray-50 border p-2 rounded w-[16rem]"
               value={day}
               onChange={(e) => setDay(e.target.value)}
             >
@@ -234,7 +234,7 @@ const Menu = () => {
           /*                                            menu part                                           */
           /* ---------------------------------------------------------------------------------------------- */}
 
-          <div className="menu grid grid-cols-3  min-h-[40vh] p-3">
+          <div className="menu flex flex-row flex-wrap gap-7  min-h-[40vh] p-3">
             <MultiSelect thing={"Breakfast"} setMenu={setMenuB} Menu={menuB} />
             <MultiSelect thing={"Lunch"} setMenu={setMenuL} Menu={menuL} />
             <MultiSelect thing={"Dinner"} setMenu={setMenuD} Menu={menuD} />
@@ -252,7 +252,7 @@ const Menu = () => {
           <div className="menusubmit flex justify-center">
             <button
               type="button"
-              class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none text-3xl focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg  px-5 py-2.5 text-center mr-2 mb-2 hover:border-2 hover:border-black"
               onClick={handleSubmit}
             >
               Submit
