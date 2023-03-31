@@ -108,7 +108,7 @@ function EditModal(props) {
         onClick={() => props.setEditmodal(false)}
       />
 
-      <div className="flex fixed left-[35%] min-w-[30%] max-w-[31%]   transform overflow-hidden  p-7  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
+      <div className="flex fixed left-[35%] min-w-[30%] max-w-[35%]  transform overflow-hidden  p-7  bg-gray-100 rounded-lg   flex-col    md:mt-0 ">
         <div className="flex">
           <h2 className="grow h-14 text-gray-900 text-3xl text-center font-medium title-font mb-2">
             Edit user
@@ -124,7 +124,7 @@ function EditModal(props) {
         </div>
         {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""}
         <form>
-          <div className="relative mb-4">
+          <div className="relative mb-3">
             <label
               htmlFor="full-name"
               className="leading-7 text-sm text-gray-600"
@@ -140,7 +140,7 @@ function EditModal(props) {
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
-          <div className="relative mb-4">
+          <div className="relative mb-3">
             <label
               htmlFor="full-name"
               className="leading-7 text-sm text-gray-600"
@@ -156,7 +156,7 @@ function EditModal(props) {
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
-          <div className="relative mb-4">
+          <div className="relative mb-3">
             <label htmlFor="email" className="leading-7 text-sm text-gray-600">
               Store Type
             </label>
@@ -177,7 +177,7 @@ function EditModal(props) {
               <option value={"StoreE"}>Store E</option>
             </select>
           </div>
-          <div className="relative mb-4">
+          <div className="relative mb-3">
             <label
               htmlFor="contact"
               className="leading-7 text-sm text-gray-600"
@@ -193,7 +193,7 @@ function EditModal(props) {
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
-          <div className="relative mb-4">
+          <div className="relative mb-3">
             <label
               htmlFor="contact"
               className="leading-7 text-sm text-gray-600"
@@ -210,7 +210,7 @@ function EditModal(props) {
             />
           </div>
 
-          <div className="relative mb-4">
+          <div className="relative mb-3">
             <label
               htmlFor="password"
               className="leading-7 text-sm text-gray-600"
