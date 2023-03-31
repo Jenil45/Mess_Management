@@ -3,29 +3,27 @@ import React from "react";
 const Card = ({ name, menu, time }) => {
   return (
     <>
-    <div className="p-4 xl:w-1/4 md:w-1/2 min-w-[33%] min-h-[50vh] ">
-      <div className="h-full p-6 rounded-lg border-2 border-black    bg-white flex flex-col relative  overflow-hidden">
-        <div className="flex-[2]">
-          <span className="bg-lime-400 text-black text-center w-[11rem] text-[1rem] h-[2.5rem] px-3 py-1  text-sm font-bold absolute right-0 top-0 rounded-bl">
-            {time}
-          </span>
+      <div className="p-4 xl:w-1/4 md:w-1/2 min-w-[33%] min-h-[50vh] ">
+        <div className="h-full p-6 rounded-lg border-2 border-black    bg-white flex flex-col relative">
+          <div className="flex-[2] flex flex-col">
+            <div className="text-5xl text-gray-900 leading-none flex flex-col items-center pb-4 mb-4 border-b border-black">
+              <div className="text-3xl ml-1  mt-1  font-semibold text-blue-800">
+                {name}
+              </div>
+              <div className="text-xl text-center">{time}</div>
+            </div>
 
-          <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-black">
-            <span className="text-2xl ml-1  font-semibold text-blue-800">
-              {name}
-            </span>
-          </h1>
+          </div>
+          <ol type={1} className="flex-[8]">
+            {menu.map((item) => {
+              return <li>{item}</li>;
+            })}
+          </ol>
+          <p className="text-xs flex-[1]  text-red-400 mt-[1.4rem]">
+             * Please Follow all rules of mess and Enjoy Your Food
+          </p>
         </div>
-        <ol  type={1} className="flex-[8]">
-          {menu.map((item) => {
-            return <li>{item}</li>;
-          })}
-        </ol>
-        <p className="text-xs flex-[1] text-gray-500 mt-[1.4rem]">
-Please Follow all rules of mess and Enjoy Your Food
-        </p>
       </div>
-    </div>
 
 
       {/* <div
@@ -49,7 +47,7 @@ Please Follow all rules of mess and Enjoy Your Food
 
       </div> */}
 
-      </>
+    </>
   );
 };
 

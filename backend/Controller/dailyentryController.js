@@ -23,6 +23,11 @@ export const getUserEntryDetail = asyncHandler(async (req , res) => {
 
 export const updateDailyEntry = asyncHandler(async (req, res) => {
     const {userId , verifyThing , planId } = req.body
+
+    if(!verifyThing)
+    {
+        return res.status(400).json({message:"Select type required"})
+    }
     // console.log(userId,verifyThing,planId);
     // Does the user exist to update?
     const user = await DailyEntry.findOne({"userId":userId}).exec()
@@ -41,6 +46,12 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
         }
     });
     const length = isTodayAdded.length
+    if(((verifyThing==="breakfast")&&isTodayAdded[0].menu.breakfast)||((verifyThing==="lunch")&&isTodayAdded[0].menu.lunch) || ((verifyThing==="dinner")&&isTodayAdded[0].menu.dinner))
+    {
+        // console.log("here is problem");
+        return res.status(400).json({message:`Your ${verifyThing} entry is already added`})
+    }
+
     var updatedObject={}
     // console.log(isTodayAdded[0]);
     if(verifyThing==="breakfast")
@@ -58,7 +69,7 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
     else
     {
         // const updatedObject = {"breakfast": isTodayAdded[0].menu.breakfast, "lunch":isTodayAdded[0].menu.lunch , "dinner":true }
-        res.json("No verify thing is access")
+        return res.json({message :"No verify thing is access"})
     }
     // console.log(updatedObject);
     if(isTodayAdded.length === 1)
@@ -71,7 +82,7 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
                 "arrayFilters" : [{"elemX.date":isTodayAdded[0].date}]
             }
         )
-        res.json({message:`Daily entery updated for ${verifyThing}`})
+        return res.json({message:`Daily entery updated for ${verifyThing}`})
     }
 
     else
@@ -86,28 +97,28 @@ export const updateDailyEntry = asyncHandler(async (req, res) => {
                 "attendance":dailyEntryObject
             }},
         )
-        res.json({message:`Daily entery updated for ${verifyThing}`})
+        return res.json({message:`Daily entery updated for ${verifyThing}`})
     }
 })
 
-export const deleteUser = asyncHandler(async (req, res) => {
-    const { id } = req.body
+// export const deleteUser = asyncHandler(async (req, res) => {
+//     const { id } = req.body
 
-    // Confirm data
-    if (!id) {
-        return res.status(400).json({ message: 'User ID Required' })
-    }
+//     // Confirm data
+//     if (!id) {
+//         return res.status(400).json({ message: 'User ID Required' })
+//     }
 
-    // Does the user exist to delete?
-    const user = await User.findById(id).exec()
+//     // Does the user exist to delete?
+//     const user = await User.findById(id).exec()
 
-    if (!user) {
-        return res.status(400).json({ message: 'User not found' })
-    }
+//     if (!user) {
+//         return res.status(400).json({ message: 'User not found' })
+//     }
 
-    const result = await user.deleteOne()
+//     const result = await user.deleteOne()
 
-    const reply = `Username ${result.email} with ID ${result._id} deleted`
+//     const reply = `Username ${result.email} with ID ${result._id} deleted`
 
-    res.json(reply)
-})
+//     res.json(reply)
+// })

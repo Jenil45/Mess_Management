@@ -30,13 +30,13 @@ function App() {
       <div className="App ">
         <BrowserRouter>
           <Routes>
+            <Route element={<PersistentLogin />}>
             <Route path="/" element={<Main />}>
               <Route path="" element={<Home />}></Route>
               <Route path="/menu" element={<MenuHome />}></Route>
               <Route path="/contact" element={<Contact />}></Route>
               <Route path="/about" element={<Aboutus />}></Route>
             </Route>
-            <Route element={<PersistentLogin />}>
               <Route element={<RequireAuth accessRole={1} />}>
                 <Route path="/admin" element={<Admin />}>
                 <Route path='' element={<Dashboad />}></Route>

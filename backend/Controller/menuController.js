@@ -31,7 +31,7 @@ export const addMenu = asyncHandler(async (req , res) => {
     const duplicate = await Menu.findOne({menu_day}).lean().exec()
     if (duplicate) {
         const updatedPlan = await Menu.updateOne({menu_day} , {menu_breakfast,menu_lunch , menu_dinner, special_menu})
-        res.json({ message: `${menu_day} plan updated` })
+        return res.json({ message: `${menu_day} plan updated` })
     }
 
     // creating userObject
@@ -41,9 +41,9 @@ export const addMenu = asyncHandler(async (req , res) => {
     const menu = await new Menu(menuObject).save()
 
     if (menu) { //created 
-        res.status(201).json({ message: `Your ${menu_day} menu added` })
+        return res.status(201).json({ message: `Your ${menu_day} menu added` })
     } else {
-        res.status(400).json({ message: 'Invalid menu data received' })
+        return res.status(400).json({ message: 'Invalid menu data received' })
     }
 
 })

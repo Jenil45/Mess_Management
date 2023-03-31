@@ -198,7 +198,7 @@ function EditModal(props) {
               htmlFor="contact"
               className="leading-7 text-sm text-gray-600"
             >
-              Used Quantity
+              Total Used Quantity
             </label>
             <input
               type="number"
