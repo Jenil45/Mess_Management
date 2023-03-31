@@ -162,7 +162,9 @@ function StoreA(props) {
 
       <div className="flex items-center justify-center pb-4 px-2 bg-white dark:bg-gray-900">
         <div className=" flex-[6]">
-          <h1 className="text-[2rem]">{props.store}</h1>
+          <h1 className="text-[2rem]">
+            {props.store} : {props.info}
+          </h1>
         </div>
         <div className="flex-[2]">
           <label htmlFor="table-search" className="sr-only">

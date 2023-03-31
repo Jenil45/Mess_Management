@@ -57,9 +57,7 @@ const UserMenu = () => {
 
       <div className="innerpart mt-5 flex-[10] flex  flex-row gap- ">
         <div className="sidepart flex flex-col  flex-[1] ">
-
-
-        {/* ----------------------------------------- Select Part ---------------------------------------- */}
+          {/* ----------------------------------------- Select Part ---------------------------------------- */}
 
           <div className="subscribtion_header">
             <div className="dayselect flex flex-row">
@@ -88,24 +86,28 @@ const UserMenu = () => {
             </div>
           </div>
 
-
-        {
-        /* ----------------------------------------- Bottom part ---------------------------------------- */}
-
-
+          {/* ----------------------------------------- Bottom part ---------------------------------------- */}
 
           {isMenuAvlbl ? (
             <>
-            <div className="flex gap-[1rem] justify-around w-full mt-[2rem] ">
-              <Card name={"Breakfast"} menu={menuB} time={"8a.m.-10a.m."} />
-              <Card name={"Lunch"} menu={menuL} time={"12 p.m.- 2 p.m."} />
-              <Card name={"Dinner"} menu={menuD} time={"7:30 p.m.-9:30 p.m."} />
-            </div>
-            {menuS.length > 0 ?
-            (<div className="w-full mx-2 bg-[#00ffff] py-3 text-black font-semibold text-lg px-20 min-h-[30px]"> Today Menu Special :{menuS} {console.log(menuS)}</div> )
-            :  ""}
+              <div className="flex gap-[1rem] justify-around w-full mt-[2rem] ">
+                <Card name={"Breakfast"} menu={menuB} time={"8a.m.-10a.m."} />
+                <Card name={"Lunch"} menu={menuL} time={"12 p.m.- 2 p.m."} />
+                <Card
+                  name={"Dinner"}
+                  menu={menuD}
+                  time={"7:30 p.m.-9:30 p.m."}
+                />
+              </div>
+              {menuS.length > 0 ? (
+                <div className="w-full mx-2 bg-[#00ffff] py-3 text-black font-semibold text-lg px-20 min-h-[30px]">
+                  {" "}
+                  Today Menu Special :{menuS} {console.log(menuS)}
+                </div>
+              ) : (
+                ""
+              )}
             </>
-
           ) : (
             <div className="flex gap-[0.5rem]  mt-[1rem] ">
               <img

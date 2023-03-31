@@ -17,20 +17,18 @@ const EditProfile = () => {
               <br className="hidden lg:inline-block" />
               {auth.name}
             </h1>
-            <p className="mb-8 leading-relaxed">
-              Copper mug try-hard pitchfork pour-over freegan heirloom neutra
-              air plant cold-pressed tacos poke beard tote bag. Heirloom echo
-              park mlkshk tote bag selvage hot chicken authentic tumeric
-              truffaut hexagon try-hard chambray.
-            </p>
-            <div className="flex justify-center">
-              <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                Button
-              </button>
-              <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-                Button
-              </button>
-            </div>
+            <span className="mb-4 leading-relaxed">
+              User can see menu and subscription plan added by admin . Also user
+              can give their attendance by using QR code generated on your
+              dashboard. User can track their attendance record in Attendance
+              section date by date.
+            </span>
+            <span className="my-2 bg-blue-300 p-2 w-[15rem] rounded shadow-xl leading-relaxed">
+              Email : {auth.email}
+            </span>
+            <span className="my-2 leading-relaxed w-[15rem] bg-green-300 p-2 rounded shadow-xl ">
+              Mobile No : {auth.mobileno}
+            </span>
           </div>
 
           {/* ---------------------------------------------------------------------------------------------- */

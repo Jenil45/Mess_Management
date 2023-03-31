@@ -34,7 +34,7 @@ function EditModal(props) {
         setName(response.data.name);
         setStoreType(response.data.storeType);
         setQty(response.data.qty);
-        setUsedQty(response.data.usedqty);
+        // setUsedQty(response.data.usedqty);
         setSingle_Price(response.data.single_price);
         console.log(JSON.stringify(response));
       } catch (err) {
@@ -79,7 +79,7 @@ function EditModal(props) {
         type: "bg-[green]",
       });
       //clear state and controlled inputs
-      //   props.setEditmodal(false);
+      props.setEditmodal(false);
     } catch (err) {
       if (!err?.response) {
         setalert({

@@ -19,7 +19,7 @@ const Menu = () => {
   const [menuS, setMenuS] = useState([]);
 
   // subscription part
-  const [planType, setPlanType] = useState(null);
+  const [planType, setPlanType] = useState("");
   const [price, setPrice] = useState(0);
   const [desc, setDesc] = useState("");
 
@@ -101,40 +101,40 @@ const Menu = () => {
       );
 
       console.log(JSON.stringify(response?.data));
-      const message = response.data.message;
-      console.log(response.data);
-      setalert({
-        mode: true,
-        message: "Menu Updated",
-        type: "bg-green",
-      });
+      // const message = response.data.message;
+      // console.log(response.data);
       //clear state and controlled inputs
       setDay("");
       setMenuB([]);
       setMenuL([]);
       setMenuD([]);
       setMenuS([]);
+      setalert({
+        mode: true,
+        message: "Menu Updated",
+        type: "bg-green-400",
+      });
     } catch (err) {
       if (!err?.response) {
         const message = err.response.data.message;
         setalert({
           mode: true,
           message: message,
-          type: "bg-green",
+          type: "bg-[red]",
         });
       } else if (err.response?.status === 409) {
         const message = err.response.data.message;
         setalert({
           mode: true,
           message: message,
-          type: "bg-green",
+          type: "bg-[red]",
         });
       } else {
         const message = err.response.data.message;
         setalert({
           mode: true,
           message: message,
-          type: "bg-green",
+          type: "bg-[red]",
         });
       }
     }
@@ -161,16 +161,30 @@ const Menu = () => {
       );
 
       console.log(JSON.stringify(response?.data));
-      alert(response.data.message);
+      setalert({
+        mode: true,
+        message: "Plan Updated",
+        type: "bg-green-400",
+      });
       //clear state and controlled inputs
       setDesc("");
       setPrice("");
-      setPlanType(null);
+      setPlanType("");
     } catch (err) {
       if (!err?.response) {
-        alert("No Server Response");
+        const message = err.response.data.message;
+        setalert({
+          mode: true,
+          message: message,
+          type: "bg-[red]",
+        });
       } else {
-        alert("Plan adding Failed");
+        const message = err.response.data.message;
+        setalert({
+          mode: true,
+          message: message,
+          type: "bg-[red]",
+        });
       }
     }
   };
@@ -201,10 +215,9 @@ const Menu = () => {
         </div>
       </div>
       <hr />
+      {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""}
       {isSetMenu ? (
         <div className="p-3 mt-1 flex flex-col justify-between min-h-[85vh] ">
-          {alert.mode ? <Alert alert={alert} setalert={setalert} /> : ""}
-
           <h1 className="text-[2rem] text-center">Add the Menu</h1>
 
           {/* ---------------------------------------------------------------------------------------------- */
@@ -272,28 +285,22 @@ const Menu = () => {
           /*                                             Bottom                                             */
           /* ---------------------------------------------------------------------------------------------- */}
 
-          <div className="innerpart mt-4 flex flex-row gap-5 ">
-            <div className="rightpart flex-[1]">
+          <div className="innerpart mt-4 flex items-center justify-center flex-row gap-5 ">
+            {/* <div className="rightpart flex-[1]">
               <img
                 className="bg-gray-300 min-h-[60vh]"
                 src=""
                 alt="Photo is coming "
               ></img>
-            </div>
+            </div> */}
 
-            <div className="sidepart flex flex-col  flex-[1] pl-4">
+            <div className="sidepart flex flex-col ">
               {/* ---------------------------------------------------------------------------------------------- */
               /*                                           Header part                                          */
               /* ---------------------------------------------------------------------------------------------- */}
 
               <div className="subscribtion_header">
                 <div className="dayselect flex flex-row">
-                  <label
-                    for="countries"
-                    class="block mb-2 text-sm min-w-fit m-2  font-medium text-gray-900 dark:text-white"
-                  >
-                    Select an option
-                  </label>
                   <select
                     id="sub"
                     class=" max-w-[15rem] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -316,7 +323,7 @@ const Menu = () => {
               /* ---------------------------------------------------------------------------------------------- */}
               <div className="bottompart mt-4 min-h-[40vh]">
                 {/* <input className="bg-slate-600" type="text" name="" id="" value={"hello"} /> */}
-                <div className="relative mb-4 max-w-screen-sm">
+                <div className="relative flex flex-col mb-4 max-w-screen-sm">
                   <label
                     htmlFor="full-name"
                     className="leading-7 text-sm text-gray-600"
@@ -330,10 +337,10 @@ const Menu = () => {
                     name="plan_desc"
                     onChange={(e) => setDesc(e.target.value)}
                     value={desc}
-                    className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    className="w-[35rem] bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
-                <div className="relative mb-4 max-w-screen-sm">
+                <div className="relative flex flex-col mb-4 max-w-screen-sm">
                   <label
                     htmlFor="full-name"
                     className="leading-7 text-sm text-gray-600"
@@ -346,7 +353,7 @@ const Menu = () => {
                     name="plan_price"
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
-                    className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    className="w-[15rem] bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
                 {/* <input type="number" name="" id="" /> */}

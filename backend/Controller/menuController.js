@@ -26,7 +26,16 @@ export const addMenu = asyncHandler(async (req , res) => {
 
     // read data from req body
     const {menu_day , menu_breakfast , menu_lunch , menu_dinner , special_menu} = req.body
+    if (!menu_day) {
+        return res.status(400).json({ message: 'Menu Day Require' })
+    }
 
+    if(menu_breakfast.length===0 && menu_lunch.length===0 && menu_dinner.length===0)
+    {
+        const result = await Menu.deleteOne({menu_day})
+        const reply = `Menu of ${menu_day} deleted`
+        return res.json({message:"Menu deleted successfully"})
+    }
     // duplicate entry than update menu
     const duplicate = await Menu.findOne({menu_day}).lean().exec()
     if (duplicate) {
