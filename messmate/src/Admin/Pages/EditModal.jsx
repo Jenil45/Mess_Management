@@ -204,6 +204,7 @@ function EditModal(props) {
                 User
               </option>
               <option value={1}> Admin </option>
+              <option value={2}> Employee </option>
             </select>
           </div>
 

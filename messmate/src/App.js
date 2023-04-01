@@ -23,6 +23,7 @@ import ProfileScanner from "./User/Pages/ProfileScanner";
 import QrAttendance from "./Admin/Pages/QrAttendance";
 import Dashboad from "./Admin/Pages/Dashboad";
 import Inventory from "./Admin/Pages/Inventory";
+import Employee from "./Employee/Employee";
 
 function App() {
   return (
@@ -50,6 +51,16 @@ function App() {
                   <Route path="inventory" element={<Inventory />}>
                   </Route>
                   <Route path="alluser" element={<Alluser />}>
+                  </Route>
+                  <Route path="menu" element={<Menu />}>
+                  </Route>
+                </Route>
+              </Route>
+              <Route element={<RequireAuth accessRole={2} />}>
+                <Route path="/employee" element={<Employee />}>
+                <Route path='' element={<Dashboad />}></Route>
+
+                  <Route path="qrattendance" element={<QrAttendance />}>
                   </Route>
                   <Route path="menu" element={<Menu />}>
                   </Route>

@@ -107,6 +107,8 @@ function Alluser() {
                 <p className="bg-lime-300 rounded-md p-[2.5px] px-2  text-black text-sm">
                   Admin
                 </p>
+              ) : user.role === 2 ? (
+                <p className="px-2 text-black text-sm ">Employee</p>
               ) : (
                 <p className="px-2 text-black text-sm ">User</p>
               )}

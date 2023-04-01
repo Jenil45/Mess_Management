@@ -135,8 +135,9 @@ export const getWeekProfit = asyncHandler(async (req , res) => {
         res.json(groupedPeople)
 })
 export const getMonthlyExpenses = asyncHandler(async (req , res) => {
-  const today_date = moment().utcOffset("+05:30").startOf('month').toDate()
-  const end_date1 = moment().utcOffset("+05:30").endOf('month').toDate()
+  const today_date = moment().utcOffset("+05:30").startOf('month').startOf('week').toDate()
+  const end_date1 = moment().utcOffset("+05:30").endOf('month').endOf('week').toDate()
+
   const expenses = await Inventory.aggregate([
       {
           $match:
@@ -161,6 +162,6 @@ export const getMonthlyExpenses = asyncHandler(async (req , res) => {
 
       ]
       )
-
+      // console.log(expenses);
     res.send(expenses)
 })

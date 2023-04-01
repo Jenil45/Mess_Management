@@ -194,6 +194,7 @@ const Adduser = () => {
                     User
                   </option>
                   <option value={1}> Admin </option>
+                  <option value={2}> Employee </option>
                 </select>
               </div>
               <div className="relative mb-4">

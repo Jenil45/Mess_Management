@@ -24,6 +24,32 @@ const userplanSchema = new mongoose.Schema({
         type: Date,
         // required : true 
     },
+    isavailable : [
+        {
+            "date" : {
+                type : Date,
+                // required : true
+            },
+
+                "breakfast":{
+                    type : Boolean,
+                    // required : true,
+                    default: true
+                },
+                "lunch":{
+                    type : Boolean,
+                    // required : true,
+                    default: true
+                },
+                "dinner":{
+                    type : Boolean,
+                    // required : true,
+                    default: true
+                },
+            
+        }
+    ],
+
     remaining_days:{
         type:Number,
         // required:true
@@ -79,6 +105,23 @@ userplanSchema.pre("save", async function (next) {
             // const end_date = moment().utcOffset("+05:30").add(31,'days').endOf('day').toDate()
             end_date = moment(today_date).utcOffset("+05:30").add(29,'days').endOf('day').toDate()
         }
+
+        var arr = getDatesInRange(new Date(today_date), new Date(end_date));
+
+        function getDatesInRange(d1, d2) {
+          const date = new Date(d1);
+          const dates = [];
+          while (date <= d2) {
+            dates.push(new Date(date));
+            date.setDate(date.getDate() + 1);
+          }
+          return dates;
+        }
+        arr.map((item) => {
+            const availableObject = {"date":moment(item).utcOffset("+05:30").startOf('day').toDate() ,"breakfast":true ,"lunch":true , "dinner":true }
+            docs.isavailable.push(availableObject)
+        })
+
         console.log(end_date);
         docs.start_date = today_date
         docs.end_date = end_date

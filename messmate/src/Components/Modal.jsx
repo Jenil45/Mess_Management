@@ -150,7 +150,18 @@ function Modal({ setLoginmodal }) {
 
       // navigate to where it comes from
       setLoginmodal(false);
-      navigate(role === 0 ? "/user" : "/admin", { replace: true });
+      navigate(
+        role === 0
+          ? "/user"
+          : role === 1
+          ? "/admin"
+          : role === 2
+          ? "/employee"
+          : "/unauthorized",
+        {
+          replace: true,
+        }
+      );
     } catch (err) {
       if (!err?.response) {
         setalert({
