@@ -6,11 +6,11 @@ import CurrentPlan from "./CurrentPlan";
 
 const Subscription = () => {
   const navigate = useNavigate();
-  const [ plans, setPlans ] = useState([]);
-  const [ currentPlan, setCurrentPlan ] = useState(null);
-  const [ isCurrentPlan, setIsCurrentPlan ] = useState(false);
+  const [plans, setPlans] = useState([]);
+  const [currentPlan, setCurrentPlan] = useState(null);
+  const [isCurrentPlan, setIsCurrentPlan] = useState(false);
   const { auth } = useAuth();
-  const [ plan_Id, setplan_Id ] = useState(null);
+  const [plan_Id, setplan_Id] = useState(null);
 
   useEffect(() => {
     const getData = async (e) => {
@@ -36,7 +36,7 @@ const Subscription = () => {
     };
 
     getData();
-  }, [ isCurrentPlan ]);
+  }, [isCurrentPlan]);
 
   useEffect(() => {
     const getData = async (e) => {
@@ -101,7 +101,11 @@ const Subscription = () => {
                 Select Your Plan and Enjoy the Food .
               </p>
               <p className="bg-blue-100 mx-28 border-t border-b border-blue-500  px-4 py-3">
-                <span className="font-semibold text-xl text-black">Note :</span> <span className="text-red-500 text-lg"> If You Select Any Plane that Start Tomorrow</span>
+                <span className="font-semibold text-xl text-black">Note :</span>{" "}
+                <span className="text-red-500 text-lg">
+                  {" "}
+                  If You Select Any Plan then it Starts from Tomorrow
+                </span>
               </p>
               {/* <div className="flex mx-auto border-2 border-red-500 rounded overflow-hidden mt-6">
                 {plans.map((plan) => {
@@ -142,7 +146,8 @@ const Subscription = () => {
                       <button
                         className="flex items-center mt-auto hover:border-black  hover:border-2 text-black bg-gradient-to-r from-[#f953c6] to-[#b91d73] font-semibold  py-2 px-4 w-full focus:outline-none hover:bg-red-600 rounded"
                         onClick={() => {
-                          if(window.confirm("Confirm the subcription "))takeSubscription(plan.plan_price, plan.planId);
+                          if (window.confirm("Confirm the subcription "))
+                            takeSubscription(plan.plan_price, plan.planId);
                         }}
                       >
                         Get Subscription
