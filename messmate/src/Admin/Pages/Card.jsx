@@ -34,12 +34,12 @@ const Card = ({ scanResultWebCam, takeAttendance, info }) => {
           &#8377;{scanResultWebCam.fee}
         </span>
         <button
-          className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+          className="flex ml-auto text-white bg-green-400 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 hover:border-2 hover:border-black rounded"
           onClick={() =>
             takeAttendance(scanResultWebCam.userId, scanResultWebCam.planId)
           }
         >
-          Button
+          Verify
         </button>
         <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
           <svg
