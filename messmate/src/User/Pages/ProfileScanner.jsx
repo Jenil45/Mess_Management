@@ -89,7 +89,7 @@ const ProfileScanner = () => {
           <a href={imageUrl} download>
             <img src={imageUrl} alt="img" className="w-[20rem]" />
           </a>
-        ) : null}
+        ) : <h1 className="text-black text-center text-4xl font-semibold "> Please take the  Subcription Plan ....  </h1>}
       </div>
     </div>
   );
