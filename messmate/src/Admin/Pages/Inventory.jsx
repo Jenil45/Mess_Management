@@ -76,27 +76,27 @@ const Inventory = () => {
       <div className="flex-[6]">
         {store === "addInventory" ? <AddInventory /> : ""}
         {store === "A" ? (
-          <StoreA store={"StoreA"} info={"Things added in pieces"} />
+          <StoreA store={"Vessels"} info={"Things added in pieces"} />
         ) : (
           ""
         )}
         {store === "B" ? (
-          <StoreA store={"StoreB"} info={"Vegetable Section (in k.g.,)"} />
+          <StoreA store={"Vegetables"} info={"Vegetable Section (in k.g.,)"} />
         ) : (
           ""
         )}
         {store === "C" ? (
-          <StoreA store={"StoreC"} info={"Groceries Section (in k.g.,)"} />
+          <StoreA store={"Essentials"} info={"Groceries Section (in k.g.,)"} />
         ) : (
           ""
         )}
         {store === "D" ? (
-          <StoreA store={"StoreD"} info={"Things added in ltr"} />
+          <StoreA store={"Liquid"} info={"Things added in ltr"} />
         ) : (
           ""
         )}
         {store === "E" ? (
-          <StoreA store={"StoreE"} info={"Miscellaneous Expenses"} />
+          <StoreA store={"Miscellaneous"} info={"Miscellaneous Expenses"} />
         ) : (
           ""
         )}

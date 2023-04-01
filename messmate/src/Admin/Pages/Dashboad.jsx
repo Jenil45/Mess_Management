@@ -160,27 +160,27 @@ function Dashboad() {
             <div className="piecard bg-gray-200  shadow-xl w-[37rem] h-[20rem] flex items-center mt-[1.5rem] rounded-[1rem] justify-around">
               <div className="p-content flex flex-col gap-[1rem]">
                 {/* <Time color="white" /> */}
-                <span>Plan Distribution</span>
+                <span>Expenditure</span>
 
                 <div className="flex gap-[0.5rem] items-center">
                   <div className="w-5 h-5 bg-[#964b00] rounded-full"></div>
-                  <span>Store A</span>
+                  <span>Vegetables</span>
                 </div>
                 <div className="flex gap-[0.5rem] items-center">
                   <div className="w-5 h-5 bg-[#004e40] rounded-full"></div>
-                  <span>Store B</span>
+                  <span>Vessels</span>
                 </div>
                 <div className="flex gap-[0.5rem] items-center">
                   <div className="w-5 h-5 bg-[#005298] rounded-full"></div>
-                  <span>Store C</span>
+                  <span>Liquid</span>
                 </div>
                 <div className="flex gap-[0.5rem] items-center">
                   <div className="w-5 h-5 bg-[#cc8400] rounded-full"></div>
-                  <span>Store D</span>
+                  <span>Essentials</span>
                 </div>
                 <div className="flex gap-[0.5rem] items-center">
                   <div className="w-5 h-5 bg-[#ff0000] rounded-full"></div>
-                  <span>Store E</span>
+                  <span>Miscellaneous</span>
                 </div>
               </div>
               <div className="">

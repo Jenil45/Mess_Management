@@ -7,8 +7,8 @@ import Inventory from "../Models/Inventory.js";
 
 export const getPlanCount = asyncHandler(async (req , res) => {
 
-  const today_date = moment().utcOffset("+05:30").startOf('month').toDate()
-  const end_date1 = moment().utcOffset("+05:30").endOf('month').toDate()
+  const today_date = moment().utcOffset("+05:30").startOf('month').startOf('week').toDate()
+  const end_date1 = moment().utcOffset("+05:30").endOf('month').endOf('week').toDate()
   // console.log(today_date);
   // console.log(end_date1);
 
@@ -157,7 +157,7 @@ export const getMonthlyExpenses = asyncHandler(async (req , res) => {
         }
       },
       {
-        $sort:{"expense":1}
+        $sort:{"storeType":1}
       }
 
       ]

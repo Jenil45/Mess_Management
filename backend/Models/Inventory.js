@@ -16,7 +16,8 @@ const inventorySchema = new mongoose.Schema({
     storeType : {
         type : String,
         required : [true , 'Please enter plan id'],
-        enum: ['StoreA' , 'StoreB' ,'StoreC','StoreD','StoreE'],
+        // enum: ['StoreA' , 'StoreB' ,'StoreC','StoreD','StoreE'],
+        enum: ['Vessels' , 'Vegetables' ,'Essentials','Liquid','Miscellaneous'],
     },
     date: {
         type: Date,

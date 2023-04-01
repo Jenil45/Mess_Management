@@ -1,35 +1,35 @@
-import React, {  useEffect, useRef, useState } from "react";
-import {useReactToPrint} from 'react-to-print'
+import React, { useEffect, useRef, useState } from "react";
+import { useReactToPrint } from "react-to-print";
 import axios from "../../Api/axios";
 import Alert from "../../Components/Alert";
 // import EditModal from "../Pages/EditModal";
 import EditModal from "./EditModal";
 
 function InventoryExpense(props) {
-  const [ alert, setalert ] = useState({
+  const [alert, setalert] = useState({
     mode: false,
     message: "",
     type: "bg-[red]",
   });
-  const [ editModal, setEditModal ] = useState(false);
-  const [ inventoryId, setInventoryId ] = useState("");
-  const [ inventory, setInventory ] = useState([]);
-  const [ search, setSearch ] = useState("");
+  const [editModal, setEditModal] = useState(false);
+  const [inventoryId, setInventoryId] = useState("");
+  const [inventory, setInventory] = useState([]);
+  const [search, setSearch] = useState("");
   // const [ page, setPage ] = useState(0);
   const row = 5;
   // const totalpages = Math.ceil(inventory.length / row);
-  const [ startingindex, setstartingindex ] = useState(0);
+  const [startingindex, setstartingindex] = useState(0);
 
- const ComponentPDF = useRef();
+  const ComponentPDF = useRef();
 
-  const generatePdf =useReactToPrint({
-    content : () => ComponentPDF.current,
-    documentTitle : "User Data",
-  })
+  const generatePdf = useReactToPrint({
+    content: () => ComponentPDF.current,
+    documentTitle: "User Data",
+  });
 
-  const  generateCSV = () => {
-    var csv = 'Name, expense, qty, remainqty\n';
-    inventory.forEach(function(row) {
+  const generateCSV = () => {
+    var csv = "Name, expense, qty, remainqty\n";
+    inventory.forEach(function (row) {
       csv += row.name + ", ";
       csv += row.expense + ", ";
       csv += row.qty + ", ";
@@ -37,12 +37,12 @@ function InventoryExpense(props) {
       csv += "\n";
     });
 
-    var hiddenElement = document.createElement('a');
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'inventory.csv';
+    var hiddenElement = document.createElement("a");
+    hiddenElement.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
+    hiddenElement.target = "_blank";
+    hiddenElement.download = "inventory.csv";
     hiddenElement.click();
-}
+  };
 
   useEffect(() => {
     const getData = async (e) => {
@@ -61,7 +61,7 @@ function InventoryExpense(props) {
     };
 
     getData();
-  }, [ editModal, alert ]);
+  }, [editModal, alert]);
 
   const content = inventory
     .filter((item, i) => {
@@ -145,7 +145,10 @@ function InventoryExpense(props) {
       /*                                         table main part                                        */
       /* ---------------------------------------------------------------------------------------------- */}
 
-      <table ref={ComponentPDF}  className=" mt-10 w-full text-sm text-left text-black ">
+      <table
+        ref={ComponentPDF}
+        className=" mt-10 w-full text-sm text-left text-black "
+      >
         <thead className="text-xs text-white bg-black uppercase bg-dark   text-center">
           <tr>
             <th scope="col" className="px-6 py-3 w-[8rem]">
@@ -166,14 +169,23 @@ function InventoryExpense(props) {
         <tbody className="text-center">{content}</tbody>
       </table>
 
-
       <div className="flex mb-6 mt-5 flex-row justify-center">
-      <button className="text-center text-xl text-white bg-blue-500 px-4 mr-3 py-2 rounded-lg hover:border-2 hover:border-black" onClick={generatePdf}> Pdf </button>
-      <button className="text-center text-xl text-white bg-green-700 px-4  py-2 rounded-lg hover:border-2 hover:border-black" onClick={generateCSV}> Excel </button>
+        <button
+          className="text-center text-xl text-white bg-blue-500 px-4 mr-3 py-2 rounded-lg hover:border-2 hover:border-black"
+          onClick={generatePdf}
+        >
+          {" "}
+          Pdf{" "}
+        </button>
+        <button
+          className="text-center text-xl text-white bg-green-700 px-4  py-2 rounded-lg hover:border-2 hover:border-black"
+          onClick={generateCSV}
+        >
+          {" "}
+          Excel{" "}
+        </button>
       </div>
-
-
-    </div >
+    </div>
   );
 }
 

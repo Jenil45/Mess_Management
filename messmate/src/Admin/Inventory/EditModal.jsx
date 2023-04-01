@@ -170,11 +170,11 @@ function EditModal(props) {
               <option selected value={""}>
                 Select Store Type...
               </option>
-              <option value={"StoreA"}>Vessels</option>
-              <option value={"StoreB"}>Vegetables</option>
-              <option value={"StoreC"}>Essentials</option>
-              <option value={"StoreD"}>Liquid</option>
-              <option value={"StoreE"}>Electricity</option>
+              <option value={"Vessels"}>Vessels</option>
+              <option value={"Vegetables"}>Vegetables</option>
+              <option value={"Essentials"}>Essentials</option>
+              <option value={"Liquid"}>Liquid</option>
+              <option value={"Miscellaneous"}>Electricity</option>
             </select>
           </div>
           <div className="relative mb-3">
