@@ -41,7 +41,6 @@ const Navbar = () => {
           >
             About us
           </Link>
-
         </nav>
         {auth.role === 0 ? (
           <div>
@@ -76,6 +75,32 @@ const Navbar = () => {
               className="mr-5 inline-flex items-center  bg-black text-white font-semibold text-lg hover:no-underline py-1 px-3 focus:outline-none  rounded p-2 md:mt-0"
             >
               Admin
+            </Link>
+            <button
+              className="inline-flex items-center bg-black border-0 text-white font-semibold text-lg mr-4 py-1 px-3 focus:outline-none  rounded    p-2 md:mt-0"
+              onClick={logout}
+            >
+              Logout
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                className="w-4 h-4 ml-1"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </>
+        ) : auth.role === 2 ? (
+          <>
+            <Link
+              to="/employee"
+              className="mr-5 inline-flex items-center  bg-black text-white font-semibold text-lg hover:no-underline py-1 px-3 focus:outline-none  rounded p-2 md:mt-0"
+            >
+              Employee
             </Link>
             <button
               className="inline-flex items-center bg-black border-0 text-white font-semibold text-lg mr-4 py-1 px-3 focus:outline-none  rounded    p-2 md:mt-0"
