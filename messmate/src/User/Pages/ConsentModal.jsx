@@ -33,6 +33,7 @@ function ConsentModal(props) {
         planId: props.planId,
         date: props.consentDate,
       });
+      // console.log(props);
       //   console.log("Inside effect", userEmail);
       try {
         const response = await axiosPrivate.get(`/userplan/getConsent/${obj}`);
