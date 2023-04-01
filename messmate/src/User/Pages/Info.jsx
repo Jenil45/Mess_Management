@@ -6,11 +6,11 @@ function Info() {
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-5 mx-auto">
         <div className="-my-8 divide-y-2 divide-gray-100">
-          <div className="py-8 flex flex-wrap md:flex-nowrap">
+          <div className="py-8 flex flex-wrap-reverse md:flex-nowrap">
             {/* <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
               <span className="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
             </div> */}
-            <div className="md:flex-grow">
+            <div className="md:flex-grow flex-none">
               <h2 className="text-3xl font-bold text-gray-900 title-font mb-3 ">
                 <img
                   src={goal}
@@ -43,7 +43,7 @@ function Info() {
               </a> */}
             </div>
           </div>
-          <div className="py-8 flex flex-wrap md:flex-nowrap ">
+          <div className="py-8 flex flex-wrap-reverse md:flex-nowrap ">
             <div className="md:flex-grow">
               <h1 className="text-3xl font-bold text-gray-900 title-font mb-3 ">
                 <img

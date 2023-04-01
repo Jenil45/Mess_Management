@@ -52,7 +52,7 @@ const UserMenu = () => {
       <hr />
 
       <div className="head flex-[1] mb-3 mt-3  font-bold ">
-        <h1 className="text-center m-2 text-5xl ">🍽 Today's Mess Menu 🍽</h1>
+        <h1 className="text-center m-2 text-xl md:text-5xl ">🍽 Today's Mess Menu 🍽</h1>
       </div>
 
       <div className="innerpart mt-5 flex-[10] flex  flex-row gap- ">
@@ -91,13 +91,14 @@ const UserMenu = () => {
           {isMenuAvlbl ? (
             <>
               {menuS.length > 0 ? (
-                <div className="w-full mt-4 mx-2 rounded-2xl bg-[#00ffff] py-3 text-black font-semibold text-lg px-20 min-h-[30px]">
+
+                <div className="w-full md:w-full flex flex-wrap mt-4 mx-2 rounded-2xl bg-[#00ffff] py-3 text-black font-semibold text-lg px-4 md:px-20 min-h-[30px]">
                   Today Menu Special :     <span className="text-black text-xl"> {menuS.map((items) => { return items })}</span>
                 </div>
               ) : (
                 ""
               )}
-              <div className="flex gap-[1rem] justify-around w-full mt-[2rem] ">
+              <div className="flex flex-wrap gap-[10px]  w-full mt-[2rem] ">
                 <Card name={"Breakfast"} menu={menuB} time={"8a.m.-10a.m."} />
                 <Card name={"Lunch"} menu={menuL} time={"12 p.m.- 2 p.m."} />
                 <Card

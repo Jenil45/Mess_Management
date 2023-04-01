@@ -203,7 +203,7 @@ const Attendance = () => {
     }
 
     return item.getMonth() !== today.month - 1 ? (
-      <div className={` cursor-pointer flex w-full mt-2 justify-center`}>
+      <div className={` cursor-pointer flex w-[30px]  md:w-full mt-[1px] md:mt-4 justify-center`}>
         <button
           onClick={
             consent
@@ -214,7 +214,7 @@ const Attendance = () => {
           }
         >
           <div
-            className={`${bg_big} rounded w-[50px] h-[50px] flex flex-col gap-2 items-center justify-center`}
+            className={`${bg_big} rounded w-[40px] h-[40px] md:w-[50px] md:h-[50px] flex md:gap-2 flex-col gap-2 items-center justify-center`}
           >
             <p
               className={`text-base text-gray-600   rounded-circle flex items-center justify-center w-[30px] h-[30px]"
@@ -222,9 +222,9 @@ const Attendance = () => {
             >
               {item.getDate()}
             </p>
-            <span className="flex gap-1">
+            <span className="flex gap-1 mb-[3px] md:mb-0">
               {breakfast ? (
-                <div className="w-[0.5rem] h-[0.5rem] bg-pink-400 rounded-full border-[1px] border-black"></div>
+                <div className="w-[0.5rem] h-[0.5rem]  bg-pink-400 rounded-full border-[1px] border-black"></div>
               ) : (
                 ""
               )}
@@ -243,7 +243,7 @@ const Attendance = () => {
         </button>
       </div>
     ) : (
-      <div className={`px-2 py-2 cursor-pointer  flex w-full justify-center `}>
+      <div className={`md:px-2 md:py-2 p-[2px] cursor-pointer max-w-[20px] md:mb-4  flex md:w-full justify-center `}>
         <button
           onClick={
             consent
@@ -254,7 +254,7 @@ const Attendance = () => {
           }
         >
           <div
-            className={`${bg_big} rounded w-[50px] h-[50px] flex flex-col gap-2 items-center justify-center`}
+            className={`${bg_big} rounded w-[50px] h-[50px] flex flex-col  md:gap-2 items-center justify-center`}
           >
             <p
               className={`text-lg font-semibold text-black  rounded-circle flex items-center justify-center w-[30px] h-[30px]"
@@ -340,10 +340,10 @@ const Attendance = () => {
       ) : (
         ""
       )}
-      <div className="flex items-center justify-self-stretch py-8 px-4 ">
-        <div className=" min-h-[75vh] min-w-[75%] w-full shadow-2xl border-[1.6px] rounded-2xl border-gray-500  ">
-          <div className="py-12 px-5 flex flex-col   rounded-2xl min-h-[75vh] bg-slate-100">
-            <div className="px-8 flex items-center justify-between flex-[2]">
+      <div className="flex items-center justify-center py-3 px-2 md:py-8  md:px-4 ">
+        <div className=" max-w-[80%] min-h-[75vh] md:max-w-[90%] w-full shadow-2xl border-[1.6px] rounded-2xl border-gray-500  ">
+          <div className="md:py-12  md:px-5  py-4 px-2 flex flex-col   rounded-2xl min-h-[75vh] bg-slate-100">
+            <div className="px-4 md:px-8 flex flex-wrap items-center justify-between flex-[2]">
               <span
                 tabIndex={0}
                 className="focus:outline-none  text-base font-bold  text-gray-800"
@@ -352,7 +352,7 @@ const Attendance = () => {
               </span>
               <div className="flex items-center">
                 <button
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900"
+                  className="inline-flex items-center px-2 py-1 md:px-4 md:py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900"
                   onClick={() => decrement()}
                 >
                   <svg
@@ -368,11 +368,11 @@ const Attendance = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  Prev
+                  <span className="hidden md:block">Prev</span>
                 </button>
 
                 <button
-                  className="m-2 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border- border-gray-700 rounded-none hover:bg-gray-900 "
+                  className="m-2 inline-flex items-center px-2 py-1 md:px-4 md:py-2 text-sm font-medium text-white bg-gray-800 border-0 border- border-gray-700 rounded-none hover:bg-gray-900 "
                   onClick={() =>
                     setToday({
                       month: dayjs().month() + 1,
@@ -381,14 +381,14 @@ const Attendance = () => {
                   }
                 >
                   {" "}
-                  Current
+                  <span className="text-sm md:text-sm"> current </span>
                 </button>
 
                 <button
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 "
+                  className="inline-flex items-center px-2 py-1 md:px-4 md:py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 "
                   onClick={() => incrementmonth()}
                 >
-                  Next
+                  <span className="hidden md:block">Next</span>
                   <svg
                     aria-hidden="true"
                     className="w-5 h-5 ml-2"
@@ -406,38 +406,38 @@ const Attendance = () => {
               </div>
             </div>
 
-            <div className="grid items-center grid-cols-7	 justify-between pt-12 overflow-x-auto flex-[8] ">
-              <div className="w-full mb-3 flex justify-center">
+            <div className="grid items-center grid-cols-7 max-w-full	justify-between pt-12 overflow-x-auto flex-[8] ">
+              <div className=" w-[30px] md:w-full  mb-3 flex justify-center">
                 <p className="text-lg  text-center text-gray-800 font-semibold">
                   Su
                 </p>
               </div>
-              <div className="w-full mb-3 flex justify-center">
+              <div className="w-[30px] md:w-full mb-3 flex justify-center">
                 <p className="text-lg  text-center text-gray-800 font-semibold">
                   mo
                 </p>
               </div>
-              <div className="w-full mb-3 flex justify-center">
+              <div className="w-[30px] md:w-full mb-3 flex justify-center">
                 <p className="text-lg  text-center text-gray-800 font-semibold">
                   tu
                 </p>
               </div>
-              <div className="w-full mb-3 flex justify-center">
+              <div className="w-[30px] md:w-full mb-3 flex justify-center">
                 <p className="text-lg  text-center text-gray-800 font-semibold">
                   wed
                 </p>
               </div>
-              <div className="w-full mb-3 flex justify-center">
+              <div className="w-[30px] md:w-full mb-3 flex justify-center">
                 <p className="text-lg  text-center text-gray-800 font-semibold">
                   thu
                 </p>
               </div>
-              <div className="w-full mb-3 flex justify-center">
+              <div className="w-[30px] md:w-full mb-3 flex justify-center">
                 <p className="text-lg  text-center text-gray-800 font-semibold">
                   Fri
                 </p>
               </div>
-              <div className="w-full mb-3 flex justify-center">
+              <div className="w-[30px] md:w-full mb-3 flex justify-center">
                 <p className="text-lg  text-center text-gray-800 font-semibold">
                   Sat
                 </p>
@@ -446,11 +446,11 @@ const Attendance = () => {
               {content}
             </div>
             <hr className="bg-black mt-3" />
-            <div className="info  flex flex-col w-full mx-3 mt-4 px-10">
-              <div className="flex flex-row gap-12 m-1">
+            <div className="info  flex flex-col md:w-full max-w-[75%]  mx-3 mt-4 px-10">
+              <div className="flex flex-row flex-wrap gap-4 md:gap-12 m-1">
                 <div className="flex flex-row gap-2">
                   {" "}
-                  <div className="min-h-[25px] min-w-[25px] rounded-xl bg-pink-400 "></div>{" "}
+                  <div className="md:min-h-[25px] max-h-[12px] min-w-[12px] md:min-w-[25px] md:mt-0  mt-[6px] rounded-xl bg-pink-400 "></div>{" "}
                   <span className="text-base text-black font-semibold">
                     {" "}
                     BreakFast
@@ -458,7 +458,7 @@ const Attendance = () => {
                 </div>
                 <div className="flex flex-row gap-2">
                   {" "}
-                  <div className="min-h-[25px] min-w-[25px] rounded-xl bg-[aqua] "></div>{" "}
+                  <div className="md:min-h-[25px] max-h-[12px] min-w-[12px] md:min-w-[25px] md:mt-0  mt-[6px] rounded-xl bg-[aqua] "></div>{" "}
                   <span className="text-base text-black font-semibold">
                     {" "}
                     Lunch
@@ -466,7 +466,7 @@ const Attendance = () => {
                 </div>
                 <div className="flex flex-row gap-2">
                   {" "}
-                  <div className="min-h-[25px] min-w-[25px] rounded-xl bg-red-800 "></div>{" "}
+                  <div className="md:min-h-[25px] max-h-[12px] min-w-[12px] md:min-w-[25px] md:mt-0  mt-[6px] rounded-xl bg-red-800 "></div>{" "}
                   <span className="text-base text-black font-semibold">
                     {" "}
                     Dinner
@@ -474,7 +474,7 @@ const Attendance = () => {
                 </div>
                 <div className="flex flex-row gap-2">
                   {" "}
-                  <div className="min-h-[25px] min-w-[25px] rounded-xl bg-lime-300 "></div>{" "}
+                  <div className="md:min-h-[25px] max-h-[12px] min-w-[12px] md:min-w-[25px] md:mt-0  mt-[6px] rounded-xl bg-lime-300 "></div>{" "}
                   <span className="text-base text-black font-semibold">
                     {" "}
                     Current Plane

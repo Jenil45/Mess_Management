@@ -26,12 +26,12 @@ function Sidebar() {
     <>
       <div className="min-h-[100vh]  my-2 ml-3 rounded-2xl bg-gray-200">
         <ul className="flex flex-col  pl-0 mb-0 mt-2 gap-[.3rem] z-2 ">
-          <li className="w-full mt-4 hidden sm:block">
+          <li className="w-full mt-4 hidden md:block">
             <h6 className=" ml-2  text-center text-lg font-bold text-black leading-tight uppercase  opacity-100">
               Hello User
             </h6>
           </li>
-          <hr className="bg-black mt-3 hidden sm:block" />
+          <hr className="bg-black mt-3 hidden md:block" />
 
           <li className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] ${active1} rounded-xl `}>
             <Link
@@ -41,7 +41,7 @@ function Sidebar() {
               <div className="shadow-soft-2xl  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
                 <img src={Rules} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
-              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+              <span className="ml-1 text-[1rem] hidden md:block text-black hover:text-black ">
                 Dashboard
               </span>
             </Link>
@@ -72,7 +72,7 @@ function Sidebar() {
                   className="h-[50px] w-[100px]"
                 />
               </div>
-              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+              <span className="ml-1 text-[1rem] hidden md:block text-black hover:text-black ">
                 Attendance
               </span>
             </Link>
@@ -90,7 +90,7 @@ function Sidebar() {
                   className="h-[50px] w-[100px]"
                 />
               </div>
-              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+              <span className="ml-1 text-[1rem] hidden md:block text-black hover:text-black ">
                  Your Plan
               </span>
             </Link>
@@ -104,7 +104,7 @@ function Sidebar() {
               <div className="shadow-soft-2xl pl-2  mr-2 flex h-[40px] w-[60px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
                 <img src={menu} alt="Logout!" className="h-[50px] w-[100px]" />
               </div>
-              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+              <span className="ml-1 text-[1rem] hidden md:block text-black hover:text-black ">
                 User Menu
               </span>
             </Link>
@@ -122,7 +122,7 @@ function Sidebar() {
                   className="h-[50px] w-[100px]"
                 />
               </div>
-              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+              <span className="ml-1 text-[1rem] hidden md:block text-black hover:text-black ">
                 Information
               </span>
             </Link>
@@ -130,12 +130,12 @@ function Sidebar() {
 
           {/* ---------------------------------------- Account part ---------------------------------------- */}
 
-          <li className="w-full  mt-8 hidden sm:block">
+          <li className="w-full  mt-8 hidden md:block">
             <h6 className=" ml-2  text-center text-lg  text-black font-bold leading-tight uppercase  opacity-100">
               Account
             </h6>
           </li>
-          <hr className="bg-black mt-3 hidden sm:block" />
+          <hr className="bg-black mt-3 hidden md:block" />
 
           <li className={`w-[80%]  p-[1.2px]  mt-4 mx-auto py-[0.5rem] ${active6} rounded-xl `}>
             <Link
@@ -149,7 +149,7 @@ function Sidebar() {
                   className="h-[50px] w-[100px]"
                 />
               </div>
-              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+              <span className="ml-1 text-[1rem] hidden md:block text-black hover:text-black ">
                 Profile
               </span>
             </Link>
@@ -163,7 +163,7 @@ function Sidebar() {
               <div className=" mr-2  flex h-[40px] w-[50px] items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-1.5">
                 <img src={logOut} alt="Logout!" className="h-[50px] w-[80px]" />
               </div>
-              <span className="ml-1 text-[1rem] hidden sm:block text-black hover:text-black ">
+              <span className="ml-1 text-[1rem] hidden md:block text-black hover:text-black ">
                 Logout
               </span>
             </button>

@@ -3,7 +3,7 @@ import React from "react";
 const Card = ({ name, menu, time }) => {
   return (
     <>
-      <div className="p-4 xl:w-1/4 md:w-1/2 min-w-[33%] min-h-[50vh] ">
+      <div className="p-4 xl:w-1/4 md:w-1/2 min-w-[30%] min-h-[50vh] ">
         <div className="h-full p-6 rounded-3xl border-2 border-black    bg-white flex flex-col relative">
           <div className="flex-[2] flex flex-col">
             <div className="text-5xl text-gray-900 leading-none flex flex-col items-center pb-4 mb-4 border-b border-black">
