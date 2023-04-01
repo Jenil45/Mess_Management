@@ -100,12 +100,14 @@ function ConsentModal(props) {
         onClick={() => props.setEditmodal(false)}
       />
 
-      <div className="flex fixed left-[35%] min-w-[30%] max-w-[31%] h-[30rem]   transform overflow-hidden  p-7  bg-gray-100 rounded-lg gap-[2rem]  flex-col  items-center justify-start  md:mt-0 ">
-        <div className="flex items-center justify-center">
-          <h2 className=" h-14 text-gray-900 text-3xl text-center font-medium title-font mb-2">
-            Give Consent
-          </h2>
-          <div class="flex-[1]">
+      <div className="flex fixed left-[35%] min-w-[30%] max-w-[35%] h-[30rem]   transform overflow-hidden  p-7  bg-gray-100 rounded-lg gap-[2rem]  flex-col  items-center justify-start  md:mt-0 ">
+        <div className="flex items-center flex-row  justify-between">
+          <div>
+            <h2 className=" flex-[9] h-14 pt-3 text-gray-900 text-3xl text-center font-medium title-font mb-2">
+              Give Consent
+            </h2>
+          </div>
+          <div class="flex-[1] pl-10">
             <img
               src={closeBtnpic}
               alt=""

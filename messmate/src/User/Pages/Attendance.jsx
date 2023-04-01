@@ -203,7 +203,7 @@ const Attendance = () => {
     }
 
     return item.getMonth() !== today.month - 1 ? (
-      <div className={` cursor-pointer flex w-full justify-center`}>
+      <div className={` cursor-pointer flex w-full mt-2 justify-center`}>
         <button
           onClick={
             consent
