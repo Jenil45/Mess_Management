@@ -112,11 +112,11 @@ const AddInventory = () => {
                   <option selected value={""}>
                     Select Store Type...
                   </option>
-                  <option value={"StoreA"}>Store A</option>
-                  <option value={"StoreB"}>Store B</option>
-                  <option value={"StoreC"}>Store C</option>
-                  <option value={"StoreD"}>Store D</option>
-                  <option value={"StoreE"}>Store E</option>
+                  <option value={"StoreA"}>Vessels</option>
+                  <option value={"StoreB"}>Vegetables</option>
+                  <option value={"StoreC"}>Essentials</option>
+                  <option value={"StoreD"}>Liquid</option>
+                  <option value={"StoreE"}>Electricity</option>
                 </select>
               </div>
               <div className="relative mb-4">

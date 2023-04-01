@@ -24,7 +24,7 @@ const Inventory = () => {
             setStore("A");
           }}
         >
-          Store A
+          Vessels
         </button>
         <button
           type="button"
@@ -33,7 +33,7 @@ const Inventory = () => {
             setStore("B");
           }}
         >
-          Store B
+          Vegetables
         </button>
         <button
           type="button"
@@ -42,7 +42,7 @@ const Inventory = () => {
             setStore("C");
           }}
         >
-          Store C
+          Essentials (Kg.)
         </button>
         <button
           type="button"
@@ -51,7 +51,7 @@ const Inventory = () => {
             setStore("D");
           }}
         >
-          Store D
+          Liquid (Lit.)
         </button>
         <button
           type="button"
@@ -60,7 +60,7 @@ const Inventory = () => {
             setStore("E");
           }}
         >
-          Store E
+          Electricity
         </button>
         <button
           type="button"
