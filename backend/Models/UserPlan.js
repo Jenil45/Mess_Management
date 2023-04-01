@@ -78,7 +78,7 @@ userplanSchema.pre("save", async function (next) {
 
         //
         // const today = moment().utcOffset("+05:30").startOf('day').toDate()
-        const today_date = moment().utcOffset("+05:30").add(1,'days').startOf('day').toDate()
+        const today_date = moment().utcOffset("+05:30").add(0,'days').startOf('day').toDate()
         // const today_date = moment().utcOffset("+05:30").subtract(1,'days').startOf('day').toDate()
         console.log(today_date);
         var end_date = moment().utcOffset("+05:30").add(0,'days').endOf('day').toDate()

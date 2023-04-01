@@ -40,7 +40,9 @@ const ProfileScanner = () => {
             planId: "You have no plan for today",
             fee: "",
             fee_status: "",
-            isToday: false,
+            isTodayBreakfast: "",
+            isTodayLunch: "",
+            isTodayDinner: "",
           };
           console.log(planDataObject);
         }

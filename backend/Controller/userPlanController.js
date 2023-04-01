@@ -94,10 +94,12 @@ export const updateUserPlan = asyncHandler(async (req, res) => {
 
 export const updateConsent = asyncHandler(async (req, res) => {
     var {userId , planId , date , breakfast , lunch , dinner} = req.body
-    console.log(req.body);
+    // console.log(req.body);
+    // console.log(date);
     var date = new Date(date)
+    // console.log(date);
     date=moment(date).utcOffset("+05:30").startOf('day').toDate()
-    console.log(date);
+    // console.log(date);
 
     const updatedObject = {date , breakfast , lunch , dinner}
     const updateConsent = await UserPlan.updateOne({userId , planId} , {
@@ -107,7 +109,7 @@ export const updateConsent = asyncHandler(async (req, res) => {
             {
                 "arrayFilters" : [{"elemX.date":date}]
             })
-    console.log("updated " , updateConsent);
+    // console.log("updated " , updateConsent);
     res.json({ message: `${userId} consent status updated` })
 })
 
@@ -144,7 +146,7 @@ export const getConsent = asyncHandler(async (req , res) => {
     var date = data.date
     var userId = data.userId
     var planId = data.planId
-    date=moment(date).utcOffset("+05:30").add(1,'days').startOf('day').toDate()
+    date=moment(date).utcOffset("+05:30").startOf('day').toDate()
     // console.log(date);
 
     // const getConsent = await UserPlan.aggregate([
@@ -184,6 +186,7 @@ export const getUserTodayPlan = asyncHandler(async (req , res) => {
     const userId = req.params.userId
     var today_date = new Date()
     today_date=moment(today_date).utcOffset("+05:30").startOf('day').toDate()
+    console.log(today_date);
     const user = await UserPlan.find({"userId":userId , "start_date":{$lte:today_date},
     "end_date":{$gte:today_date} , "isavailable.date":today_date},{
         _id:0,
@@ -202,7 +205,7 @@ export const getTodayStudents = asyncHandler(async (req , res) => {
     // console.log(type);
     var today_date = new Date()
     // today_date = moment(today_date).utcOffset()
-    today_date = moment(today_date).utcOffset("+05:30").add(1,'days').startOf('day').toDate()
+    today_date = moment(today_date).utcOffset("+05:30").startOf('day').toDate()
 
     // today_date.setDate(today_date.getDate())
     var user;

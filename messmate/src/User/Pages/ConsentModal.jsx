@@ -55,6 +55,7 @@ function ConsentModal(props) {
   const updateConsent = async () => {
     try {
       console.log("inside update");
+      console.log(date);
       const response = await axios.patch(
         "/userplan/updateConsent",
         JSON.stringify({
